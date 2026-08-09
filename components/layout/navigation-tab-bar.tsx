@@ -58,7 +58,7 @@ export default function NavigationTabBar() {
                                                     </TooltipTrigger>
 
                                                     <TooltipContent
-                                                        className="!z-60"
+                                                        className="!z-100"
                                                     >
                                                         Please sign in to add coins to your watchlist.
                                                     </TooltipContent>
