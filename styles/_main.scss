@@ -69,7 +69,7 @@
 .no-value-text {
     font-style: italic;
     text-align: right;
-    color: var(--color-gray-400);
+    @apply text-gray-600;
 }
 
 .error-toast {

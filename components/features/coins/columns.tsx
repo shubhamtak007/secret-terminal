@@ -4,7 +4,7 @@ import Image from 'next/image';
 import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
 import { ColumnDef } from '@tanstack/react-table';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { BsFillInfoCircleFill } from "react-icons/bs";
+import { Info } from "lucide-react";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
 import { ChevronsUpDown, ArrowUp, ArrowDown } from 'lucide-react';
@@ -95,7 +95,7 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
                 <div className="text-left font-semibold mr-[6px] flex items-center gap-1">
                     <div>{name}</div>
 
-                    <div className="text-[12px] font-normal text-gray-400">
+                    <div className="text-[12px] font-normal text-gray-600">
                         {symbol.toUpperCase()}
                     </div>
                 </div>
@@ -301,8 +301,8 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
                     </div>
 
                     <Tooltip>
-                        <TooltipTrigger>
-                            <BsFillInfoCircleFill />
+                        <TooltipTrigger aria-label="info">
+                            <Info size={15} />
                         </TooltipTrigger>
 
                         <TooltipContent

@@ -30,6 +30,7 @@
             font-size: 20px;
             font-weight: 600;
             margin-right: 12px;
+            min-width: 130px;
         }
 
         .header-right-side-container {
@@ -42,9 +43,8 @@
             .account-container {
                 .user-icon {
                     text-align: center;
-                    // border: 1px solid var(--border-color);
-                    // border-radius: var(--border-radius);
                     cursor: pointer;
+                    vertical-align: middle;
                 }
 
                 .sign-in-btn {

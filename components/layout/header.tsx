@@ -42,6 +42,7 @@ function Header() {
                             href="https://github.com/shubhamtak007/secret-terminal"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="View Secret Terminal on GitHub"
                             className={`max-h-[38px] max-w-[33px]`}
                         >
                             <FiGithub

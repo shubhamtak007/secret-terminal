@@ -57,18 +57,23 @@ function ProfileDropdown(pdBindings: PdBindings) {
     }
 
     return (
-        <div>
+        <>
             {
                 (user && user.id) ?
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                            <div className="user-icon">
+                            <button
+                                type="button"
+                                className="user-icon"
+                                aria-label="user"
+                            >
                                 <CircleUserRound
                                     style={{ color: 'var(--text-color)' }}
                                     className="size-5"
                                     strokeWidth={cnvIconStrokeWidth}
+                                    aria-hidden="true"
                                 />
-                            </div>
+                            </button>
                         </DropdownMenuTrigger>
 
                         <DropdownMenuContent
@@ -100,7 +105,7 @@ function ProfileDropdown(pdBindings: PdBindings) {
                     setOpenDialog={setOpenProfileDialog}
                 />
             }
-        </div>
+        </>
     )
 }
 

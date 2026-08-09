@@ -32,19 +32,29 @@ export default function NavigationTabBar() {
                                 <Fragment key={tab.id}>
                                     {
                                         <TabsTrigger
-                                            disabled={tab.disabled}
                                             value={tab.value}
+                                            disabled={tab.disabled}
                                             onClick={(event) => { onTabClick(event, tab.value) }}
-                                            style={{ 'paddingInline': '7px' }}
+                                            className="px-[7px]"
+                                            aria-label={tab.name}
                                         >
-                                            {(tab.name === 'Home') && <Home strokeWidth={cnvIconStrokeWidth} className="size-4" />}
+                                            {
+                                                (tab.name === 'Home') &&
+                                                <Home
+                                                    className="size-4"
+                                                    strokeWidth={cnvIconStrokeWidth}
+                                                />
+                                            }
                                             {
                                                 ((tab.name === 'Watchlist') && tab.disabled) &&
                                                 <Tooltip>
                                                     <TooltipTrigger asChild>
-                                                        <div>
-                                                            <Lock strokeWidth={cnvIconStrokeWidth} className="size-3" />
-                                                        </div>
+                                                        <span aria-hidden="true">
+                                                            <Lock
+                                                                strokeWidth={cnvIconStrokeWidth}
+                                                                className="size-3"
+                                                            />
+                                                        </span>
                                                     </TooltipTrigger>
 
                                                     <TooltipContent

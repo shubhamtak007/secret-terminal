@@ -68,7 +68,7 @@ function CoinList() {
                             onValueChange={(value) => { onRowsPerPageChange(value) }}
                             disabled={fetchingCoinList}
                         >
-                            <SelectTrigger>
+                            <SelectTrigger aria-label="Rows per page">
                                 <SelectValue />
                             </SelectTrigger>
 

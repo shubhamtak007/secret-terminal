@@ -37,7 +37,7 @@
 
             .name {
                 margin-right: 4px;
-                color: #81878c;
+                @apply text-gray-600;
             }
 
             .value {
