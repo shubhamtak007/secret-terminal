@@ -95,7 +95,7 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
                 <div className="text-left font-semibold mr-[6px] flex items-center gap-1">
                     <div>{name}</div>
 
-                    <div className="text-[12px] font-normal text-gray-600">
+                    <div className="text-[12px] font-normal text-gray-500">
                         {symbol.toUpperCase()}
                     </div>
                 </div>
