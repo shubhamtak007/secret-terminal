@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from '@/components/ui/sonner';
 
-
 const inter = Inter({
     weight: ['400', '500', '600', '700', '800', '900'],
     subsets: ["latin"],
@@ -13,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
     title: "Secret Terminal",
-    description: "The new force in crypto.",
+    description: "A simple coin app.",
     icons: {
         icon: '/terminal.svg'
     }
