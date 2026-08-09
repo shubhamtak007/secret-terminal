@@ -35,16 +35,14 @@
 
         .header-right-side-container {
             min-width: 130px;
-            display: flex;
-            justify-content: end;
-            align-items: center;
             gap: 16px;
+            @apply flex justify-end items-center;
 
             .account-container {
                 .user-icon {
                     text-align: center;
                     cursor: pointer;
-                    vertical-align: middle;
+                    @apply flex justify-center items-center
                 }
 
                 .sign-in-btn {

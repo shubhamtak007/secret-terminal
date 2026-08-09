@@ -68,7 +68,6 @@ function ProfileDropdown(pdBindings: PdBindings) {
                                 aria-label="user"
                             >
                                 <CircleUserRound
-                                    style={{ color: 'var(--text-color)' }}
                                     className="size-5"
                                     strokeWidth={cnvIconStrokeWidth}
                                     aria-hidden="true"
