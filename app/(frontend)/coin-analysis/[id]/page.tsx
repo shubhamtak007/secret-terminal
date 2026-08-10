@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import CoinAnalysisContainer from '@/components/features/coin-analysis/coin-analysis-container';
+import Loading from './loading';
 
 type Props = {
     params: Promise<{ id: string }>
@@ -10,7 +11,7 @@ async function CoinAnalysis({ params }: Props) {
     const { id } = await params;
 
     return (
-        <Suspense>
+        <Suspense fallback={<Loading />}>
             <CoinAnalysisContainer
                 coinId={id}
             />
