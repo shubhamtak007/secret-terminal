@@ -1,5 +1,5 @@
 import { toast } from 'sonner';
-import { AxiosInstance, InternalAxiosRequestConfig, isAxiosError } from 'axios';
+import { AxiosError, AxiosInstance, InternalAxiosRequestConfig, isAxiosError } from 'axios';
 import { secretTerminalEndpoints } from './endpoints';
 
 export const setupInterceptors = (client: AxiosInstance) => {
@@ -15,21 +15,20 @@ export const setupInterceptors = (client: AxiosInstance) => {
             return response;
 
         }, async (error: unknown) => {
-            if (!isAxiosError(error)) throw new Error(JSON.stringify(error));
-
-            const originalRequest = error.config as InternalAxiosRequestConfig & {
-                retry?: boolean;
-            };
-
-            if (error.response?.data && error.response.data.message) {
-                if (!['Unauthorized'].includes(error.response.data.message)) {
-                    toast.error(error.response.data.message, { className: 'error-toast' });
-
-                } else {
-                    throw new Error(error.response.data.message);
-                }
-            } else {
+            if (error instanceof Error) {
                 throw new Error(error.message);
+
+            } else if (error instanceof AxiosError) {
+                if (error.response?.data && error.response.data.message) {
+                    if (!['Unauthorized'].includes(error.response.data.message)) {
+                        toast.error(error.response.data.message, { className: 'error-toast' });
+
+                    } else {
+                        throw new Error(error.response.data.message);
+                    }
+                } else {
+                    throw new Error(error.message);
+                }
             }
 
             return Promise.reject(error);
