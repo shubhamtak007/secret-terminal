@@ -15,22 +15,21 @@ export const setupInterceptors = (client: AxiosInstance) => {
             return response;
 
         }, async (error: unknown) => {
-            if (error instanceof Error) {
-                throw new Error(error.message);
+            if (!isAxiosError(error)) throw new Error(JSON.stringify(error));
 
-            } else if (error instanceof AxiosError) {
-                if (error.response?.data && error.response.data.message) {
-                    if (!['unauthorized', 'invalid or expired token'].includes(
-                        error.response.data.message.trim().toLowerCase()
-                    )) {
-                        toast.error(error.response.data.message, { className: 'error-toast' });
+            if (error.response?.data && error.response.data.message) {
+                const message = error.response.data.message.trim().toLowerCase();
+                const isAuthError = message.includes('unauthorized') || message.includes('invalid or expired token') ||
+                    message.includes('expired');
 
-                    } else {
-                        throw new Error(error.response.data.message);
-                    }
+                if (!isAuthError) {
+                    toast.error(error.response.data.message, { className: 'error-toast' });
+
                 } else {
-                    throw new Error(error.message);
+                    throw new Error(error.response.data.message);
                 }
+            } else {
+                throw new Error(error.message);
             }
 
             return Promise.reject(error);
