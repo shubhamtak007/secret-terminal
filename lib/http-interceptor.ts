@@ -1,5 +1,5 @@
 import { toast } from 'sonner';
-import { AxiosError, AxiosInstance, InternalAxiosRequestConfig, isAxiosError } from 'axios';
+import { AxiosInstance, isAxiosError } from 'axios';
 import { secretTerminalEndpoints } from './endpoints';
 
 export const setupInterceptors = (client: AxiosInstance) => {
