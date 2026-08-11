@@ -22,12 +22,7 @@ export const setupInterceptors = (client: AxiosInstance) => {
             };
 
             if (error.response?.data && error.response.data.message) {
-                if (['Access token missing', 'Invalid or expired token'].includes(error.response.data.message)) {
-                    originalRequest.retry = true;
-                    await client.post(secretTerminalEndpoints.auth.refreshToken);
-                    return client(originalRequest);
-
-                } else if (!['Unauthorized'].includes(error.response.data.message)) {
+                if (!['Unauthorized'].includes(error.response.data.message)) {
                     toast.error(error.response.data.message, { className: 'error-toast' });
 
                 } else {
