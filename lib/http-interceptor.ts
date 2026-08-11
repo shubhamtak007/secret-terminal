@@ -20,7 +20,9 @@ export const setupInterceptors = (client: AxiosInstance) => {
 
             } else if (error instanceof AxiosError) {
                 if (error.response?.data && error.response.data.message) {
-                    if (!['Unauthorized'].includes(error.response.data.message)) {
+                    if (!['unauthorized', 'invalid or expired token'].includes(
+                        error.response.data.message.trim().toLowerCase()
+                    )) {
                         toast.error(error.response.data.message, { className: 'error-toast' });
 
                     } else {
