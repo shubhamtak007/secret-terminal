@@ -12,10 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
     title: "Secret Terminal",
-    description: "A simple coin app.",
-    icons: {
-        icon: '/terminal.svg'
-    }
+    description: "A simple coin app."
 };
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
