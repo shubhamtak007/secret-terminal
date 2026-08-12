@@ -40,21 +40,6 @@ const coinKeyList = [
     }
 ]
 
-const timeFrameList = [
-    { name: '24H', value: '1' },
-    { name: '7D', value: '7' },
-    { name: '14D', value: '14' },
-    { name: '1M', value: '30' },
-    { name: '200D', value: '200' },
-    { name: '1Y', value: '365' }
-]
-
-const chartViewList = [
-    { name: 'Price', value: 'price' },
-    { name: 'Volume', value: 'volume' },
-    { name: 'Market Capital', value: 'marketCapital' }
-]
-
 const coinsTableContextMenuList: Record<string, string>[] = ['View Details', 'Analyze Coin'].map((name) => {
     return { id: crypto.randomUUID(), name }
 })
@@ -82,6 +67,6 @@ const userScreenWidth = 820;
 const cnvIconStrokeWidth = 2.2;
 
 export {
-    coinKeyList, timeFrameList, chartViewList, coinsTableContextMenuList,
+    coinKeyList, coinsTableContextMenuList,
     navigationBarTabList, coinSymbolImageSize, userScreenWidth, cnvIconStrokeWidth
 };

@@ -18,6 +18,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en">
+            <head>
+                <meta name="apple-mobile-web-app-title" content="Secret Terminal" />
+            </head>
+
             <body className={`${inter.className}`}>
                 {children}
                 <Toaster />

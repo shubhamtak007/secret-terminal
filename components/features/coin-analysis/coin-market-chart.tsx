@@ -5,7 +5,7 @@ import { AreaChart, XAxis, YAxis, Area, CartesianGrid } from 'recharts';
 import { Spinner } from '@/components/ui/spinner';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCoinAnalysisContext } from '@/contexts/coin-analysis-context';
-import { timeFrameList, chartViewList, cnvIconStrokeWidth } from '@/constants/app.constants';
+import { timeFrameList, chartViewList, chartStrokeWidth } from '@/constants/chart.constants';
 import useCoinMarketChartData from '@/hooks/use-coin-market-chart-data';
 import useCoinChart from '@/hooks/use-coin-chart';
 import type { CoinAnalysis } from '@/interfaces/coin-analysis.interface';
@@ -14,8 +14,14 @@ type Bindings = CoinAnalysis;
 
 function CoinPriceChart({ coinProperties }: Bindings) {
     const { priceStatus } = useCoinAnalysisContext();
-    const { chartConfiguration, xAxisDataKey, yAxisDataKey, formatXAxisTick, formatYAxisTick, onChartViewChange, onTimeFrameChange, chartTimeFrame, chartView } = useCoinChart();
-    const { fetchingMarketDataPointList, marketDataPointList } = useCoinMarketChartData({ coinProperties, days: chartTimeFrame.value, currentChartView: chartView.value });
+    const {
+        chartConfiguration, xAxisDataKey, yAxisDataKey, formatXAxisTick, formatYAxisTick,
+        onChartViewChange, onTimeFrameChange, chartTimeFrame, chartView
+    } = useCoinChart();
+
+    const {
+        fetchingMarketDataPointList, marketDataPointList, axisConfig
+    } = useCoinMarketChartData({ coinProperties, days: chartTimeFrame.value, currentChartView: chartView.value });
 
     return (
         <div
@@ -85,21 +91,24 @@ function CoinPriceChart({ coinProperties }: Bindings) {
                                         >
                                             <CartesianGrid vertical={true} />
 
-                                            <XAxis
-                                                dataKey={xAxisDataKey.current}
-                                                tickLine={false}
-                                                axisLine={false}
-                                                minTickGap={40}
-                                                tickFormatter={formatXAxisTick}
-                                                textAnchor="middle"
-                                                tickMargin={5}
-                                            />
-
                                             <YAxis
+                                                domain={axisConfig.y.domain}
+                                                ticks={axisConfig.y.ticks}
+                                                tickCount={5}
                                                 dataKey={yAxisDataKey.current}
                                                 axisLine={false}
-                                                tickCount={5}
                                                 tickFormatter={formatYAxisTick}
+                                            />
+
+                                            <XAxis
+                                                domain={axisConfig.x.domain}
+                                                tickLine={false}
+                                                minTickGap={40}
+                                                textAnchor="middle"
+                                                tickMargin={5}
+                                                dataKey={xAxisDataKey.current}
+                                                axisLine={false}
+                                                tickFormatter={formatXAxisTick}
                                             />
 
                                             <ChartTooltip
@@ -118,7 +127,7 @@ function CoinPriceChart({ coinProperties }: Bindings) {
                                                 fill={priceStatus === 'up' ? 'var(--chart-2)' : 'var(--chart-1)'}
                                                 fillOpacity={0.1}
                                                 stroke={priceStatus === 'up' ? 'var(--chart-2)' : 'var(--chart-1)'}
-                                                strokeWidth={cnvIconStrokeWidth}
+                                                strokeWidth={chartStrokeWidth}
                                             />
                                         </AreaChart>
                                     </ChartContainer>

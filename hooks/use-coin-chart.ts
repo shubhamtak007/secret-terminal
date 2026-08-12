@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { formatValueInUsdCompact } from '@/services/utils.service';
-import { timeFrameList, chartViewList } from '@/constants/app.constants';
+import { timeFrameList, chartViewList } from '@/constants/chart.constants';
 import { useCoinAnalysisContext } from '@/contexts/coin-analysis-context';
 import { type ChartConfig } from '@/components/ui/chart';
 
@@ -40,7 +40,7 @@ function useCoinChart() {
     }
 
     function formatYAxisTick(yAxisTickValue: string): string {
-        const formattedValue = formatValueInUsdCompact(Number(yAxisTickValue), 6)
+        const formattedValue = formatValueInUsdCompact(Number(yAxisTickValue), 2)
         return String(formattedValue);
     }
 

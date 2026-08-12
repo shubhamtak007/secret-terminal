@@ -48,9 +48,7 @@ function ChartContainer({
     ...props
 }: React.ComponentProps<"div"> & {
     config: ChartConfig
-    children: React.ComponentProps<
-        typeof RechartsPrimitive.ResponsiveContainer
-    >["children"]
+    children: React.ComponentProps<typeof RechartsPrimitive.ResponsiveContainer>["children"]
     initialDimension?: {
         width: number
         height: number
@@ -95,20 +93,14 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
             dangerouslySetInnerHTML={{
                 __html: Object.entries(THEMES)
                     .map(
-                        ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-                                .map(([key, itemConfig]) => {
-                                    const color =
-                                        itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ??
-                                        itemConfig.color
-                                    return color ? `  --color-${key}: ${color};` : null
-                                })
-                                .join("\n")}
-}
-`
-                    )
-                    .join("\n"),
+                        ([theme, prefix]) => `${prefix} [data-chart=${id}]
+                        {${colorConfig.map(([key, itemConfig]) => {
+                            const color =
+                                itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ??
+                                itemConfig.color
+                            return color ? `  --color-${key}: ${color};` : null
+                        }).join("\n")}}`
+                    ).join("\n"),
             }}
         />
     )
@@ -158,10 +150,7 @@ function ChartTooltipContent({
         const [item] = payload
         const key = `${labelKey ?? item?.dataKey ?? item?.name ?? "value"}`
         const itemConfig = getPayloadConfigFromPayload(config, item, key)
-        const value =
-            !labelKey && typeof label === "string"
-                ? (config[label]?.label ?? label)
-                : itemConfig?.label
+        const value = !labelKey && typeof label === "string" ? (config[label]?.label ?? label) : itemConfig?.label
 
         if (labelFormatter) {
             return (
@@ -213,7 +202,8 @@ function ChartTooltipContent({
                             <div
                                 key={index}
                                 className={cn(
-                                    "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
+                                    `flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5
+                                    [&>svg]:text-muted-foreground`,
                                     indicator === "dot" && "items-center"
                                 )}
                             >
@@ -231,8 +221,7 @@ function ChartTooltipContent({
                                                         {
                                                             "h-2.5 w-2.5": indicator === "dot",
                                                             "w-1": indicator === "line",
-                                                            "w-0 border-[1.5px] border-dashed bg-transparent":
-                                                                indicator === "dashed",
+                                                            "w-0 border-[1.5px] border-dashed bg-transparent": indicator === "dashed",
                                                             "my-0.5": nestLabel && indicator === "dashed",
                                                         }
                                                     )}
