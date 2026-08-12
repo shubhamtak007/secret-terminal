@@ -16,8 +16,31 @@
 - Search coins by name or symbol.
 - Watchlist and news
 
-## Screenshot
-![Screenshot](public/screen-one.png)
+## Preview
+<p align="center">
+    <img 
+        alt="overview and coins table" 
+        src="public/preview/main.png" 
+        width="900"
+    >
+</p>
+
+<p align="center">
+    <img 
+        alt="price, volume, and market cap graphs for various time periods." 
+        src="public/preview/coin-analysis.png" 
+        width="900"
+    >
+</p>
+
+<p align="center">
+    <img 
+        alt="trending coins, nfts and categories." 
+        src="public/preview/trending.png" 
+        width="900"
+    >
+</p>
+
 
 ## License
 Secret Terminal is [MIT licensed](./LICENSE).
