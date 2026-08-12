@@ -25,18 +25,22 @@
     >
 </p>
 
-<p align="center">
-    <img 
-        alt="price, volume, and market cap graphs for various time periods." 
-        src="public/preview/coin-analysis.png" 
-        width="900"
-    >
-</p>
+#### Trending
 
 <p align="center">
     <img 
         alt="trending coins, nfts and categories." 
         src="public/preview/trending.png" 
+        width="900"
+    >
+</p>
+
+#### Coin Analysis
+
+<p align="center">
+    <img 
+        alt="price, volume, and market cap graphs for various time periods." 
+        src="public/preview/coin-analysis.png" 
         width="900"
     >
 </p>
