@@ -16,12 +16,12 @@ function CoinAnalysisContainer({ coinId }: Bindings) {
 
     return (
         <CoinAnalysisContextProvider>
-            <div className="coin-analysis-container grid grid-cols-12">
-                <div className="coin-info-col col-span-12 2xl:col-span-4 lg:col-span-4 md:col-span-12 sm:col-span-12">
+            <div className="coin-analysis-container">
+                <div className="coin-info-col">
                     <CoinInfo coinProperties={properties} />
                 </div>
 
-                <div className="coin-price-change-chart-col col-span-12 2xl:col-span-8 lg:col-span-8 md:col-span-12 sm:col-span-12">
+                <div className="coin-price-change-chart-col">
                     <CoinMarketChart coinProperties={properties} />
                 </div>
             </div>

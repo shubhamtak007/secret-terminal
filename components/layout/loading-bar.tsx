@@ -7,16 +7,16 @@ export default function LoadingBar({ className, ...props }: React.ComponentProps
 
     return (
         <>
-            {isLoading && <>
+            {isLoading && (<>
                 <div className={`top-loading-bar`}>
                     <div className={`top-loading-bar-progress`} />
                 </div>
 
                 <div className={`loading-overlay`}></div>
-            </>}
+            </>)}
 
             <div
-                className={`${isLoading && 'pointer-events-none select-none'}`}
+                className={`${isLoading ? "pointer-events-none select-none" : ""} ${className ?? ""}`}
                 {...props}
             >
                 {props.children}

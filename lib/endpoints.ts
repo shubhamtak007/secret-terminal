@@ -1,25 +1,25 @@
 const secretTerminalEndpoints = {
     auth: {
-        signUp: 'v0/auth/sign-up',
-        signIn: 'v0/auth/sign-in',
-        signOut: 'v0/auth/sign-out',
-        refreshToken: 'v0/auth/refresh-token',
-        forgotPassword: 'v0/auth/forgot-password',
-        verifyResetCode: 'v0/auth/verify-reset-code',
-        changePassword: 'v0/auth/change-password'
+        signUp: 'v1/auth/sign-up',
+        signIn: 'v1/auth/sign-in',
+        signOut: 'v1/auth/sign-out',
+        refreshToken: 'v1/auth/refresh-token',
+        forgotPassword: 'v1/auth/forgot-password',
+        verifyResetCode: 'v1/auth/verify-reset-code',
+        changePassword: 'v1/auth/change-password'
 
     }, users: {
-        me: 'v0/users/me'
+        me: 'v1/users/me'
     }, news: {
-        latest: 'v0/news/latest'
+        latest: 'v1/news/latest'
     },
     coins: {
-        coinList: 'v0/coins',
-        trending: 'v0/trending',
-        globalMarket: 'v0/global-market'
+        coinList: 'v1/coins',
+        trending: 'v1/trending',
+        globalMarket: 'v1/global-market'
     },
-    watchlists: 'v0/watchlists',
-    watchlistCoins: 'v0/watchlistCoins'
+    watchlists: 'v1/watchlists',
+    watchlistCoins: 'v1/watchlistCoins'
 }
 
 const coinGeckoEndpoints = {
