@@ -14,6 +14,8 @@ const axisConfigDefaultValues = {
     y: { domain: [], ticks: [] }
 }
 
+const tickCount = 5;
+
 export default function useCoinMarketChartData({ coinProperties, days, currentChartView }: Bindings) {
     const [fetchingMarketDataPointList, setFetchingMarketDataPointList] = useState(true);
     const [marketDataPointList, setMarketDataPointList] = useState<Record<string, number>[]>([]);
@@ -103,11 +105,11 @@ export default function useCoinMarketChartData({ coinProperties, days, currentCh
             setAxisConfig({
                 y: {
                     domain: [yMin, yMax],
-                    ticks: calculateTicks(yMin, yMax, 5)
+                    ticks: calculateTicks(yMin, yMax, tickCount)
                 },
                 x: {
                     domain: [xMin, xMax],
-                    ticks: calculateTicks(xMin, xMax, 3)
+                    ticks: calculateTicks(xMin, xMax, tickCount)
                 },
             })
         }
@@ -124,5 +126,5 @@ export default function useCoinMarketChartData({ coinProperties, days, currentCh
         return ticks;
     }
 
-    return { fetchingMarketDataPointList, marketDataPointList, axisConfig, calculateTicks }
+    return { fetchingMarketDataPointList, marketDataPointList, axisConfig, calculateTicks, tickCount }
 }

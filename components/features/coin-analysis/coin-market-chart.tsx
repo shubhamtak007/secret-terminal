@@ -20,7 +20,7 @@ function CoinPriceChart({ coinProperties }: Bindings) {
     } = useCoinChart();
 
     const {
-        fetchingMarketDataPointList, marketDataPointList, axisConfig
+        fetchingMarketDataPointList, marketDataPointList, axisConfig, tickCount
     } = useCoinMarketChartData({ coinProperties, days: chartTimeFrame.value, currentChartView: chartView.value });
 
     return (
@@ -92,21 +92,20 @@ function CoinPriceChart({ coinProperties }: Bindings) {
                                             <CartesianGrid vertical={true} />
 
                                             <YAxis
-                                                domain={axisConfig.y.domain}
-                                                ticks={axisConfig.y.ticks}
-                                                tickCount={5}
+                                                ticks={axisConfig.y.ticks?.slice(1, -1)}
+                                                tickCount={tickCount}
                                                 dataKey={yAxisDataKey.current}
                                                 axisLine={false}
                                                 tickFormatter={formatYAxisTick}
                                             />
 
                                             <XAxis
+                                                type="number"
+                                                ticks={axisConfig.x.ticks?.slice(1, -1)}
+                                                tickCount={tickCount}
                                                 domain={axisConfig.x.domain}
-                                                tickLine={false}
-                                                minTickGap={40}
-                                                textAnchor="middle"
-                                                tickMargin={5}
                                                 dataKey={xAxisDataKey.current}
+                                                tickLine={false}
                                                 axisLine={false}
                                                 tickFormatter={formatXAxisTick}
                                             />
