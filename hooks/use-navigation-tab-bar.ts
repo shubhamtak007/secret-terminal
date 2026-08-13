@@ -18,22 +18,22 @@ export default function useNavigationTabBar() {
     const { user } = useUser();
 
     useEffect(() => {
-        if (navigationBarTabList && navigationBarTabList.length > 0) {
-            for (const tab of navigationBarTabList) {
-                tab.disabled = false;
+        if (!navigationBarTabList || navigationBarTabList.length === 0) return;
 
-                if ((!user || !user.id) && (tab.value === 'watchlist')) {
-                    tab.disabled = true;
-                }
+        for (const tab of navigationBarTabList) {
+            tab.disabled = false;
+
+            if ((!user || !user.id) && (tab.value === 'watchlist')) {
+                tab.disabled = true;
             }
-
-            setTabList((previousTabList: NavigationBarTab[]) => {
-                return (previousTabList.length > 0) ? previousTabList.map((previousTab: NavigationBarTab) => {
-                    const foundTab = navigationBarTabList.find((currentTab) => previousTab.id === currentTab.id)
-                    return { ...previousTab, disabled: foundTab?.disabled };
-                }) : navigationBarTabList
-            });
         }
+
+        setTabList((previousTabList: NavigationBarTab[]) => {
+            return (previousTabList.length > 0) ? previousTabList.map((previousTab: NavigationBarTab) => {
+                const foundTab = navigationBarTabList.find((currentTab) => previousTab.id === currentTab.id)
+                return { ...previousTab, disabled: foundTab?.disabled };
+            }) : navigationBarTabList
+        });
     }, [navigationBarTabList, user]);
 
     useEffect(() => {

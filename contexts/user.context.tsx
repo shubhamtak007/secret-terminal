@@ -4,8 +4,6 @@ import { createContext, useContext, ReactNode, useState, SetStateAction, Dispatc
 import { User } from '@/interfaces/account-centre.interface';
 import { retrieveProfile } from '@/services/user.service';
 import { GlobeOff } from 'lucide-react';
-import { isAxiosError } from 'axios';
-import { useLoading } from './loading.context';
 
 type UserContextProviderProps = {
     children: ReactNode
@@ -15,7 +13,9 @@ type UserContextType = {
     user: User | null,
     setUser: Dispatch<SetStateAction<User | null>>,
     isOnline: boolean,
-    setIsOnline: Dispatch<SetStateAction<boolean>>
+    setIsOnline: Dispatch<SetStateAction<boolean>>,
+    fetchingUser: boolean,
+    setFetchingUser: Dispatch<SetStateAction<boolean>>
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -23,23 +23,23 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 const UserContextProvider = ({ children }: UserContextProviderProps) => {
     const [user, setUser] = useState<User | null>(null);
     const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
-    const { setIsLoading } = useLoading();
+    const [fetchingUser, setFetchingUser] = useState<boolean>(true);
 
     useEffect(() => {
         if (navigator.onLine === false) {
-            setIsLoading(false);
+            setFetchingUser(false);
             return;
         }
 
         async function fetchUserDetails() {
             try {
-                setIsLoading(true);
+                setFetchingUser(true);
                 const response = await retrieveProfile();
                 setUser(response.data.data);
             } catch (error: unknown) {
                 console.error(error);
             } finally {
-                setIsLoading(false);
+                setFetchingUser(false);
             }
         }
 
@@ -55,7 +55,7 @@ const UserContextProvider = ({ children }: UserContextProviderProps) => {
 
     return (
         <UserContext.Provider
-            value={{ user, setUser, isOnline, setIsOnline }}
+            value={{ user, setUser, isOnline, setIsOnline, fetchingUser, setFetchingUser }}
         >
             {children}
         </UserContext.Provider>

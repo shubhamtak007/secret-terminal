@@ -12,8 +12,7 @@ import { cnvIconStrokeWidth } from '@/constants/app.constants';
 
 export default function NavigationTabBar() {
     const {
-        scrollEnded, activeTab, onTabClick, dialogType, showDialog,
-        setShowDialog, tabList
+        scrollEnded, activeTab, onTabClick, dialogType, showDialog, setShowDialog, tabList
     } = useNavigationTabBar();
 
     return (

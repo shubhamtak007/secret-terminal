@@ -3,7 +3,7 @@ import { useUser } from '@/contexts/user.context';
 import { useLoading } from '@/contexts/loading.context';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Spinner } from '@/components/ui/spinner';
 import { CircleUserRound } from 'lucide-react';
 import { signOut } from '@/services/authentication.service';
 import { cnvIconStrokeWidth } from '@/constants/app.constants';
@@ -16,13 +16,13 @@ type PdBindings = {
 
 function AccountCentre() {
     const [showSignInDialog, setShowSignInDialog] = useState(false);
-    const { isLoading } = useLoading();
+    const { fetchingUser } = useUser();
 
     return (
         <div className="account-container">
             {
-                isLoading === true ?
-                    <Skeleton className="w-[36px] h-[33px] rounded-[var(--border-radius)]" />
+                fetchingUser === true ?
+                    <Spinner className="size-5" />
                     : <ProfileDropdown setShowSignInDialog={setShowSignInDialog} />
             }
 
@@ -36,8 +36,8 @@ function AccountCentre() {
     )
 }
 
-function ProfileDropdown(pdBindings: PdBindings) {
-    const { setShowSignInDialog } = pdBindings;
+function ProfileDropdown(bindings: PdBindings) {
+    const { setShowSignInDialog } = bindings;
     const { setIsLoading } = useLoading();
     const { user, setUser } = useUser();
     const [openProfileDialog, setOpenProfileDialog] = useState<boolean>(false);
