@@ -18,7 +18,7 @@ function MarketSummary() {
                     fetchingMarketSummary ?
                         [...Array(4)].map((_, index) => {
                             return (
-                                <Skeleton key={'indicator' + index} className="w-full item h-[161.14px]" />
+                                <Skeleton key={'indicator' + index} className="w-full item h-[162px]" />
                             )
                         })
                         :

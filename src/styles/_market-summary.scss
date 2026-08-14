@@ -1,8 +1,5 @@
 .market-summary-body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 12px;
+    @apply flex flex-wrap justify-between gap-[12px] mb-[30px];
 
     .item {
         min-width: 270px;
