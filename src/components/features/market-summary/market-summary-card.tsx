@@ -1,0 +1,80 @@
+'use client';
+
+import React, { useState } from "react";
+import MarketSummaryCoins from '@/src/components/features/market-summary/market-summary-coins';
+import { Item, ItemContent, ItemTitle } from '@/src/components/ui/item';
+import { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
+import { ChevronRight } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/src/components/ui/dialog';
+
+interface Bindings {
+    marketSummaryItem: MarketSummaryItem
+}
+
+function MarketSummaryCard({ marketSummaryItem }: Bindings) {
+    const [showMarketSummaryItemCardDialog, setShowMarketSummaryItemCardDialog] = useState<boolean>(false);
+
+    return (
+        <>
+            <Item
+                key={marketSummaryItem.id}
+                className="item border-[var(--border-color)]"
+                variant="outline"
+            >
+                <ItemContent>
+                    <ItemTitle className="mb-[8px] text-[12px]">
+                        <div>
+                            {marketSummaryItem.title}
+                        </div>
+
+                        <div
+                            onClick={() => { setShowMarketSummaryItemCardDialog(true) }}
+                            className="more-link"
+                        >
+                            More <ChevronRight />
+                        </div>
+                    </ItemTitle>
+
+                    <MarketSummaryCoins
+                        noOfCoins={3}
+                        key={marketSummaryItem.id}
+                        marketSummaryItem={marketSummaryItem}
+                    />
+                </ItemContent>
+            </Item>
+
+            <Dialog
+                open={showMarketSummaryItemCardDialog}
+                onOpenChange={setShowMarketSummaryItemCardDialog}
+            >
+                <DialogContent
+                    aria-describedby={`15 ${marketSummaryItem.title}`}
+                >
+                    <DialogHeader>
+                        <DialogTitle>
+                            <div>
+                                {marketSummaryItem.title}
+                            </div>
+
+                            <DialogDescription
+                                className="text-[11px] m-[4px_0px] sr-only"
+                            >
+                                {marketSummaryItem.title.toLowerCase()} coins dialog.
+                            </DialogDescription>
+                        </DialogTitle>
+                    </DialogHeader>
+
+                    <DialogBody>
+                        <MarketSummaryCoins
+                            noOfCoins={15}
+                            key={marketSummaryItem.id}
+                            marketSummaryItem={marketSummaryItem}
+                        />
+                    </DialogBody>
+                </DialogContent>
+            </Dialog>
+        </>
+    )
+}
+
+export default React.memo(MarketSummaryCard);

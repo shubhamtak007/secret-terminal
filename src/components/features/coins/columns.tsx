@@ -1,0 +1,341 @@
+'use client';
+
+import Image from 'next/image';
+import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
+import { ColumnDef } from '@tanstack/react-table';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/src/components/ui/tooltip';
+import { Info } from "lucide-react";
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber } from '@/src/services/utils.service';
+import { ChevronsUpDown, ArrowUp, ArrowDown } from 'lucide-react';
+import { Button } from '@/src/components/ui/button';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/src/components/ui/dropdown-menu';
+
+const decimalPlaces = 2;
+
+export const columns: ColumnDef<CoingeckoCrypto>[] = [
+    {
+        id: 'indexNumber',
+        accessorKey: '',
+        header: '#',
+        cell: ({ row, table }) => {
+            const currentPageNumber = table.options.meta?.currentPageNumber;
+            const rowsPerPage = table.options.meta?.rowsPerPage ? table.options.meta?.rowsPerPage : 0;
+            return (row.index + 1) + (currentPageNumber === 1 ? 0 : rowsPerPage)
+        }, meta: {
+            headerClassNames: 'min-w-[5%] text-center',
+            cellClassNames: 'text-center'
+        }
+    }, {
+        id: 'coinDetails',
+        accessorKey: '',
+        header: ({ table }) => {
+            const sortByFn = table.options.meta?.sortBy ? table.options.meta?.sortBy : Function();
+            const currentSortingValue = table.options.meta?.currentSortingValue ?
+                table.options.meta?.currentSortingValue : null;
+
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            variant="ghost"
+                            className="sorting-btn"
+                            disabled={table.options.meta?.fetchingList}
+                        >
+                            Coin{currentSortingValue === 'id_asc' ? <ArrowUp /> :
+                                currentSortingValue === 'id_desc' ? <ArrowDown /> : <ChevronsUpDown />}
+                        </Button>
+                    </DropdownMenuTrigger>
+
+                    <DropdownMenuContent>
+                        <DropdownMenuItem
+                            onSelect={() => { sortByFn('id_asc'); }}
+                        >
+                            Asc<ArrowUp />
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                            onSelect={() => { sortByFn('id_desc'); }}
+                        >
+                            Desc<ArrowDown />
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                            disabled={!currentSortingValue?.startsWith('id_')}
+                            onSelect={() => { sortByFn(null) }}
+                        >
+                            Reset
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
+        }, cell: ({ row }) => {
+            const imageUrl: string = row.original['image'];
+            const name: string = row.original['name'];
+            const symbol: string = row.original['symbol'];
+
+            return <div className="min-w-[120px] flex items-center px-3">
+                <div className="min-w-[26px] mr-[8px]">
+                    {
+                        imageUrl ?
+                            <Image
+                                className="coin-symbol-image"
+                                width={22}
+                                height={22}
+                                alt={`Image of ${name}`}
+                                src={imageUrl}
+                            />
+                            :
+                            <div className="coin-letter-mark">
+                                {symbol[0].toUpperCase()}
+                            </div>
+                    }
+                </div>
+
+                <div className="text-left font-semibold mr-[6px] flex items-center gap-1">
+                    <div>{name}</div>
+
+                    <div className="text-[12px] font-normal text-gray-500">
+                        {symbol.toUpperCase()}
+                    </div>
+                </div>
+            </div>
+        }, meta: {
+            headerClassNames: 'w-[25%] text-left sticky',
+            cellClassNames: 'text-center sticky'
+        }
+    }, {
+        accessorKey: 'current_price',
+        header: ({ }) => 'Current Price',
+        cell: ({ row }) => {
+            const currentPrice: number = row.getValue('current_price');
+            return currentPrice && formatValueIntoCommaSeparated(currentPrice, 5, true)
+        }, meta: {
+            headerClassNames: 'text-right',
+            cellClassNames: 'text-right'
+        }
+    }, {
+        accessorKey: 'price_change_percentage_1h_in_currency',
+        header: ({ }) => '1h',
+        cell: ({ row }) => {
+            const priceChangeIn1hInPercent: number = row.getValue('price_change_percentage_1h_in_currency');
+
+            return (priceChangeIn1hInPercent && priceChangeIn1hInPercent !== 0) ?
+                <div className={`flex items-center justify-end ${(priceChangeIn1hInPercent > 0 ? 'success-text' : 'danger-text')}`}>
+                    <span className="relative bottom-[1px]">
+                        {(priceChangeIn1hInPercent > 0) ? <FaCaretUp /> : <FaCaretDown />}
+                    </span>
+                    {roundOffNumber(priceChangeIn1hInPercent, decimalPlaces).toFixed(decimalPlaces) + '%'}
+                </div> : <div className="no-value-text">No 1hr</div>
+        }, meta: {
+            headerClassNames: 'text-right',
+            cellClassNames: 'text-right'
+        }
+    }, {
+        accessorKey: 'price_change_percentage_24h',
+        header: ({ }) => '24h',
+        cell: ({ row }) => {
+            const priceChangeIn24hInPercent: number = row.getValue('price_change_percentage_24h');
+
+            return (priceChangeIn24hInPercent && priceChangeIn24hInPercent !== 0) ?
+                <div className={`flex items-center justify-end ${(priceChangeIn24hInPercent > 0 ? 'success-text' : 'danger-text')}`}>
+                    <span className="relative bottom-[1px]">
+                        {(priceChangeIn24hInPercent > 0) ? <FaCaretUp /> : <FaCaretDown />}
+                    </span>
+                    {roundOffNumber(priceChangeIn24hInPercent, decimalPlaces).toFixed(decimalPlaces) + '%'}
+                </div> : <div className="no-value-text">No 24hr</div>
+        }, meta: {
+            headerClassNames: 'text-right',
+            cellClassNames: 'text-right'
+        }
+    }, {
+        accessorKey: 'price_change_percentage_7d_in_currency',
+        header: ({ }) => '7d',
+        cell: ({ row }) => {
+            const priceChangeIn7DaysInPercent: number = row.getValue('price_change_percentage_7d_in_currency');
+
+            return (priceChangeIn7DaysInPercent && priceChangeIn7DaysInPercent !== 0) ?
+                <div className={`flex items-center justify-end ${(priceChangeIn7DaysInPercent > 0 ? 'success-text' : 'danger-text')}`}>
+                    <span className="relative bottom-[1px]">
+                        {(priceChangeIn7DaysInPercent > 0) ? <FaCaretUp /> : <FaCaretDown />}
+                    </span>
+
+                    {roundOffNumber(priceChangeIn7DaysInPercent, decimalPlaces).toFixed(decimalPlaces) + '%'}
+                </div> : <div className="no-value-text">No 7d</div>
+        }, meta: {
+            headerClassNames: 'text-right',
+            cellClassNames: 'text-right'
+        }
+    }, {
+        accessorKey: 'total_volume',
+        header: ({ table }) => {
+            const sortByFn = table.options.meta?.sortBy ? table.options.meta?.sortBy : Function();
+            const currentSortingValue = table.options.meta?.currentSortingValue ? table.options.meta?.currentSortingValue : null;
+
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            variant="ghost"
+                            className="sorting-btn"
+                            disabled={table.options.meta?.fetchingList}
+                        >
+                            Volume{currentSortingValue === 'volume_asc' ? <ArrowUp /> :
+                                currentSortingValue === 'volume_desc' ? <ArrowDown /> : <ChevronsUpDown />}
+                        </Button>
+                    </DropdownMenuTrigger>
+
+                    <DropdownMenuContent>
+                        <DropdownMenuItem
+                            onSelect={() => { sortByFn('volume_asc'); }}
+                        >
+                            Asc<ArrowUp />
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                            onSelect={() => { sortByFn('volume_desc'); }}
+                        >
+                            Desc<ArrowDown />
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                            disabled={!currentSortingValue?.startsWith('volume_')}
+                            onSelect={() => { sortByFn(null); }}
+                        >
+                            Reset
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
+        }, cell: ({ row }) => {
+            const totalVolume: number = row.getValue('total_volume');
+            return (
+                <div className="px-3">
+                    {
+                        totalVolume &&
+                        <>
+                            <div>
+                                {formatValueInUsdCompact(totalVolume, 2)}
+                            </div>
+
+                            {/* <div className="text-[grey] text-[12px]">
+                                {formatValueIntoCommaSeparated(totalVolume, decimalPlaces, true)}
+                            </div> */}
+                        </>
+                    }
+                </div>
+            )
+        }, meta: {
+            headerClassNames: 'text-right',
+            cellClassNames: 'text-right'
+        }
+    }, {
+        accessorKey: 'market_cap',
+        header: ({ table }) => {
+            const sortByFn = table.options.meta?.sortBy ? table.options.meta?.sortBy : Function();
+            const currentSortingValue = table.options.meta?.currentSortingValue ? table.options.meta?.currentSortingValue : null;
+
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button
+                            variant="ghost"
+                            className="sorting-btn"
+                            disabled={table.options.meta?.fetchingList}
+                        >
+                            Market Cap.{currentSortingValue === 'market_cap_asc' ? <ArrowUp /> :
+                                currentSortingValue === 'market_cap_desc' ? <ArrowDown /> : <ChevronsUpDown />}
+                        </Button>
+                    </DropdownMenuTrigger>
+
+                    <DropdownMenuContent>
+                        <DropdownMenuItem
+                            onSelect={() => { sortByFn('market_cap_asc'); }}
+                        >
+                            Asc<ArrowUp />
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                            onSelect={() => { sortByFn('market_cap_desc'); }}
+                        >
+                            Desc<ArrowDown />
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem
+                            disabled={!currentSortingValue?.startsWith('market_cap')}
+                            onSelect={() => { sortByFn(null) }}
+                        >
+                            Reset
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
+        }, cell: ({ row }) => {
+            const marketCapital: number = row.getValue('market_cap');
+            return (
+                <div className="px-3">
+                    {marketCapital &&
+                        <>
+                            <div>
+                                {formatValueInUsdCompact(marketCapital, 2)}
+                            </div>
+
+                            {/* <div className="text-[grey] text-[12px]">
+                                {formatValueIntoCommaSeparated(marketCapital, 5, true)}
+                            </div> */}
+                        </>
+                    }
+                </div>
+            )
+        }, meta: {
+            headerClassNames: 'text-right',
+            cellClassNames: 'text-right'
+        }
+    }, {
+        accessorKey: 'circulating_supply',
+        header: ({ header }) => {
+            return (
+                <div className="flex justify-end">
+                    <div className="mr-[4px]">
+                        Circulating Supply
+                    </div>
+
+                    <Tooltip>
+                        <TooltipTrigger aria-label="info">
+                            <Info size={15} />
+                        </TooltipTrigger>
+
+                        <TooltipContent
+                            data-side={'top'}
+                            side={'top'}
+                            className="w-[300px]"
+                        >
+                            The amount of coins that are circulating in the market and are in public
+                            hands. It is analogous to the flowing shares in the stock market.
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
+            )
+        }, cell: ({ row }) => {
+            const circulatingSupply: number = row.getValue('circulating_supply');
+            return (
+                <div className="pl-3">
+                    {circulatingSupply &&
+                        <>
+                            <div>
+                                {formatValueInUsdCompact(circulatingSupply, 2)}
+                            </div>
+
+                            {/* <div className="text-[grey] text-[12px]">
+                                {formatValueIntoCommaSeparated(circulatingSupply, decimalPlaces, true)}
+                            </div> */}
+                        </>
+                    }
+                </div>
+            )
+        }, meta: {
+            headerClassNames: 'text-right !pr-[12px]',
+            cellClassNames: 'text-right !pr-[12px]'
+        }
+    }
+]

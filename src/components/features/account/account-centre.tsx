@@ -1,0 +1,111 @@
+import { useState, Dispatch, SetStateAction } from 'react';
+import { useUser } from '@/src/contexts/user.context';
+import { useLoading } from '@/src/contexts/loading.context';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '@/src/components/ui/dropdown-menu';
+import { Button } from '@/src/components/ui/button';
+import { Spinner } from '@/src/components/ui/spinner';
+import { CircleUserRound } from 'lucide-react';
+import { signOut } from '@/src/services/authentication.service';
+import { cnvIconStrokeWidth } from '@/src/constants/app.constants';
+import ProfileDialog from './profile-dialog';
+import SignIn from '@/src/components/features/sign-in/sign-in';
+
+type PdBindings = {
+    setShowSignInDialog: Dispatch<SetStateAction<boolean>>
+}
+
+function AccountCentre() {
+    const [showSignInDialog, setShowSignInDialog] = useState(false);
+    const { fetchingUser } = useUser();
+
+    return (
+        <div className="account-container">
+            {
+                fetchingUser === true ?
+                    <Spinner className="size-5" />
+                    : <ProfileDropdown setShowSignInDialog={setShowSignInDialog} />
+            }
+
+            {
+                <SignIn
+                    showDialog={showSignInDialog}
+                    setShowDialog={setShowSignInDialog}
+                />
+            }
+        </div>
+    )
+}
+
+function ProfileDropdown(bindings: PdBindings) {
+    const { setShowSignInDialog } = bindings;
+    const { setIsLoading } = useLoading();
+    const { user, setUser } = useUser();
+    const [openProfileDialog, setOpenProfileDialog] = useState<boolean>(false);
+
+    async function logoutUser() {
+        try {
+            setIsLoading(true);
+            const response = await signOut();
+            if (response.status === 200) {
+                setUser(null);
+            }
+        } catch (error) {
+
+        } finally {
+            setIsLoading(false);
+        }
+    }
+
+    return (
+        <>
+            {
+                (user && user.id) ?
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <button
+                                type="button"
+                                className="user-icon"
+                                aria-label="user"
+                            >
+                                <CircleUserRound
+                                    className="size-5"
+                                    strokeWidth={cnvIconStrokeWidth}
+                                    aria-hidden="true"
+                                />
+                            </button>
+                        </DropdownMenuTrigger>
+
+                        <DropdownMenuContent
+                            align="center"
+                            className="m-[16px_5px_30px_10px]"
+                        >
+                            <DropdownMenuGroup>
+                                <DropdownMenuItem onClick={() => { setOpenProfileDialog(true) }}>
+                                    Profile
+                                </DropdownMenuItem>
+
+                                <DropdownMenuItem onClick={() => { logoutUser() }}>
+                                    Log out
+                                </DropdownMenuItem>
+                            </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                    : <Button
+                        className="sign-in-btn"
+                        onClick={() => setShowSignInDialog(true)}
+                    >
+                        Sign in
+                    </Button>
+            }
+
+            {
+                <ProfileDialog
+                    openDialog={openProfileDialog}
+                    setOpenDialog={setOpenProfileDialog}
+                />
+            }
+        </>
+    )
+}
+
+export default AccountCentre;

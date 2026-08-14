@@ -1,0 +1,91 @@
+'use client';
+
+import { Spinner } from '@/src/components/ui/spinner';
+import { FaReddit, FaGithub } from "react-icons/fa";
+import { ExternalLink } from 'lucide-react';
+import { formatValueIntoCommaSeparated } from '@/src/services/utils.service';
+import { ClientCoinProperties } from '@/src/interfaces/coin-details.interface';
+
+type Bindings = {
+    fetchingCoinDetails: boolean,
+    coinDetails: ClientCoinProperties | null
+}
+
+export default function CoinDetailsBlock(bindings: Bindings) {
+    const { fetchingCoinDetails, coinDetails } = bindings;
+
+    return (
+        <div className="coin-details-wrapper">
+            {
+                fetchingCoinDetails ?
+                    <div className="w-max mx-auto"><Spinner className="size-10" /></div> :
+                    <>
+                        {coinDetails &&
+                            <div>
+                                {coinDetails.description && <div className="text-[13px] mb-[12px]">
+                                    {coinDetails.description}
+                                </div>}
+
+                                <table className="cnv-table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Website</td>
+                                            <td>
+                                                <a
+                                                    href={coinDetails.websiteUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center"
+                                                >
+                                                    {new URL(coinDetails.websiteUrl).hostname.replace('www.', '')}
+                                                    <ExternalLink className="ml-[4px] size-3" />
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Socials</td>
+                                            <td>
+                                                <div className="social-container">
+                                                    {
+                                                        coinDetails.socialLinks.map((socialLink, index) => {
+                                                            return (
+                                                                <a
+                                                                    key={`${index}-${socialLink.name}`}
+                                                                    className="social-link-chip"
+                                                                    href={socialLink.url}
+                                                                    target="_blank"
+                                                                    rel="noopener noreferrer"
+                                                                >
+                                                                    <div className="icon">
+                                                                        {socialLink.name === 'Github' && <FaGithub name="github" />}
+                                                                        {socialLink.name === 'Reddit' && <FaReddit name="reddit" />}
+                                                                    </div>
+
+                                                                    <div className="name">
+                                                                        {socialLink.name}
+                                                                    </div>
+                                                                </a>
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Current Price</td>
+                                            <td>
+                                                {coinDetails.currentPrice &&
+                                                    formatValueIntoCommaSeparated(coinDetails.currentPrice, 5, true)}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </>
+            }
+        </div>
+    )
+}

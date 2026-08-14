@@ -1,0 +1,162 @@
+import Image from 'next/image';
+import useCoinSearchDialog from '@/src/hooks/use-coin-search-dialog';
+import { coinSymbolImageSize } from '@/src/constants/app.constants';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/src/components/ui/input-group';
+import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent, DialogFooter, DialogOverlay } from '@/src/components/ui/dialog';
+import { CirclePlus, Search, X } from 'lucide-react';
+import { Spinner } from '@/src/components/ui/spinner';
+import { Dispatch, SetStateAction } from 'react';
+
+type Bindings = {
+    showDialog: boolean,
+    setShowDialog: Dispatch<SetStateAction<boolean>>,
+    context?: string,
+    contextProperties?: Record<string, string>,
+    onDialogClose?: () => void,
+    dialogLevel?: number
+}
+
+function CoinSearchDialog(bindings: Bindings) {
+    let { showDialog, setShowDialog, context, contextProperties, onDialogClose, dialogLevel } = bindings;
+    const {
+        searchValue, setSearchValue, onSearchValueChange,
+        searchingCoins, coins, onCoinClick, addCoinToActiveWatchlist
+    } = useCoinSearchDialog({ showDialog, setShowDialog, contextProperties, context });
+
+    return (
+        <div>
+            <Dialog
+                open={showDialog}
+                onOpenChange={setShowDialog}
+            >
+                <DialogContent
+                    closeOnOutsideClick={true}
+                    onCloseAutoFocus={onDialogClose}
+                    dialogLevel={dialogLevel}
+                >
+                    <DialogHeader
+                        showCloseButton={false}
+                        className="p-[12px]"
+                    >
+                        <DialogTitle className="font-normal">
+                            <div>
+                                <InputGroup className="w-full h-[40px] w-[stretch]">
+                                    <InputGroupInput
+                                        type="text"
+                                        tabIndex={0}
+                                        placeholder="Search by name..."
+                                        className="!text-[13px] h-[inherit]"
+                                        value={searchValue}
+                                        onChange={(event) => { onSearchValueChange(event) }}
+                                    />
+
+                                    <InputGroupAddon>
+                                        <Search className="size-4" />
+                                    </InputGroupAddon>
+
+                                    <InputGroupAddon
+                                        className={`clear-btn ${(searchValue && searchValue.length > 0) ? 'block' : 'hidden'}`}
+                                        align="inline-end"
+                                        onClick={() => { setSearchValue('') }}
+                                    >
+                                        <X />
+                                    </InputGroupAddon>
+                                </InputGroup>
+                            </div>
+
+                            <DialogDescription className="text-[11px] m-[4px_0px] sr-only">
+                                coin search dialog
+                            </DialogDescription>
+                        </DialogTitle>
+                    </DialogHeader>
+
+                    <DialogBody>
+                        {
+                            (searchingCoins === true) ?
+                                <Spinner className="size-13 mx-auto" /> :
+                                (coins.length > 0) ? <>
+                                    <div className="text-gray-500 text-[12px] mb-[8px]">
+                                        Search Results
+                                    </div>
+
+                                    <table className="cnv-borderless-table coin-search-table">
+                                        <tbody>
+                                            {
+                                                coins.map((coin, index) => {
+                                                    return (
+                                                        <tr
+                                                            tabIndex={0}
+                                                            key={coin.id}
+                                                            onClick={(event) => { onCoinClick(event, coin); }}
+                                                            onKeyDown={(event) => {
+                                                                if (event.key === 'Enter') {
+                                                                    onCoinClick(event, coin);
+                                                                }
+                                                            }}
+                                                        >
+                                                            <td>
+                                                                <div className="flex items-center">
+                                                                    <div className="pr-[8px]">
+                                                                        {
+                                                                            coin.large ? <Image
+                                                                                className="coin-symbol-image"
+                                                                                width={coinSymbolImageSize.width}
+                                                                                height={coinSymbolImageSize.height}
+                                                                                alt={`Image of ${coin.name}`}
+                                                                                src={coin.large}
+                                                                            /> :
+                                                                                <div className="coin-letter-mark cursor-pointer">
+                                                                                    {coin.symbol[0]}
+                                                                                </div>
+                                                                        }
+                                                                    </div>
+
+                                                                    <div
+                                                                        className="crypto-symbol cursor-pointer"
+                                                                    >
+                                                                        {coin.name}
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            {
+                                                                (context === 'watchlist') &&
+                                                                <td
+                                                                    className="place-items-end"
+                                                                    onClick={(event) => {
+                                                                        event?.stopPropagation();
+                                                                        event?.preventDefault();
+                                                                        addCoinToActiveWatchlist(coin);
+                                                                    }}
+                                                                >
+                                                                    {
+                                                                        (coin.loading === true) ? <Spinner className="size-5" /> :
+                                                                            <CirclePlus className="size-5" />
+                                                                    }
+                                                                </td>
+                                                            }
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                        </tbody>
+                                    </table>
+                                </> :
+                                    <div className="no-value-text !text-center">
+                                        {searchValue ? `No coins found.` : 'Search for a coin to get started.'}
+                                    </div>
+                        }
+                    </DialogBody>
+
+                    <DialogFooter>
+                        <div className="text-[.75em] text-[grey] text-right">
+                            Click the coin to go to the analysis page.
+                        </div>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+        </div >
+    )
+}
+
+export default CoinSearchDialog;
