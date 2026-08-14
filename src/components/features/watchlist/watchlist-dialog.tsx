@@ -13,7 +13,7 @@ import { Spinner } from "@/src/components/ui/spinner";
 import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuTrigger } from "@/src/components/ui/context-menu";
 import { WatchlistCoin } from "@/src/interfaces/watchlist.interface";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
-import { roundOffNumber } from "@/src/services/utils.service";
+import { formatValueIntoCommaSeparated, roundOffNumber } from "@/src/services/utils.service";
 
 type Bindings = DialogProps;
 
@@ -256,7 +256,7 @@ function WatchlistCoinList(props: any) {
                                                                         <Skeleton className="h-[21px] w-[60px] float-right" /> :
                                                                         watchlistCoin.marketData &&
                                                                         <div className="mr-[2px]">
-                                                                            ${watchlistCoin.marketData.current_price}
+                                                                            {formatValueIntoCommaSeparated(watchlistCoin.marketData.current_price, 5, true)}
                                                                         </div>
                                                                     }
                                                                 </td>
