@@ -1,6 +1,6 @@
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import NavigationWrapper from '@/components/layout/loading-bar';
+import LoadingBar from '@/components/layout/loading-bar';
 import { UserContextProvider } from "@/contexts/user.context";
 import { LoadingContextProvider } from '@/contexts/loading.context';
 
@@ -8,7 +8,7 @@ export default function Layout({ children, }: Readonly<{ children: React.ReactNo
     return (
         <div className="body-wrapper">
             <LoadingContextProvider>
-                <NavigationWrapper>
+                <LoadingBar>
                     <UserContextProvider>
                         <Header />
 
@@ -20,7 +20,7 @@ export default function Layout({ children, }: Readonly<{ children: React.ReactNo
 
                         <Footer />
                     </UserContextProvider>
-                </NavigationWrapper>
+                </LoadingBar>
             </LoadingContextProvider>
         </div>
     );
