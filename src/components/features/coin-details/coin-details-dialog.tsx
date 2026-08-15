@@ -26,7 +26,7 @@ function CoinDetailsDialog(bindings: Bindings) {
             <DialogContent dialogLevel={dialogLevel} size="sm">
                 <DialogHeader>
                     <DialogTitle>
-                        {coin && <div className="flex items-center">
+                        {coin && <div className="flex items-center gap-1.5">
                             {
                                 coin.image ?
                                     <Image
@@ -42,7 +42,7 @@ function CoinDetailsDialog(bindings: Bindings) {
                                     </div>
                             }
 
-                            <span className="ml-[6px]">{coin.name}</span>
+                            <span>{coin.name}</span>
                         </div>}
 
                         <DialogDescription
