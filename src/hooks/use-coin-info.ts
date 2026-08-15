@@ -13,6 +13,7 @@ function useCoinInfo({ coinProperties }: Bindings) {
     const [fetchingCoinInfo, setFetchingCoinInfo] = useState<boolean>(true);
 
     useEffect(() => {
+        document.title = coinProperties.id;
         if (coinProperties.id) fetchCoinInfoByName();
     }, [])
 
@@ -23,6 +24,7 @@ function useCoinInfo({ coinProperties }: Bindings) {
             const coins = await retrieveCoinList({ ids: coinProperties.id });
 
             if (coins.length > 0) {
+                document.title = coins[0].name;
                 formatValues(coins);
                 setCoinInfo(coins[0]);
             }
