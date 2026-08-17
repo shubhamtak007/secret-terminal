@@ -18,7 +18,10 @@ function useMarketSummary() {
 
     async function fetchAllCoinsAndTrendingCoins() {
         try {
-            const promises = [
+            const locationResponse = await fetch('https://ipwho.is/');
+            const locationData = await locationResponse.json();
+
+            const promises = (locationData.country_code === 'US') ? [retrieveTrendingCoins()] : [
                 retrieveTrendingCoins(),
                 retrieveAllCoins()
             ]
@@ -26,14 +29,26 @@ function useMarketSummary() {
             const responses = await Promise.all(promises);
 
             if (responses.length > 0) {
-                if (responses[0].length > 0) createTrendingCoinList(responses[0]);
-                if (responses[1].length > 0) createGainerLoserAndVolumeList(responses[1]);
-                fetchNameAndImageOfCryptoCurrencies();
+                if (responses[0].length > 0) {
+                    createTrendingCoinList(responses[0]);
+
+                    if (locationData.country_code === 'US') {
+                        setMarketSummary([{ id: 'trending', title: 'Trending', coins: marketSummaryRef.trendingCoins }]);
+                        return;
+                    }
+                }
+
+                if (responses[1].length > 0) {
+                    createGainerLoserAndVolumeList(responses[1]);
+                    fetchNameAndImageOfCryptoCurrencies();
+                }
+
+                createMarketSummary();
             }
         } catch (error) {
-            setFetchingMarketSummary(false);
-        } finally {
 
+        } finally {
+            setFetchingMarketSummary(false);
         }
     }
 
@@ -102,7 +117,7 @@ function useMarketSummary() {
         } catch (error) {
 
         } finally {
-            setFetchingMarketSummary(false);
+
         }
     }
 

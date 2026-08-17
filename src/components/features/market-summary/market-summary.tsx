@@ -26,6 +26,7 @@ function MarketSummary() {
                             return (
                                 <MarketSummaryCard
                                     key={marketSummaryItem.id}
+                                    marketSummary={marketSummary}
                                     marketSummaryItem={marketSummaryItem}
                                 />
                             )

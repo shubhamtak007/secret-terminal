@@ -7,18 +7,21 @@ import { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
 import { ChevronRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/src/components/ui/dialog';
 
-interface Bindings {
+type Bindings = {
     marketSummaryItem: MarketSummaryItem
+    marketSummary: MarketSummaryItem[]
 }
 
-function MarketSummaryCard({ marketSummaryItem }: Bindings) {
+function MarketSummaryCard(bindings: Bindings) {
+    const { marketSummary, marketSummaryItem } = bindings;
     const [showMarketSummaryItemCardDialog, setShowMarketSummaryItemCardDialog] = useState<boolean>(false);
 
     return (
         <>
             <Item
                 key={marketSummaryItem.id}
-                className="item border-[var(--border-color)]"
+                className={`item border-[var(--border-color)]
+                            ${(marketSummary.length === 1) && 'max-w-[300px]'} `}
                 variant="outline"
             >
                 <ItemContent>
