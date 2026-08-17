@@ -65,6 +65,11 @@ function useCoinList() {
                     searchedCoinsSymbolsRef.current = createSymbolsFromSearchedCoins(response.data.coins);
                 }
 
+                if (searchedCoinsSymbolsRef.current?.length === 0) {
+                    setCoinList([]);
+                    return;
+                }
+
                 params.symbols = searchedCoinsSymbolsRef.current;
             }
 
