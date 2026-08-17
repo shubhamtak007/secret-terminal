@@ -89,8 +89,8 @@ function useMarketSummary() {
                             id: matchedCrypto.id,
                             name: matchedCrypto.name,
                             imageUrl: matchedCrypto.image ? matchedCrypto.image : '',
-                            lastPrice: matchedCrypto.current_price,
-                            priceChangePercent: priceChangePercentRoundOffValue
+                            // lastPrice: matchedCrypto.current_price,
+                            // priceChangePercent: priceChangePercentRoundOffValue
                         }
 
                         Object.assign(crypto, info);
