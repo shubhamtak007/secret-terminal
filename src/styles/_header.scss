@@ -36,7 +36,7 @@
         }
 
         .header-right-side-container {
-            @apply flex justify-end items-center gap-[12px] min-w-[130px];
+            @apply flex justify-end items-center gap-[12px] min-w-[var(--both-sides-header-width)];
 
             .account-container {
                 .user-icon {
