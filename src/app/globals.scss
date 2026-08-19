@@ -176,6 +176,10 @@
     --row-hover-color: #1d2027;
 
     --overlay-color: rgba(0, 0, 0, 0.85);
+
+    --box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), 0 0 3px rgba(255, 255, 255, 0.10);
+    --top-box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.35), 0 -1px 3px rgba(255, 255, 255, 0.08);
+    --bottom-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.32), 0 2px 4px rgba(0, 0, 0, 0.20);
 }
 
 @layer base {
