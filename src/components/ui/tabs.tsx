@@ -50,7 +50,8 @@ function TabsList({
         <TabsPrimitive.List
             data-slot="tabs-list"
             data-variant={variant}
-            className={cn(tabsListVariants({ variant }), `gap-1 disabled:pointer-events-none`, className)}
+            className={cn(tabsListVariants({ variant }), `gap-1 disabled:pointer-events-none
+                       dark:bg-[var(--top-bg-color)] `, className)}
             {...props}
         />
     )
@@ -83,7 +84,9 @@ function TabsTrigger({
 
                 `data-[state=active]:bg-background data-[state=active]:text-foreground
                 dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30
-                dark:data-[state=active]:text-foreground`,
+                dark:data-[state=active]:text-foreground
+
+                data-[state=inactive]:!text-[var(--st-muted-color)]`,
 
                 `after:absolute after:bg-foreground after:opacity-0 after:transition-opacity
                 group-data-[orientation=horizontal]/tabs:after:inset-x-0
