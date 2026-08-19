@@ -82,11 +82,12 @@ function TabsTrigger({
                 dark:group-data-[variant=line]/tabs-list:data-[state=active]:border-transparent
                 dark:group-data-[variant=line]/tabs-list:data-[state=active]:bg-transparent`,
 
-                `data-[state=active]:bg-background data-[state=active]:text-foreground
+                `data-[state=active]:bg-background data-[state=active]:text-[var(--text-color)]
                 dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30
-                dark:data-[state=active]:text-foreground
+                dark:data-[state=active]:text-[var(--text-color)]
 
-                data-[state=inactive]:!text-[var(--st-muted-color)]`,
+                data-[state=inactive]:text-[var(--st-muted-color)]
+                dark:data-[state=inactive]:text-[var(--st-muted-color)]`,
 
                 `after:absolute after:bg-foreground after:opacity-0 after:transition-opacity
                 group-data-[orientation=horizontal]/tabs:after:inset-x-0
