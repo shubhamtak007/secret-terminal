@@ -64,9 +64,9 @@ const coinSymbolImageSize = {
 }
 
 const userScreenWidth = 820;
-const cnvIconStrokeWidth = 2.2;
+const iconSize = 18;
 
 export {
     coinKeyList, coinsTableContextMenuList,
-    navigationBarTabList, coinSymbolImageSize, userScreenWidth, cnvIconStrokeWidth
+    navigationBarTabList, coinSymbolImageSize, userScreenWidth, iconSize
 };

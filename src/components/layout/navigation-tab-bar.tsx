@@ -8,7 +8,7 @@ import { Tabs, TabsTrigger, TabsList } from '@/src/components/ui/tabs';
 import { Home, Lock } from 'lucide-react';
 import { DialogProps } from "@/src/interfaces/global.interface";
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/src/components/ui/tooltip';
-import { cnvIconStrokeWidth } from '@/src/constants/app.constants';
+import { iconSize } from '@/src/constants/app.constants';
 
 export default function NavigationTabBar() {
     const {
@@ -41,7 +41,7 @@ export default function NavigationTabBar() {
                                                 (tab.name === 'Home') &&
                                                 <Home
                                                     className="size-4"
-                                                    strokeWidth={cnvIconStrokeWidth}
+                                                    size={iconSize}
                                                 />
                                             }
                                             {
@@ -50,7 +50,7 @@ export default function NavigationTabBar() {
                                                     <TooltipTrigger asChild>
                                                         <span aria-hidden="true">
                                                             <Lock
-                                                                strokeWidth={cnvIconStrokeWidth}
+                                                                size={iconSize}
                                                                 className="size-3"
                                                             />
                                                         </span>

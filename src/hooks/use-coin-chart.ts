@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import { formatValueInUsdCompact } from '@/src/services/utils.service';
 import { timeFrameList, chartViewList } from '@/src/constants/chart.constants';
-import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis-context';
+import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis.context';
 import { type ChartConfig } from '@/src/components/ui/chart';
 
 type ChartView = { name: string, value: string };

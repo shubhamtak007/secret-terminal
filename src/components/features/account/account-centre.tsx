@@ -6,7 +6,7 @@ import { Button } from '@/src/components/ui/button';
 import { Spinner } from '@/src/components/ui/spinner';
 import { CircleUserRound } from 'lucide-react';
 import { signOut } from '@/src/services/authentication.service';
-import { cnvIconStrokeWidth } from '@/src/constants/app.constants';
+import { iconSize } from '@/src/constants/app.constants';
 import ProfileDialog from './profile-dialog';
 import SignIn from '@/src/components/features/sign-in/sign-in';
 
@@ -69,7 +69,7 @@ function ProfileDropdown(bindings: PdBindings) {
                             >
                                 <CircleUserRound
                                     className="size-5"
-                                    strokeWidth={cnvIconStrokeWidth}
+                                    size={iconSize}
                                     aria-hidden="true"
                                 />
                             </button>

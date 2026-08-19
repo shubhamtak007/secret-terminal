@@ -1,7 +1,7 @@
 'use client';
 
 import { lazy } from 'react';
-import { CoinAnalysisContextProvider } from '@/src/contexts/coin-analysis-context';
+import { CoinAnalysisContextProvider } from '@/src/contexts/coin-analysis.context';
 const CoinMarketChart = lazy(() => import('@/src/components/features/coin-analysis/coin-market-chart'));
 const CoinInfo = lazy(() => import('@/src/components/features/coin-analysis/coin-info'));
 

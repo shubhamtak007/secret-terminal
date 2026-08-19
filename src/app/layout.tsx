@@ -3,6 +3,7 @@ import "./globals.scss";
 import { Inter } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from '@/src/components/ui/sonner';
+import { ThemeProvider } from "@/src/contexts/theme.context";
 
 const inter = Inter({
     weight: ['400', '500', '600', '700', '800', '900'],
@@ -23,7 +24,14 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
             </head>
 
             <body className={`${inter.className}`}>
-                {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                >
+                    {children}
+                </ThemeProvider>
+
                 <Toaster />
                 <Analytics />
             </body>

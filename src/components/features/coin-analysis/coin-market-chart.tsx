@@ -4,7 +4,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/src/compone
 import { AreaChart, XAxis, YAxis, Area, CartesianGrid } from 'recharts';
 import { Spinner } from '@/src/components/ui/spinner';
 import { Tabs, TabsList, TabsTrigger } from '@/src/components/ui/tabs';
-import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis-context';
+import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis.context';
 import { timeFrameList, chartViewList, chartStrokeWidth } from '@/src/constants/chart.constants';
 import useCoinMarketChartData from '@/src/hooks/use-coin-market-chart-data';
 import useCoinChart from '@/src/hooks/use-coin-chart';

@@ -117,6 +117,12 @@
     --github-color: #1f2328;
 
     --required-color: #e7000b;
+
+    --shimmer-color: var(--grey-color-1);
+
+    --tab-text-color: #8fa1b9;
+    --tab-active-bg-color: var(--main-color);
+    --tab-active-text-color: var(--text-color);
 }
 
 .dark {
@@ -151,6 +157,25 @@
     --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.553 0.013 58.071);
+
+    --grey-color-1: #24272E;
+    --grey-color-2: #626770;
+
+    --main-color: #00dc81;
+    --main-bg-color: #181a20;
+    --text-color: #ededed;
+
+    --border-color: var(--grey-color-1);
+
+    --shimmer-color: #1E2027;
+
+    --tab-text-color: #8fa1b9;
+    --tab-active-bg-color: #00dc81;
+    --tab-active-text-color: #0f172b;
+
+    --row-hover-color: #1d2027;
+
+    --overlay-color: rgba(0, 0, 0, 0.85);
 }
 
 @layer base {

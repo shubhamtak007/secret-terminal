@@ -5,9 +5,10 @@ import NavigationTabBar from '@/src/components/layout/navigation-tab-bar';
 import useHeader from '@/src/hooks/use-header';
 import AccountCentre from '@/src/components/features/account/account-centre';
 import CoinSearchDialog from '@/src/components/features/coin-search/coin-search-dialog';
-import { cnvIconStrokeWidth } from '@/src/constants/app.constants';
+import { iconSize } from '@/src/constants/app.constants';
 import { Search, Terminal } from 'lucide-react';
 import { FiGithub } from 'react-icons/fi';
+import { ThemeToggle } from '../ui/theme-toggle';
 
 function Header() {
     const { scrolled, showTabBar, showSearchDialog, setShowSearchDialog } = useHeader();
@@ -33,10 +34,12 @@ function Header() {
                                 setShowSearchDialog(true);
                             }}
                         >
-                            <Search className="size-5" strokeWidth={cnvIconStrokeWidth} />
+                            <Search className="size-5" size={iconSize} />
                         </div>
 
                         <AccountCentre />
+
+                        <div className="divider"></div>
 
                         <a
                             href="https://github.com/shubhamtak007/secret-terminal"
@@ -47,9 +50,11 @@ function Header() {
                         >
                             <FiGithub
                                 className="size-4 m-auto"
-                                strokeWidth={cnvIconStrokeWidth}
+                                size={iconSize}
                             />
                         </a>
+
+                        <ThemeToggle />
                     </div>
                 </div>
             </div>

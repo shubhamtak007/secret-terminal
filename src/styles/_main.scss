@@ -72,6 +72,10 @@
     color: var(--grey-color-2);
 }
 
+.divider {
+    @apply border-r-1 border-[var(--border-color)] h-[20px];
+}
+
 .error-toast {
     color: #fafafa !important;
     font-size: 15px !important;

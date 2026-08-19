@@ -18,8 +18,8 @@
             border-radius: unset;
 
             [data-state="active"] {
-                background-color: var(--main-color);
-                color: var(--text-color);
+                background-color: var(--tab-active-bg-color);
+                color: var(--tab-active-text-color);
                 box-shadow: unset;
             }
 
@@ -37,17 +37,17 @@
                 min-width: 36px;
                 max-width: max-content;
                 place-items: center;
-                color: var(--text-color);
+                color: var(--tab-text-color);
 
                 &:hover {
-                    background-color: var(--main-color);
+                    background-color: var(--tab-active-bg-color);
+                    color: var(--tab-active-text-color);
                     border-radius: var(--border-radius);
-                    color: var(--text-color);
-                    // padding: 8.5px;
                 }
 
                 &:disabled {
                     background-color: unset;
+                    color: unset;
                 }
             }
 

@@ -1,4 +1,6 @@
 .header-container {
+    --both-sides-header-width: 182px;
+
     border-bottom: 1px solid var(--border-color);
     padding: 0px 10px;
     overflow-x: auto;
@@ -30,13 +32,11 @@
             font-size: 20px;
             font-weight: 600;
             margin-right: 12px;
-            min-width: 130px;
+            min-width: var(--both-sides-header-width);
         }
 
         .header-right-side-container {
-            min-width: 130px;
-            gap: 16px;
-            @apply flex justify-end items-center;
+            @apply flex justify-end items-center gap-[12px] min-w-[130px];
 
             .account-container {
                 .user-icon {
@@ -46,13 +46,10 @@
                 }
 
                 .sign-in-btn {
-                    background-color: #ededed;
-                    color: var(--text-color);
-                    border: 1px solid #e6e6e6;
+                    @apply bg-[var(--grey-color-1)] text-[var(--text-color)] border-1 border-[var(--border-color)];
 
                     &:hover {
-                        background-color: #ededed;
-                        color: var(--text-color);
+                        @apply text-[var(--text-color)];
                     }
                 }
             }

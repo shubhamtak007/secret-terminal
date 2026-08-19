@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Skeleton } from '@/src/components/ui/skeleton';
 import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInUsdCompact } from '@/src/services/utils.service';
-import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis-context';
+import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis.context';
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 import { Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/src/components/ui/tooltip';
