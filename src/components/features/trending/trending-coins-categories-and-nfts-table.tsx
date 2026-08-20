@@ -65,7 +65,7 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
                                                     }
                                                 </div>}
 
-                                            <div className={`lg:w-[110px] md:w-[inherit] sm:w-[inherit]`}>
+                                            <div className="w-[inherit] lg:w-[110px]">
                                                 {['categories', 'nfts'].includes(type) &&
                                                     <div className="whitespace-pre overflow-hidden text-ellipsis">
                                                         {coinCategoryOrNft.name}

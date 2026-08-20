@@ -23,10 +23,7 @@ function TrendingCoinsCategoriesAndNftsContainer() {
                     return (
                         <div
                             key={trendingItem.id}
-                            className={`item lg:min-w-fit md:min-w-fit xl:min-w-fit 2xl:min-w-fit
-                                        ${trendingItem.type === 'categories' && 'sm:min-w-unset'}
-                                        ${['coins', 'nfts'].includes(trendingItem.type) && 'min-w-fit'}
-                                    `}
+                            className="item lg:min-w-fit md:min-w-fit xl:min-w-fit 2xl:min-w-fit sm:min-w-unset"
                         >
                             <h6 className="text-[12px] mb-[12px]">
                                 {trendingItem.header}
