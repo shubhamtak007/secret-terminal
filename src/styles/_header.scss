@@ -56,3 +56,9 @@
         }
     }
 }
+
+@media (width < 700) {
+    .header-container {
+        --both-sides-header-width: unset;
+    }
+}
