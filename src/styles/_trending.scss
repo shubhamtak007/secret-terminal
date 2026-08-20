@@ -10,5 +10,18 @@
         border: 1px solid var(--border-color);
         border-radius: var(--border-radius);
         padding: 12px;
+
+        .trending-table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+
+            .table {
+
+                th,
+                td {
+                    white-space: nowrap;
+                }
+            }
+        }
     }
 }

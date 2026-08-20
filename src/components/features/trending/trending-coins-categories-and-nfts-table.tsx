@@ -12,8 +12,8 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
     const { list, type } = bindings;
 
     return (
-        <div className="overflow-x-auto w-full">
-            <table className={`cnv-borderless-table`}>
+        <div className="trending-table-wrapper">
+            <table className={`cnv-borderless-table table`}>
                 <thead>
                     <tr>
                         <th className="text-center">#</th>
@@ -88,7 +88,7 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
                                         (type === 'categories' && coinCategoryOrNft.topThreeCoinImages &&
                                             coinCategoryOrNft.topThreeCoinImages.length > 0) &&
                                         <td>
-                                            <div className="flex flex-wrap gap-2 mr-[6px]">
+                                            <div className="flex flex-wrap gap-2 mr-[6px] w-max">
                                                 {coinCategoryOrNft.topThreeCoinImages.map((coinImage, index) => {
                                                     return (
                                                         <Image
