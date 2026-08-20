@@ -48,6 +48,10 @@
                 &:disabled {
                     background-color: unset;
                     color: unset;
+
+                    &:hover {
+                        color: unset;
+                    }
                 }
             }
 
