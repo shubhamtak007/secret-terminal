@@ -57,6 +57,7 @@ export default function NavigationTabBar() {
                                                     </TooltipTrigger>
 
                                                     <TooltipContent
+                                                        sideOffset={3}
                                                         className="!z-100"
                                                     >
                                                         Please sign in to add coins to your watchlist.
