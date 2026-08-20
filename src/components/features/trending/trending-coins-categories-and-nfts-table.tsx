@@ -48,8 +48,7 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
 
                                     <td>
                                         <div className="flex items-center">
-                                            {
-                                                (type === 'coins' || type === 'nfts') &&
+                                            {['coins', 'nfts'].includes(type) &&
                                                 <div className="pr-[8px] min-w-[30px]">
                                                     {
                                                         coinCategoryOrNft.image ? <Image
@@ -59,27 +58,22 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
                                                             alt={`Image of ${coinCategoryOrNft.name}`}
                                                             src={coinCategoryOrNft.image}
                                                         />
-                                                            : coinCategoryOrNft.symbol ?
+                                                            : (coinCategoryOrNft.symbol &&
                                                                 <div className="coin-letter-mark cursor-pointer">
                                                                     {coinCategoryOrNft.symbol[0]}
-                                                                </div> : ''
+                                                                </div>)
                                                     }
-                                                </div>
-                                            }
+                                                </div>}
 
-                                            <div className="w-[100px]">
-                                                {
-                                                    (type === 'categories' || type === 'nfts') &&
+                                            <div className={`lg:w-[110px] md:w-[inherit] sm:w-[inherit]`}>
+                                                {['categories', 'nfts'].includes(type) &&
                                                     <div className="whitespace-pre overflow-hidden text-ellipsis">
                                                         {coinCategoryOrNft.name}
-                                                    </div>
-                                                }
+                                                    </div>}
 
-                                                {
-                                                    type === 'coins' && <div className="crypto-symbol cursor-pointer">
-                                                        {coinCategoryOrNft.symbol}
-                                                    </div>
-                                                }
+                                                {type === 'coins' && <div className="crypto-symbol cursor-pointer">
+                                                    {coinCategoryOrNft.symbol}
+                                                </div>}
                                             </div>
                                         </div>
                                     </td>
