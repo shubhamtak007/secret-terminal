@@ -20,35 +20,44 @@ function useMarketSummary() {
         try {
             const locationResponse = await fetch('https://ipwho.is/');
             const locationData = await locationResponse.json();
+            const countryCode = locationData.country_code;
 
-            const promises = (locationData.country_code === 'US') ? [retrieveTrendingCoins()] : [
-                retrieveTrendingCoins(),
-                retrieveAllCoins()
-            ]
-
+            const promises = getPromisesByCountryCode(countryCode);
             const responses = await Promise.all(promises);
 
-            if (responses.length > 0) {
-                if (responses[0].length > 0) {
-                    createTrendingCoinList(responses[0]);
+            if (!responses || responses.length === 0) return;
 
-                    if (locationData.country_code === 'US') {
-                        setMarketSummary([{ id: 'trending', title: 'Trending', coins: marketSummaryRef.trendingCoins }]);
-                        return;
-                    }
+            if (responses[0].length > 0) {
+                createTrendingCoinList(responses[0]);
+
+                if (countryCode === 'US') {
+                    setMarketSummary([{ id: 'trending', title: 'Trending', coins: marketSummaryRef.trendingCoins }]);
+                    return;
                 }
-
-                if (responses[1].length > 0) {
-                    createGainerLoserAndVolumeList(responses[1]);
-                    fetchNameAndImageOfCryptoCurrencies();
-                }
-
-                createMarketSummary();
             }
+
+            if (responses[1].length > 0) {
+                createGainerLoserAndVolumeList(responses[1]);
+                fetchNameAndImageOfCryptoCurrencies();
+            }
+
+            createMarketSummary();
         } catch (error) {
 
         } finally {
             setFetchingMarketSummary(false);
+        }
+    }
+
+    function getPromisesByCountryCode(countryCode: string) {
+        switch (countryCode) {
+            case 'US': return [
+                retrieveTrendingCoins()
+            ];
+            default: return [
+                retrieveTrendingCoins(),
+                retrieveAllCoins()
+            ];
         }
     }
 
