@@ -1,9 +1,14 @@
 label {
     font-size: 13px;
     display: inline-block;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .form-group {
     margin-bottom: 12px;
+}
+
+.required {
+    color: var(--required-color);
+    margin-left: 2px;
 }

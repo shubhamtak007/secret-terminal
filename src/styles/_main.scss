@@ -40,17 +40,6 @@
     }
 }
 
-.label {
-    font-size: 13px;
-    margin-bottom: 3px;
-    display: block;
-}
-
-.required {
-    color: var(--required-color);
-    margin-left: 2px;
-}
-
 .success-text {
     color: var(--success-color);
 }
@@ -73,7 +62,7 @@
 }
 
 .divider {
-    @apply border-r-1 border-[var(--border-color)] h-[20px];
+    @apply border-r-1 border-[var(--border-color)] h-[stretch];
 }
 
 .error-toast {
