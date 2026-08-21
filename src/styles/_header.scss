@@ -36,20 +36,28 @@
         }
 
         .header-right-side-container {
-            @apply flex justify-end items-center gap-[12px] min-w-[var(--both-sides-header-width)];
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 12px;
+            min-width: var(--both-sides-header-width);
 
             .account-container {
                 .user-icon {
                     text-align: center;
                     cursor: pointer;
-                    @apply flex justify-center items-center
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
 
                 .sign-in-btn {
-                    @apply bg-[var(--grey-color-1)] text-[var(--text-color)] border-1 border-[var(--border-color)];
+                    background-color: var(--grey-color-1);
+                    color: var(--text-color);
+                    border: 1px solid var(--border-color);
 
                     &:hover {
-                        @apply text-[var(--text-color)];
+                        color: var(--text-color);
                     }
                 }
             }

@@ -62,7 +62,8 @@
 }
 
 .divider {
-    @apply border-r-1 border-[var(--border-color)] h-[stretch];
+    height: stretch;
+    border-right: 1px solid var(--border-color);
 }
 
 .error-toast {
