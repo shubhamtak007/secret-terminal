@@ -20,8 +20,8 @@ const buttonVariants = cva(
                         dark:focus-visible:ring-destructive/40 dark:bg-destructive/60`,
                 outline: `border-1 border-[var(--border-color)] bg-[var(--main-bg-color)] text-[var(--text-color)]
                         hover:brightness-[97%] dark:hover:brightness-[120%]`,
-                secondary: `bg-[var(--grey-color-1)] text-[var(--text-color)] hover:brightness-[97%]
-                        dark:hover:brightness-[110%]`,
+                secondary: `bg-[var(--grey-color-1)] dark:brightness-[80%] dark:hover:brightness-[90%] text-[var(--text-color)]
+                             hover:brightness-[97%]`,
                 ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
                 link: "text-primary underline-offset-4 hover:underline",
             },

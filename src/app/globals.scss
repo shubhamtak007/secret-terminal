@@ -91,7 +91,10 @@
     --grey-color-3: #858585;
 
     --main-color: #05e5a9;
+
     --main-bg-color: #ffffff;
+    --hover-bg-color: #f3f3f3;
+
     --text-color: #071a33;
 
     --border-color: var(--grey-color-1);
@@ -100,7 +103,7 @@
     --loading-bar-overlay-bg-color: rgba(5, 229, 169, 0.07);
     --overlay-color: #58667e99;
 
-    --row-hover-color: #f5f6fa;
+    --row-hover-color: var(--hover-bg-color);
     --th-color: var(--grey-color-2);
     --vrt-th-color: var(--grey-color-3);
 
@@ -118,7 +121,7 @@
 
     --required-color: #e7000b;
 
-    --shimmer-color: var(--grey-color-1);
+    --shimmer-color: #f2f2f2;
 
     --tab-text-color: #8fa1b9;
     --tab-active-bg-color: var(--main-color);
@@ -168,8 +171,11 @@
     --grey-color-3: #626770;
 
     --main-color: #00dc81;
+
     --main-bg-color: #0f1013;
+    --hover-bg-color: #1b1b1b;
     --top-bg-color: #16181f;
+
     --text-color: #e1e6f0;
 
     --border-color: var(--grey-color-1);
@@ -180,9 +186,12 @@
     --tab-active-bg-color: #00dc81;
     --tab-active-text-color: #0f172b;
 
-    --row-hover-color: #1d2027;
+    --row-hover-color: var(--hover-bg-color);
+    --th-color: var(--grey-color-3);
+    --vrt-th-color: var(--grey-color-3);
 
     --overlay-color: rgba(0, 0, 0, 0.85);
+    --loading-bar-overlay-bg-color: rgba(5, 229, 169, 0.10);
 
     --box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45),
         0 4px 10px rgba(0, 0, 0, 0.3),
@@ -197,7 +206,6 @@
     --scrollbar-thumb: #2a2c32;
     --scrollbar-track: #0f1013;
 
-    --loading-bar-overlay-bg-color: rgba(5, 229, 169, 0.10);
 }
 
 @layer base {

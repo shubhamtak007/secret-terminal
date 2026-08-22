@@ -118,7 +118,7 @@ function SelectItem({
         <SelectPrimitive.Item
             data-slot="select-item"
             className={cn(
-                `focus:bg-[var(--grey-color-1)] focus:text-accent-foreground
+                `focus:bg-[var(--hover-bg-color)] focus:text-accent-foreground
                 [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-default items-center
                  gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none
                  data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none
