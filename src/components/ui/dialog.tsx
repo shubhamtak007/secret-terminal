@@ -118,8 +118,8 @@ function DialogHeader({
                         disabled={disableCloseButton}
                         className={`data-[state=open]:bg-accent p-[4px] h-[max-content] rounded-[var(--border-radius)]
                                 bg-[var(--grey-color-1)] data-[state=open]:text-muted-foreground opacity-70
-                                cursor-pointer outline-[var(--border-color)] transition-opacity hover:opacity-100
-                                disabled:pointer-events-auto disabled:cursor-not-allowed [&_svg]:pointer-events-none
+                                cursor-pointer outline-[var(--border-color)] transition-opacity hover:brightness-[97%]
+                                 dark:hover:brightness-[110%] disabled:pointer-events-auto disabled:cursor-not-allowed [&_svg]:pointer-events-none
                                 [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4`}
                     >
                         <XIcon />

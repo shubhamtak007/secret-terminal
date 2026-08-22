@@ -163,8 +163,9 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.553 0.013 58.071);
 
-    --grey-color-1: #18233a;
-    --grey-color-2: #626770;
+    --grey-color-1: #18233A;
+    --grey-color-2: #34415A;
+    --grey-color-3: #626770;
 
     --main-color: #00dc81;
     --main-bg-color: #0f1013;
@@ -195,6 +196,8 @@
 
     --scrollbar-thumb: #2a2c32;
     --scrollbar-track: #0f1013;
+
+    --loading-bar-overlay-bg-color: rgba(5, 229, 169, 0.10);
 }
 
 @layer base {
