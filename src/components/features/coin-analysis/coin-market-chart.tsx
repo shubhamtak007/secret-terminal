@@ -123,9 +123,9 @@ function CoinPriceChart({ coinProperties }: Bindings) {
                                             <Area
                                                 dataKey={yAxisDataKey.current}
                                                 type="monotone"
-                                                fill={priceStatus === 'up' ? 'var(--chart-2)' : 'var(--chart-1)'}
+                                                fill={(priceStatus === 'up') ? 'var(--chart-2)' : 'var(--chart-1)'}
                                                 fillOpacity={0.1}
-                                                stroke={priceStatus === 'up' ? 'var(--chart-2)' : 'var(--chart-1)'}
+                                                stroke={(priceStatus === 'up') ? 'var(--chart-2)' : 'var(--chart-1)'}
                                                 strokeWidth={chartStrokeWidth}
                                             />
                                         </AreaChart>
