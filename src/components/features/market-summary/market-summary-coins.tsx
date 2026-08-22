@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { formatValueInUsdCompact } from "@/src/services/utils.service";
+import { formatValueIntoCommaSeparated, formatValueInUsdCompact } from "@/src/services/utils.service";
 import { coinSymbolImageSize } from '@/src/constants/app.constants';
 import CoinDetailsDialog from '@/src/components/features/coin-details/coin-details-dialog';
 import type { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
@@ -7,18 +7,20 @@ import type { CoinDetailsDialogCoin } from '@/src/interfaces/coin.interface';
 import { useRef, useState } from 'react';
 
 interface Bindings {
+    inDialog: boolean,
     noOfCoins: number,
     marketSummaryItem: MarketSummaryItem
 }
 
-export default function MarketSummaryCoins({ noOfCoins, marketSummaryItem }: Bindings) {
+export default function MarketSummaryCoins(bindings: Bindings) {
+    const { inDialog, noOfCoins, marketSummaryItem } = bindings;
     const [showCoinDetailsDialog, setShowCoinDetailsDialog] = useState<boolean>(false);
     const clickedCoinRef = useRef<CoinDetailsDialogCoin>(null);
 
     return (
         <>
             <table className="cnv-borderless-table">
-                {noOfCoins > 3 && <thead>
+                {inDialog && <thead>
                     <tr>
                         <th className="w-[35px]">#</th>
                         <th className="text-left w-[30%]">Coin</th>
@@ -34,12 +36,12 @@ export default function MarketSummaryCoins({ noOfCoins, marketSummaryItem }: Bin
                             return (
                                 <tr key={coin.id}>
                                     {
-                                        noOfCoins > 3 && <td className="text-center">
+                                        inDialog && <td className="text-center">
                                             {index + 1}
                                         </td>
                                     }
 
-                                    <td className={`${noOfCoins === 3 ? 'w-[40%]' : ''}`}>
+                                    <td className={`${!inDialog && 'w-[40%]'}`}>
                                         <div className="flex items-center">
                                             <div className="pr-[8px]">
                                                 {
@@ -78,7 +80,8 @@ export default function MarketSummaryCoins({ noOfCoins, marketSummaryItem }: Bin
                                         {
                                             coin.lastPrice &&
                                             <span className="break-all">
-                                                {coin.lastPrice > 999 ? formatValueInUsdCompact(coin.lastPrice, 2) : '$' + coin.lastPrice}
+                                                {inDialog ? formatValueIntoCommaSeparated(coin.lastPrice, 5, true) :
+                                                    (coin.lastPrice > 999 ? formatValueInUsdCompact(coin.lastPrice, 2) : `$${coin.lastPrice}`)}
                                             </span>
                                         }
                                     </td>

@@ -40,6 +40,7 @@ function MarketSummaryCard(bindings: Bindings) {
 
                     <MarketSummaryCoins
                         noOfCoins={3}
+                        inDialog={false}
                         key={marketSummaryItem.id}
                         marketSummaryItem={marketSummaryItem}
                     />
@@ -70,6 +71,7 @@ function MarketSummaryCard(bindings: Bindings) {
                     <DialogBody>
                         <MarketSummaryCoins
                             noOfCoins={15}
+                            inDialog={true}
                             key={marketSummaryItem.id}
                             marketSummaryItem={marketSummaryItem}
                         />
