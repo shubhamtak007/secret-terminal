@@ -160,15 +160,16 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.553 0.013 58.071);
 
+    --grey-color-0: #18233a;
     --grey-color-1: #2d3139;
     --grey-color-2: #626770;
 
     --main-color: #00dc81;
-    --main-bg-color: #181a20;
-    --top-bg-color: #1f222a;
+    --main-bg-color: #0f1013;
+    --top-bg-color: #16181f;
     --text-color: #ededed;
 
-    --border-color: var(--grey-color-1);
+    --border-color: var(--grey-color-0);
 
     --shimmer-color: #242730;
 
@@ -182,7 +183,7 @@
 
     --box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75), 0 4px 10px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08);
     --top-box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.35), 0 -1px 3px rgba(255, 255, 255, 0.08);
-    --bottom-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.32), 0 2px 4px rgba(0, 0, 0, 0.20);
+    --bottom-box-shadow: unset;
 }
 
 @layer base {

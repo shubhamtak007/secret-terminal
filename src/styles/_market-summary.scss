@@ -9,6 +9,11 @@
         min-width: 270px;
         flex: 1;
         padding: 12px;
+        background-color: var(--top-bg-color);
+
+        .dark & {
+            border: unset;
+        }
 
         [data-slot="item-title"] {
             width: 100%;
