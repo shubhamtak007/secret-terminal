@@ -125,6 +125,9 @@
     --tab-active-text-color: var(--text-color);
 
     --st-muted-color: #8fa1b9;
+
+    --scrollbar-thumb: #c7c9cc;
+    --scrollbar-track: #ffffff;
 }
 
 .dark {
@@ -160,8 +163,7 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.553 0.013 58.071);
 
-    --grey-color-0: #18233a;
-    --grey-color-1: #2d3139;
+    --grey-color-1: #18233a;
     --grey-color-2: #626770;
 
     --main-color: #00dc81;
@@ -169,7 +171,7 @@
     --top-bg-color: #16181f;
     --text-color: #ededed;
 
-    --border-color: var(--grey-color-0);
+    --border-color: var(--grey-color-1);
 
     --shimmer-color: #242730;
 
@@ -181,9 +183,18 @@
 
     --overlay-color: rgba(0, 0, 0, 0.85);
 
-    --box-shadow: 0 12px 30px rgba(0, 0, 0, 0.75), 0 4px 10px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08);
-    --top-box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.35), 0 -1px 3px rgba(255, 255, 255, 0.08);
-    --bottom-box-shadow: unset;
+    --box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45),
+        0 4px 10px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    ;
+    --top-box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.35),
+        0 -1px 3px rgba(255, 255, 255, 0.06);
+
+    --bottom-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+
+    --scrollbar-thumb: #2a2c32;
+    --scrollbar-track: #0f1013;
 }
 
 @layer base {
@@ -202,13 +213,13 @@ body {
 
 ::-webkit-scrollbar {
     height: 5px;
-    width: 5px;
-    background-color: transparent;
+    width: 6px;
+    background-color: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: var(--border-radius);
-    background-color: #d9d9d9;
+    background-color: var(--scrollbar-thumb);
 }
 
 @keyframes fade-in {
