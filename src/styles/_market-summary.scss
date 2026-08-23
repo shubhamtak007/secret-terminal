@@ -43,11 +43,15 @@
 }
 
 .coin-letter-mark {
-    text-align: center;
     background-color: var(--main-bg-color);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     color: var(--text-color);
-    padding: 2px 8px;
     font-weight: 500;
+    width: 24px;
+    height: 24px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
