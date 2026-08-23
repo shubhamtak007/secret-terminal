@@ -55,7 +55,7 @@ function DataTable<TData,>(bindings: DataTableBindings<TData>) {
             {
                 (props.fetchingList === true)
                 &&
-                <div className="place-items-center m-[20px]">
+                <div className="flex justify-center m-[20px]">
                     <Spinner className="size-8" />
                 </div>
             }
