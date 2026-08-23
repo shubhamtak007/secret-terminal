@@ -130,12 +130,12 @@ export default function useWatchlistDialog(bindings: Bindings) {
         }
     }
 
-    function onContextMenuItemClicked(watchlist: Record<string, string>, contextMenuItem: Record<string, string>, event: Event, context: string) {
-        setRightClickedItem(watchlist);
+    function onContextMenuItemClicked(item: Record<string, string>, contextMenuItem: Record<string, string>, event: Event, context: string) {
+        setRightClickedItem(item);
 
         switch (contextMenuItem.name) {
             case 'Edit': {
-                selectedWatchlist.current = watchlist;
+                selectedWatchlist.current = item;
                 setShowWatchlistFormDialog(true);
             }; break;
             case 'View Details': {

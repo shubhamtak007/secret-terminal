@@ -16,7 +16,9 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
 
     useEffect(() => {
         if (!showDialog) return;
+    }, []);
 
+    useEffect(() => {
         if (coinId) fetchCoinDetailsByCoinId(coinId);
     }, [showDialog, coinId]);
 

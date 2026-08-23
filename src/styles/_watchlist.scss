@@ -1,14 +1,21 @@
-.navigation-tab-bar.watchlist-tab-bar {
-    margin-bottom: 12px;
+.navigation-tab-bar {
+    &.watchlist-tab-bar {
+        margin-bottom: 12px;
 
-    [data-slot="tabs"] {
-        margin-inline: unset !important;
-        align-items: start !important;
-        box-shadow: unset !important;
-        border: unset !important;
+        [data-slot="tabs"] {
+            margin-inline: unset !important;
+            align-items: start !important;
+            box-shadow: unset !important;
+            border: unset !important;
 
-        &::-webkit-scrollbar {
-            height: 0px !important;
+            &::-webkit-scrollbar {
+                height: 0px !important;
+            }
+
+            [data-slot="tabs-list"] {
+                height: unset;
+                padding: unset !important;
+            }
         }
     }
 }
@@ -24,8 +31,6 @@
     }
 
     .cnv-borderless-table.watchlist-coins-table {
-        margin-bottom: 12px;
-
         tbody {
             tr {
                 &:hover {

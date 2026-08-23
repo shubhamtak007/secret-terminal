@@ -72,7 +72,15 @@ export default function WatchlistDialog(bindings: Bindings) {
 
                     <DialogFooter className="justify-center">
                         <Button
-                            variant={"secondary"}
+                            variant={"outline"}
+                            onClick={() => { setShowCoinSearchDialog(true); }}
+                            disabled={fetchingWatchlists}
+                        >
+                            <CirclePlus /> Add Coins
+                        </Button>
+
+                        <Button
+                            variant={"outline"}
                             onClick={() => { setShowWatchlistFormDialog(true); }}
                             disabled={fetchingWatchlists}
                         >
@@ -82,7 +90,7 @@ export default function WatchlistDialog(bindings: Bindings) {
                 </DialogContent>
             </Dialog>
 
-            {(showWatchlistFormDialog === true) &&
+            {showWatchlistFormDialog &&
                 <WatchlistFormDialog
                     dialogLevel={2}
                     showDialog={showWatchlistFormDialog}
@@ -93,7 +101,7 @@ export default function WatchlistDialog(bindings: Bindings) {
                 </WatchlistFormDialog>
             }
 
-            {(showDeleteDialog === true) &&
+            {showDeleteDialog &&
                 <DeleteDialog
                     showDeleteDialog={showDeleteDialog}
                     setShowDeleteDialog={setShowDeleteDialog}
@@ -105,7 +113,7 @@ export default function WatchlistDialog(bindings: Bindings) {
                 />
             }
 
-            {(showWatchlistDetailsDialog === true) &&
+            {showWatchlistDetailsDialog &&
                 <WatchlistDetailsDialog
                     showWatchlistDetailsDialog={showWatchlistDetailsDialog}
                     setShowWatchlistDetailsDialog={setShowWatchlistDetailsDialog}
@@ -113,7 +121,7 @@ export default function WatchlistDialog(bindings: Bindings) {
                 />
             }
 
-            <CoinDetailsDialog
+            {showCoinDetailsDialog && <CoinDetailsDialog
                 dialogLevel={2}
                 showDialog={showCoinDetailsDialog}
                 setShowDialog={setShowCoinDetailsDialog}
@@ -123,7 +131,7 @@ export default function WatchlistDialog(bindings: Bindings) {
                     symbol: rightClickedItem.symbol,
                     image: rightClickedItem.imageUrl
                 }}
-            />
+            />}
         </>
     )
 }
@@ -299,19 +307,10 @@ function WatchlistCoinList(props: any) {
                                     </tbody>
                                 </table>
                                 :
-                                <div className="no-value-text !text-center mb-[12px]">
+                                <div className="no-value-text !text-center">
                                     No coins added
                                 </div>
                         }
-
-                        <div className="m-auto w-max">
-                            <Button
-                                variant={"secondary"}
-                                onClick={() => { setShowCoinSearchDialog(true); }}
-                            >
-                                <CirclePlus /> Add Coins
-                            </Button>
-                        </div>
                     </div>
             }
 
