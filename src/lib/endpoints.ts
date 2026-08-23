@@ -19,8 +19,7 @@ const secretTerminalEndpoints = {
         globalMarket: 'v1/global-market'
     },
     watchlists: 'v1/watchlists',
-    watchlistCoins: 'v1/watchlistCoins',
-    location: 'v1/location'
+    watchlistCoins: 'v1/watchlistCoins'
 }
 
 const coinGeckoEndpoints = {
