@@ -6,7 +6,6 @@ export async function GET() {
         const locationData = await response.json();
 
         if (locationData) {
-            debugger;
             return NextResponse.json({
                 data: locationData
             }, {
