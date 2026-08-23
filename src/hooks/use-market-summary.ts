@@ -18,9 +18,9 @@ function useMarketSummary() {
 
     async function fetchAllCoinsAndTrendingCoins() {
         try {
-            const locationData = await fetch('https://ipapi.co/json');
-            const locationDetails = await locationData.json();
-            const countryCode = locationDetails.country_code;
+            const locationResponse = await fetch('https://ipapi.co/json');
+            const locationData = await locationResponse.json();
+            const countryCode = locationData.country_code;
             console.log(countryCode)
 
             const promises = getPromisesByCountryCode(countryCode);
