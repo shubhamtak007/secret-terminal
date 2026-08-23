@@ -18,7 +18,7 @@ function useMarketSummary() {
 
     async function fetchAllCoinsAndTrendingCoins() {
         try {
-            const locationResponse = await fetch('https://ipwho.is/');
+            const locationResponse = await fetch('https://api.ipinfo.io/lite/me?token=7323470adf309e');
             const locationData = await locationResponse.json();
             const countryCode = locationData.country_code;
 
