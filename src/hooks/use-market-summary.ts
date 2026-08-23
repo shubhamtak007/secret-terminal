@@ -5,6 +5,8 @@ import { retrieveTrendingCoins, retrieveAllCoins, retrieveCoinList } from '@/src
 import { CryptoCurrency, CoingeckoCrypto, TrendingCoin, MarketSummaryRefMap } from '@/src/interfaces/coin.interface';
 import { roundOffNumber } from '@/src/services/utils.service';
 import type { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
+import { secretTerminalClient } from '../lib/api-client';
+import { secretTerminalEndpoints } from '../lib/endpoints';
 
 function useMarketSummary() {
     let marketSummaryRef = useRef<MarketSummaryRefMap>({ gainers: [], losers: [], volumes: [], trendingCoins: [] }).current;
@@ -18,9 +20,8 @@ function useMarketSummary() {
 
     async function fetchAllCoinsAndTrendingCoins() {
         try {
-            const locationResponse = await fetch('https://api.ipinfo.io/lite/me?token=7323470adf309e');
-            const locationData = await locationResponse.json();
-            const countryCode = locationData.country_code;
+            const locationData: Record<string, string> = await secretTerminalClient.get(secretTerminalEndpoints.location);
+            const countryCode = locationData.countryCode;
 
             const promises = getPromisesByCountryCode(countryCode);
             const responses = await Promise.all(promises);
