@@ -59,8 +59,8 @@ const navigationBarTabList = [
 })
 
 const coinSymbolImageSize = {
-    width: 22,
-    height: 22
+    width: 26,
+    height: 26
 }
 
 const userScreenWidth = 820;

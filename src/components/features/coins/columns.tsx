@@ -10,6 +10,7 @@ import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber 
 import { ChevronsUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Button } from '@/src/components/ui/button';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/src/components/ui/dropdown-menu';
+import { coinSymbolImageSize } from '@/src/constants/app.constants';
 
 const decimalPlaces = 2;
 
@@ -75,13 +76,13 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
             const symbol: string = row.original['symbol'];
 
             return <div className="min-w-[120px] flex items-center px-3">
-                <div className="min-w-[26px] mr-[8px]">
+                <div className="w-max h-fit mr-[8px]">
                     {
                         imageUrl ?
                             <Image
                                 className="coin-symbol-image"
-                                width={22}
-                                height={22}
+                                width={coinSymbolImageSize.width}
+                                height={coinSymbolImageSize.height}
                                 alt={`Image of ${name}`}
                                 src={imageUrl}
                             />

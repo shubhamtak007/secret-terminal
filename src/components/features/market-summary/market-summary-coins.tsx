@@ -43,7 +43,7 @@ export default function MarketSummaryCoins(bindings: Bindings) {
 
                                     <td className={`${!inDialog && 'w-[40%]'}`}>
                                         <div className="flex items-center">
-                                            <div className="pr-[8px]">
+                                            <div className="w-max h-fit mr-[8px]">
                                                 {
                                                     coin.imageUrl ?
                                                         <Image
@@ -53,7 +53,7 @@ export default function MarketSummaryCoins(bindings: Bindings) {
                                                             alt={`Image of ${coin.name}`}
                                                             src={coin.imageUrl}
                                                         /> :
-                                                        <div className="coin-letter-mark cursor-pointer">
+                                                        <div className="coin-letter-mark">
                                                             {coin.symbol[0]}
                                                         </div>
                                                 }
