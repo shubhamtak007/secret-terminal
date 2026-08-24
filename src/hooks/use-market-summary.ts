@@ -21,7 +21,6 @@ function useMarketSummary() {
             const locationResponse = await fetch('https://ipapi.co/json');
             const locationData = await locationResponse.json();
             const countryCode = locationData.country_code;
-            console.log(countryCode)
 
             const promises = getPromisesByCountryCode(countryCode);
             const responses = await Promise.all(promises);
