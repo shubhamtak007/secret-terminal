@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import { Skeleton } from '@/src/components/ui/skeleton';
 import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInUsdCompact } from '@/src/services/utils.service';
@@ -7,7 +8,7 @@ import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis.context';
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 import { Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/src/components/ui/tooltip';
-import { coinKeyList } from '@/src/constants/app.constants';
+import { coinKeyList, coinSymbolImageSize } from '@/src/constants/app.constants';
 import type { CoinAnalysis } from '@/src/interfaces/coin-analysis.interface';
 import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
 import useCoinInfo from '@/src/hooks/use-coin-info';
@@ -56,10 +57,15 @@ function CoinInfo({ coinProperties }: Bindings) {
                                 className="flex items-center cursor-pointer"
                                 onClick={() => { onCoinInfoNameAndImgClick() }}
                             >
-                                <img
-                                    className="coin-img"
-                                    src={coinInfo.image}
-                                />
+                                <div className="coin-image-wrapper">
+                                    <Image
+                                        className="coin-symbol-image"
+                                        width={coinSymbolImageSize.width}
+                                        height={coinSymbolImageSize.height}
+                                        alt={`Image of ${coinInfo.name}`}
+                                        src={coinInfo.image}
+                                    />
+                                </div>
 
                                 <div className="name">
                                     {coinInfo.name}
