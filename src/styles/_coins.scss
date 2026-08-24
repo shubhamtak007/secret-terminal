@@ -131,8 +131,8 @@
 
 .coin-image-wrapper {
     margin-right: 8px;
-    height: fit-content;
-    width: fit-content;
+    height: max-content;
+    width: max-content;
 
     .coin-symbol-image {
         object-fit: cover;

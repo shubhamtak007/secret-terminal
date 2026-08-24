@@ -10,6 +10,7 @@ type Bindings = {
 
 function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
     const { list, type } = bindings;
+    console.log(list)
 
     return (
         <div className="trending-table-wrapper">
@@ -86,7 +87,10 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
                                             <div className="flex flex-wrap gap-2 mr-[6px] w-max">
                                                 {coinCategoryOrNft.topThreeCoinImages.map((coinImage, index) => {
                                                     return (
-                                                        <div className="coin-image-wrapper !mr-[unset]">
+                                                        <div
+                                                            key={`${coinCategoryOrNft.name}-${index}`}
+                                                            className="coin-image-wrapper !mr-[unset]"
+                                                        >
                                                             <Image
                                                                 key={`topThreeCoinImage-${index}`}
                                                                 className="coin-symbol-image"
