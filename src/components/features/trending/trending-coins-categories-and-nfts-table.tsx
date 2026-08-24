@@ -49,15 +49,16 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
                                     <td>
                                         <div className="flex items-center">
                                             {['coins', 'nfts'].includes(type) &&
-                                                <div className="pr-[8px] min-w-[30px]">
+                                                <div className="coin-image-wrapper">
                                                     {
-                                                        coinCategoryOrNft.image ? <Image
-                                                            className="coin-symbol-image"
-                                                            width={coinSymbolImageSize.width}
-                                                            height={coinSymbolImageSize.height}
-                                                            alt={`Image of ${coinCategoryOrNft.name}`}
-                                                            src={coinCategoryOrNft.image}
-                                                        />
+                                                        coinCategoryOrNft.image ?
+                                                            <Image
+                                                                className="coin-symbol-image"
+                                                                width={coinSymbolImageSize.width}
+                                                                height={coinSymbolImageSize.height}
+                                                                alt={`Image of ${coinCategoryOrNft.name}`}
+                                                                src={coinCategoryOrNft.image}
+                                                            />
                                                             : (coinCategoryOrNft.symbol &&
                                                                 <div className="coin-letter-mark cursor-pointer">
                                                                     {coinCategoryOrNft.symbol[0]}
@@ -85,14 +86,16 @@ function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
                                             <div className="flex flex-wrap gap-2 mr-[6px] w-max">
                                                 {coinCategoryOrNft.topThreeCoinImages.map((coinImage, index) => {
                                                     return (
-                                                        <Image
-                                                            key={`topThreeCoinImage-${index}`}
-                                                            className="coin-symbol-image"
-                                                            width={coinSymbolImageSize.width}
-                                                            height={coinSymbolImageSize.height}
-                                                            alt={`Image of one of top three coin`}
-                                                            src={coinImage}
-                                                        />
+                                                        <div className="coin-image-wrapper !mr-[unset]">
+                                                            <Image
+                                                                key={`topThreeCoinImage-${index}`}
+                                                                className="coin-symbol-image"
+                                                                width={coinSymbolImageSize.width}
+                                                                height={coinSymbolImageSize.height}
+                                                                alt={`Image of one of top three coin`}
+                                                                src={coinImage}
+                                                            />
+                                                        </div>
                                                     )
                                                 })}
                                             </div>

@@ -75,32 +75,34 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
             const name: string = row.original['name'];
             const symbol: string = row.original['symbol'];
 
-            return <div className="min-w-[120px] flex items-center px-3">
-                <div className="w-max h-fit mr-[8px]">
-                    {
-                        imageUrl ?
-                            <Image
-                                className="coin-symbol-image"
-                                width={coinSymbolImageSize.width}
-                                height={coinSymbolImageSize.height}
-                                alt={`Image of ${name}`}
-                                src={imageUrl}
-                            />
-                            :
-                            <div className="coin-letter-mark">
-                                {symbol[0].toUpperCase()}
-                            </div>
-                    }
-                </div>
+            return (
+                <div className="min-w-[120px] flex items-center px-3">
+                    <div className="coin-image-wrapper">
+                        {
+                            imageUrl ?
+                                <Image
+                                    className="coin-symbol-image"
+                                    width={coinSymbolImageSize.width}
+                                    height={coinSymbolImageSize.height}
+                                    alt={`Image of ${name}`}
+                                    src={imageUrl}
+                                />
+                                :
+                                <div className="coin-letter-mark">
+                                    {symbol[0].toUpperCase()}
+                                </div>
+                        }
+                    </div>
 
-                <div className="text-left font-semibold mr-[6px] flex items-center gap-1">
-                    <div>{name}</div>
+                    <div className="text-left font-semibold mr-[6px] flex items-center gap-1">
+                        <div>{name}</div>
 
-                    <div className="text-[12px] font-normal text-gray-500">
-                        {symbol.toUpperCase()}
+                        <div className="text-[12px] font-normal text-gray-500">
+                            {symbol.toUpperCase()}
+                        </div>
                     </div>
                 </div>
-            </div>
+            )
         }, meta: {
             headerClassNames: 'w-[25%] text-left sticky',
             cellClassNames: 'text-center sticky'

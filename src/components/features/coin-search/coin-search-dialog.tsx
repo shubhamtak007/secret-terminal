@@ -96,7 +96,7 @@ function CoinSearchDialog(bindings: Bindings) {
                                                         >
                                                             <td>
                                                                 <div className="flex items-center">
-                                                                    <div className="pr-[8px]">
+                                                                    <div className="coin-image-wrapper">
                                                                         {
                                                                             coin.large ? <Image
                                                                                 className="coin-symbol-image"

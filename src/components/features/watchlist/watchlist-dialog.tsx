@@ -14,6 +14,7 @@ import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, Con
 import { WatchlistCoin } from "@/src/interfaces/watchlist.interface";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { formatValueIntoCommaSeparated, roundOffNumber } from "@/src/services/utils.service";
+import { coinSymbolImageSize } from "@/src/constants/app.constants";
 
 type Bindings = DialogProps;
 
@@ -238,12 +239,12 @@ function WatchlistCoinList(props: any) {
 
                                                                 <td>
                                                                     <div className="flex items-center">
-                                                                        <div className="pr-[8px]">
+                                                                        <div className="coin-image-wrapper">
                                                                             {
                                                                                 watchlistCoin.imageUrl ? <Image
                                                                                     className="object-cover"
-                                                                                    width={21}
-                                                                                    height={21}
+                                                                                    width={coinSymbolImageSize.width}
+                                                                                    height={coinSymbolImageSize.height}
                                                                                     alt={`Image of ${watchlistCoin.name}`}
                                                                                     src={String(watchlistCoin.imageUrl)}
                                                                                 /> :

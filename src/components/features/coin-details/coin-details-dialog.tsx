@@ -26,7 +26,7 @@ function CoinDetailsDialog(bindings: Bindings) {
             <DialogContent dialogLevel={dialogLevel} size="sm">
                 <DialogHeader>
                     <DialogTitle>
-                        {coin && <div className="flex items-center gap-1.5">
+                        {coin && <div className="flex items-center gap-1.5 coin-image-wrapper">
                             {
                                 coin.image ?
                                     <Image
