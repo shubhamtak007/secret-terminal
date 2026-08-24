@@ -23,16 +23,16 @@ function TrendingCoinsCategoriesAndNftsContainer() {
                     return (
                         <div
                             key={trendingItem.id}
-                            className="item"
+                            className="item relative"
                         >
                             <h6 className="text-[12px] mb-[12px]">
                                 {trendingItem.header}
                             </h6>
 
-                            <TrendingCoinsCategoriesAndNftsTable
+                            {(trendingItem.list.length > 0) ? <TrendingCoinsCategoriesAndNftsTable
                                 type={trendingItem.type}
                                 list={trendingItem.list}
-                            />
+                            /> : <div className="no-value-text !text-center hz-and-vert-center">No {trendingItem.header}</div>}
                         </div>
                     )
                 })
