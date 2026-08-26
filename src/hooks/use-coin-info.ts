@@ -21,7 +21,10 @@ function useCoinInfo({ coinProperties }: Bindings) {
         if (fetchingCoinInfo === false) setFetchingCoinInfo(true);
 
         try {
-            const coins = await retrieveCoinList({ ids: coinProperties.id });
+            const params = {
+                ids: coinProperties.id
+            }
+            const coins = await retrieveCoinList(params);
 
             if (coins.length > 0) {
                 document.title = coins[0].name;
@@ -39,6 +42,8 @@ function useCoinInfo({ coinProperties }: Bindings) {
         for (const coin of data) {
             if (coin.current_price) {
                 coin.currentPriceWithCurrencySymbol = formatValueIntoCommaSeparated(coin.current_price, 6, true);
+            } else {
+                coin.currentPriceWithCurrencySymbol = `$0`;
             }
         }
     }

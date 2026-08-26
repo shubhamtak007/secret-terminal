@@ -92,7 +92,8 @@ function CoinPriceChart({ coinProperties }: Bindings) {
                                             <CartesianGrid vertical={true} />
 
                                             <YAxis
-                                                ticks={axisConfig.y.ticks?.slice(1, -1)}
+                                                ticks={(axisConfig.y.ticks && axisConfig.y.ticks.length > 1)
+                                                    ? axisConfig.y.ticks?.slice(1, -1) : axisConfig.y.ticks}
                                                 tickCount={tickCount}
                                                 dataKey={yAxisDataKey.current}
                                                 axisLine={false}

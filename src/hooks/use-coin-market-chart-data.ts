@@ -123,7 +123,9 @@ export default function useCoinMarketChartData({ coinProperties, days, currentCh
             (_, index) => min + index * interval
         );
 
-        return ticks;
+        const hasDuplicates = (ticks: number[]) => new Set(ticks).size !== ticks.length;
+
+        return hasDuplicates(ticks) ? [ticks[0]] : ticks;
     }
 
     return { fetchingMarketDataPointList, marketDataPointList, axisConfig, calculateTicks, tickCount }

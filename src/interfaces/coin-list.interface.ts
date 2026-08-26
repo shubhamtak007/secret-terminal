@@ -1,6 +1,6 @@
 interface CoinListApiParams {
     vs_currency?: string | null,
-    precision?: number | null,
+    precision?: string | null,
     symbols?: string | null,
     page?: number | null,
     per_page?: number | null,
