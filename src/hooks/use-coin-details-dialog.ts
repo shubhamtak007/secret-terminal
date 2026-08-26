@@ -61,7 +61,14 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
         if (description.length > 0 && description.length < 250) return description;
 
         if ('LanguageModel' in globalThis) {
-            const session = await (self as any).LanguageModel.create();
+            const session = await (self as any).LanguageModel.create({
+                expectedInputs: [
+                    { type: "text", languages: ["en"] }
+                ],
+                expectedOutputs: [
+                    { type: "text", languages: ["en"] }
+                ]
+            });
             const response = await session.prompt(
                 `Write a concise, factual description of ${name} in 50 to 100 words. Use simple, clear language.
                 Focus on what it is, its main purpose, and its key features or characteristics. Avoid opinions,
