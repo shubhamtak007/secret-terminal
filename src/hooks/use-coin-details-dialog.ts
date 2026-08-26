@@ -20,7 +20,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
 
     useEffect(() => {
         if (coinId) fetchCoinDetailsByCoinId(coinId);
-    }, [showDialog, coinId]);
+    }, [coinId]);
 
     async function fetchCoinDetailsByCoinId(coinId: string) {
         if (!coinId) return;
@@ -44,8 +44,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
             id: serverCoinProperties.id,
             name: serverCoinProperties.name,
             symbol: serverCoinProperties.symbol,
-            description: serverCoinProperties.description.en.length > 0 ?
-                await summarizeDescription(serverCoinProperties.description.en) : null,
+            description: await summarizeDescription(serverCoinProperties.description.en, serverCoinProperties.name),
             imageUrl: serverCoinProperties.image.large,
             websiteUrl: serverCoinProperties.links.homepage[0],
             socialLinks: [
@@ -58,19 +57,21 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
         return properties
     }
 
-    async function summarizeDescription(description: string) {
-        if ('Summarizer' in self) {
-            const summarizer = await (self as any).Summarizer.create({
-                type: 'tldr',
-                outputLanguage: 'en-GB',
-                length: 'medium',
-                format: 'plain-text'
-            })
-            const summary = await summarizer.summarize(description);
-            return summary;
-        } else {
-            return `${description.split('.').slice(0, 3)}.`
+    async function summarizeDescription(description: string, name: string) {
+        if (description.length > 0 && description.length < 250) return description;
+
+        if ('LanguageModel' in globalThis) {
+            const session = await (self as any).LanguageModel.create();
+            const response = await session.prompt(
+                `Write a concise, factual description of ${name} in 50 to 100 words. Use simple, clear language.
+                Focus on what it is, its main purpose, and its key features or characteristics. Avoid opinions,
+                speculation, unnecessary details, and marketing language. Return only the description, with no title,
+                introduction, or additional text.`
+            );
+            return response;
         }
+
+        return `${description.split('.').slice(0, 3)}.`
     }
 
     return { fetchingCoinDetails, coinDetails };
