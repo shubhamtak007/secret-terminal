@@ -39,8 +39,8 @@ function CoinSearchDialog(bindings: Bindings) {
                         className="p-[12px]"
                     >
                         <DialogTitle className="font-normal">
-                            <div>
-                                <InputGroup className="w-full h-[40px] w-[stretch]">
+                            <div className="flex items-center">
+                                <InputGroup className="w-full h-[35px] w-[stretch]">
                                     <InputGroupInput
                                         type="text"
                                         tabIndex={0}
@@ -62,6 +62,14 @@ function CoinSearchDialog(bindings: Bindings) {
                                         <X />
                                     </InputGroupAddon>
                                 </InputGroup>
+
+                                <div className={`ml-[8px] cursor-pointer text-[13px] text-[var(--grey-color-3)]`}>
+                                    <a onClick={() => {
+                                        setShowDialog(false);
+                                    }}>
+                                        Cancel
+                                    </a>
+                                </div>
                             </div>
 
                             <DialogDescription className="text-[11px] m-[4px_0px] sr-only">
