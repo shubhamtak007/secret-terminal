@@ -63,7 +63,7 @@ function CoinSearchDialog(bindings: Bindings) {
                                     </InputGroupAddon>
                                 </InputGroup>
 
-                                <div className={`ml-[8px] cursor-pointer text-[13px] text-[var(--grey-color-3)]`}>
+                                <div className={`ml-[8px] cursor-pointer text-[12px] text-[var(--grey-color-3)]`}>
                                     <a onClick={() => {
                                         setShowDialog(false);
                                     }}>
