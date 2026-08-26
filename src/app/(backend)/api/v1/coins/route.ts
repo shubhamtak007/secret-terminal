@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
     const queryParams: CoinListApiParams = {
         vs_currency: 'usd',
-        precision: 3,
+        precision: searchParams.get('precision') ? searchParams.get('precision') : "3",
         symbols: searchParams.get('symbols') ? searchParams.get('symbols') : null,
         page: searchParams.get('page') ? Number(searchParams.get('page')) : 1,
         per_page: searchParams.get('per_page') ? Number(searchParams.get('per_page')) : getRowsPerPageDefaultValue(),
