@@ -40,7 +40,7 @@ function CoinSearchDialog(bindings: Bindings) {
                     >
                         <DialogTitle className="font-normal">
                             <div className="flex items-center">
-                                <InputGroup className="w-full h-[35px] w-[stretch]">
+                                <InputGroup className="w-full h-[40px] w-[stretch]">
                                     <InputGroupInput
                                         type="text"
                                         tabIndex={0}
