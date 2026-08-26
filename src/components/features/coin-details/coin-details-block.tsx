@@ -18,7 +18,7 @@ export default function CoinDetailsBlock(bindings: Bindings) {
         <div className="coin-details-wrapper">
             {
                 fetchingCoinDetails ?
-                    <div className="w-max mx-auto"><Spinner className="size-10" /></div> :
+                    <div className="w-max mx-auto"><Spinner className="size-8" /></div> :
                     <>
                         {coinDetails &&
                             <div>
