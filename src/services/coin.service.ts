@@ -96,22 +96,21 @@ function createCryptoCurrencyList(masterSymbolList: Record<string, string>[], cr
     let cryptoCurrencyList = [];
 
     for (const masterSymbol of masterSymbolList) {
-        let symbolWithoutUSDT;
-
         const matchedCrypto = cryptoPriceList.find((cryptoPrice: CryptoCurrency) => {
             return cryptoPrice.symbol === masterSymbol.symbol
         })
 
-        const symbols = matchedCrypto ? matchedCrypto.symbol.split('USDT') : [];
-
-        for (const symbol of symbols) {
-            if (symbol.length > 0) symbolWithoutUSDT = symbol;
+        if (matchedCrypto) {
+            matchedCrypto.baseAsset = masterSymbol.baseAsset;
+            matchedCrypto.quoteAsset = masterSymbol.quoteAsset;
         }
 
         if (matchedCrypto) {
             cryptoCurrencyList.push({
                 id: self.crypto.randomUUID(),
-                symbol: symbolWithoutUSDT,
+                baseAsset: matchedCrypto.baseAsset,
+                quoteAsset: masterSymbol.quoteAsset,
+                symbol: matchedCrypto.baseAsset,
                 lastPrice: roundOffNumber(Number(matchedCrypto.lastPrice), 8),
                 priceChange: roundOffNumber(Number(matchedCrypto.priceChange), 9),
                 priceChangePercent: roundOffNumber(Number(matchedCrypto.priceChangePercent), 2),

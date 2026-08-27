@@ -81,7 +81,7 @@ function CoinSearchDialog(bindings: Bindings) {
                     <DialogBody>
                         {
                             (searchingCoins === true) ?
-                                <Spinner className="size-13 mx-auto" /> :
+                                <Spinner className="size-10 mx-auto" /> :
                                 (coins.length > 0) ? <>
                                     <div className="text-gray-500 text-[12px] mb-[8px]">
                                         Search Results

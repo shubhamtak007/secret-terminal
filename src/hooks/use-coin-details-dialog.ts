@@ -70,7 +70,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
                 ]
             });
             const response = await session.prompt(
-                `Write a concise, factual description of ${name} in 50 to 100 words. Use simple, clear language.
+                `Write a concise, factual description of ${name} coin in 50 to 100 words. Use simple, clear language.
                 Focus on what it is, its main purpose, and its key features or characteristics. Avoid opinions,
                 speculation, unnecessary details, and marketing language. Return only the description, with no title,
                 introduction, or additional text.`

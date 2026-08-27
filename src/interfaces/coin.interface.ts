@@ -16,7 +16,9 @@ interface CryptoCurrency {
     volume?: number,
     quoteVolume?: number,
     weightedAvgPrice?: number,
-    count?: number
+    count?: number,
+    baseAsset?: string,
+    quoteAsset?: string
 }
 
 interface CoingeckoCrypto {

@@ -42,7 +42,7 @@ function CoinDetailsDialog(bindings: Bindings) {
                                     </div>
                             }
 
-                            <span>{coin.name}</span>
+                            <span>{coin.name ? coin.name : coin.symbol}</span>
                         </div>}
 
                         <DialogDescription
@@ -54,10 +54,10 @@ function CoinDetailsDialog(bindings: Bindings) {
                 </DialogHeader>
 
                 <DialogBody>
-                    <CoinDetailsBlock
+                    {coin?.name ? <CoinDetailsBlock
                         fetchingCoinDetails={fetchingCoinDetails}
                         coinDetails={coinDetails}
-                    />
+                    /> : <div className="no-value-text !text-center">No details available.</div>}
                 </DialogBody>
             </DialogContent>
         </Dialog>

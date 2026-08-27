@@ -48,6 +48,11 @@ export default function useCoinSearchDialog(bindings: Bindings) {
 
         try {
             const response = await search({ query: searchValue })
+
+            for (const coin of response.data.coins) {
+                if (!coin.large.startsWith('https')) coin.large = null;
+            }
+
             setCoins(response.data.coins);
         } catch (error) {
 
