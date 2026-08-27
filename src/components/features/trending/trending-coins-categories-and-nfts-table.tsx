@@ -10,7 +10,6 @@ type Bindings = {
 
 function TrendingCoinsCategoriesAndNftsTable(bindings: Bindings) {
     const { list, type } = bindings;
-    console.log(list)
 
     return (
         <div className="trending-table-wrapper">

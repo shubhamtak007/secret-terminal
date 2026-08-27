@@ -41,7 +41,6 @@
                     z-index: 15;
                     position: sticky;
                     left: 0;
-                    background-color: var(--main-bg-color);
                 }
             }
 
@@ -77,6 +76,7 @@
 
                     &:hover {
                         cursor: pointer;
+                        background-color: var(--row-hover-color);
                     }
 
                     &:last-child {
