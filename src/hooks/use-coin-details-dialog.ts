@@ -3,22 +3,26 @@
 import { useEffect, useState } from 'react';
 import { CoinDetailsServerResponse, ClientCoinProperties } from '@/src/interfaces/coin-details.interface';
 import { retrieveCoinDetailsByCoinId } from '@/src/services/coin.service';
+import { CoinDetailsDialogCoin } from '../interfaces/coin.interface';
 
 type Bindings = {
     showDialog: boolean,
-    coinId?: string
+    coin: CoinDetailsDialogCoin | null
 }
 
 export default function useCoinDetailsDialog(bindings: Bindings) {
-    const { showDialog, coinId } = bindings;
+    const { showDialog, coin } = bindings;
+    const coinId = coin?.id;
     const [coinDetails, setCoinDetails] = useState<ClientCoinProperties | null>(null);
     const [fetchingCoinDetails, setFetchingCoinDetails] = useState<boolean>(false);
 
     useEffect(() => {
         if (!showDialog) return;
+        if (!coin?.name) return;
     }, []);
 
     useEffect(() => {
+        if (!coin?.name) return;
         if (coinId) fetchCoinDetailsByCoinId(coinId);
     }, [coinId]);
 
