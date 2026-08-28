@@ -108,7 +108,6 @@ export default function MarketSummaryCoins(bindings: Bindings) {
             </table>
 
             <CoinDetailsDialog
-                key={crypto.randomUUID()}
                 coin={clickedCoinRef.current}
                 showDialog={showCoinDetailsDialog}
                 setShowDialog={setShowCoinDetailsDialog}

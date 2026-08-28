@@ -17,12 +17,10 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
     const [fetchingCoinDetails, setFetchingCoinDetails] = useState<boolean>(false);
 
     useEffect(() => {
-        if (!showDialog) return;
-        if (!coin?.name) return;
+        if (!showDialog || !coin || !coin.name) return;
     }, []);
 
     useEffect(() => {
-        if (!coin?.name) return;
         if (coinId) fetchCoinDetailsByCoinId(coinId);
     }, [coinId]);
 
@@ -64,6 +62,13 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
     async function summarizeDescription(description: string, name: string) {
         if (description.length > 0 && description.length < 250) return description;
 
+        const descriptionPrompt = `Write a factual, easy to understand description of ${name} in 50 to 100 words.
+                        Explain what ${name} is, its primary purpose, how it works at a high level, and its key
+                        features or use cases. Use clear, neutral language and include only verifiable information.
+                        Avoid opinions, speculation, predictions, hype, marketing language, price information,
+                        investment advice, and unnecessary technical details. Return only the description. Do not
+                        include the cryptocurrency name as a heading or at the beginning of the description.`
+
         if ('LanguageModel' in globalThis) {
             const session = await (self as any).LanguageModel.create({
                 expectedInputs: [
@@ -73,12 +78,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
                     { type: "text", languages: ["en"] }
                 ]
             });
-            const response = await session.prompt(
-                `Write a concise, factual description of ${name} coin in 50 to 100 words. Use simple, clear language.
-                Focus on what it is, its main purpose, and its key features or characteristics. Avoid opinions,
-                speculation, unnecessary details, and marketing language. Return only the description, with no title,
-                introduction, or additional text.`
-            );
+            const response = await session.prompt(descriptionPrompt);
             return response;
         }
 

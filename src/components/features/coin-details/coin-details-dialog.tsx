@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import CoinDetailsBlock from '@/src/components/features/coin-details/coin-details-block';
 import useCoinDetailsDialog from '@/src/hooks/use-coin-details-dialog';
@@ -20,6 +20,7 @@ function CoinDetailsDialog(bindings: Bindings) {
 
     return (
         <Dialog
+            key={crypto.randomUUID()}
             open={showDialog}
             onOpenChange={setShowDialog}
         >
