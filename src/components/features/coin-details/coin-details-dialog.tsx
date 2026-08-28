@@ -16,7 +16,7 @@ type Bindings = {
 
 function CoinDetailsDialog(bindings: Bindings) {
     const { showDialog, setShowDialog, coin, dialogLevel } = bindings;
-    const { fetchingCoinDetails, coinDetails } = useCoinDetailsDialog({ showDialog, coin: coin });
+    const { fetchingCoinDetails, coinDetails } = useCoinDetailsDialog({ coin: coin });
 
     return (
         <Dialog
