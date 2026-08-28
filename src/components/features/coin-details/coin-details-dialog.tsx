@@ -16,15 +16,18 @@ type Bindings = {
 
 function CoinDetailsDialog(bindings: Bindings) {
     const { showDialog, setShowDialog, coin, dialogLevel } = bindings;
-    const { fetchingCoinDetails, coinDetails } = useCoinDetailsDialog({ coin: coin });
+    const { fetchingCoinDetails, coinDetails } = useCoinDetailsDialog({ showDialog, coin });
 
     return (
         <Dialog
-            key={crypto.randomUUID()}
             open={showDialog}
             onOpenChange={setShowDialog}
         >
-            <DialogContent dialogLevel={dialogLevel} size="sm">
+            <DialogContent
+                key={`${crypto.randomUUID()}-${coin?.name}`}
+                dialogLevel={dialogLevel}
+                size="sm"
+            >
                 <DialogHeader>
                     <DialogTitle>
                         {coin && <div className="flex items-center gap-1.5 coin-image-wrapper">
