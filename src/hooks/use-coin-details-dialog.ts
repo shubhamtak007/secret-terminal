@@ -62,12 +62,10 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
     async function summarizeDescription(description: string, name: string) {
         if (description.length > 0 && description.length < 250) return description;
 
-        const descriptionPrompt = `Write a factual, easy to understand description of ${name} in 50 to 100 words.
-                        Explain what ${name} is, its primary purpose, how it works at a high level, and its key
-                        features or use cases. Use clear, neutral language and include only verifiable information.
-                        Avoid opinions, speculation, predictions, hype, marketing language, price information,
-                        investment advice, and unnecessary technical details. Return only the description. Do not
-                        include the cryptocurrency name as a heading or at the beginning of the description.`
+        const descriptionPrompt = `Explain ${name} in 50 to 100 words. Briefly cover what it is,
+        its main purpose, how it works, its key features, and what makes it different from other cryptocurrencies.
+        Use simple, clear language suitable for someone who understands basic cryptocurrency concepts. Avoid
+        unnecessary technical details, speculation, and overly promotional language.`
 
         if ('LanguageModel' in globalThis) {
             const session = await (self as any).LanguageModel.create({
