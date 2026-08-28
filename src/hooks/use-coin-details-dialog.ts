@@ -21,7 +21,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
     }, []);
 
     useEffect(() => {
-        if (coinId) fetchCoinDetailsByCoinId(coinId);
+        if (coinId && coin?.name) fetchCoinDetailsByCoinId(coinId);
     }, [coinId]);
 
     async function fetchCoinDetailsByCoinId(coinId: string) {
