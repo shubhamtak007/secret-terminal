@@ -58,8 +58,8 @@ export default function CoinDetailsBlock(bindings: Bindings) {
                                                                     rel="noopener noreferrer"
                                                                 >
                                                                     <div className="icon">
-                                                                        {socialLink.name === 'Github' && <FaGithub name="github" />}
-                                                                        {socialLink.name === 'Reddit' && <FaReddit name="reddit" />}
+                                                                        {socialLink.name === 'Github' && <FaGithub name="github" size={17} />}
+                                                                        {socialLink.name === 'Reddit' && <FaReddit name="reddit" size={17} />}
                                                                     </div>
 
                                                                     <div className="name">
