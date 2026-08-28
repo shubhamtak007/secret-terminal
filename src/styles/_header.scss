@@ -21,13 +21,6 @@
         border-bottom: unset;
     }
 
-    .dark & {
-        &.with-shadow {
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: unset;
-        }
-    }
-
     .navbar {
         display: flex;
         justify-content: space-between;
