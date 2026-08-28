@@ -165,19 +165,19 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.553 0.013 58.071);
 
-    --grey-color-1: #18233A;
-    --grey-color-2: #34415A;
-    --grey-color-3: #626770;
+    --grey-color-1: #242936;
+    --grey-color-2: #343b4a;
+    --grey-color-3: #69717f;
 
     --main-color: #00dc81;
 
-    --main-bg-color: #0f1013;
-    --hover-bg-color: #181a1f;
-    --top-bg-color: #16181f;
+    --main-bg-color: #181a21;
+    --hover-bg-color: #20232c;
+    --top-bg-color: #14161c;
 
-    --text-color: #e1e6f0;
+    --text-color: #e8eaf0;
 
-    --overlay-color: rgba(0, 0, 0, 0.85);
+    --overlay-color: rgba(0, 0, 0, 0.75);
 
     --border-color: var(--grey-color-1);
 
@@ -185,8 +185,8 @@
     --th-color: var(--grey-color-3);
     --vrt-th-color: var(--grey-color-3);
 
-    --tab-text-color: var(--st-muted-color);
-    --tab-active-bg-color: #00dc81;
+    --tab-text-color: #8f96a3;
+    --tab-active-bg-color: var(--main-color);
     --tab-active-text-color: #0f172b;
 
     --danger-color: #ff5c6c;
@@ -195,20 +195,23 @@
     --reddit-color: #fafafa;
     --github-color: #fafafa;
 
-    --shimmer-color: #1a1c22;
+    --shimmer-color: #22252d;
 
-    --box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45),
+    --box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.45),
         0 4px 10px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.06);
-    ;
-    --top-box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.35),
-        0 -1px 3px rgba(255, 255, 255, 0.06);
+        0 0 0 1px rgba(255, 255, 255, 0.05);
 
-    --bottom-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3),
+    --top-box-shadow:
+        0 -6px 16px rgba(0, 0, 0, 0.35),
+        0 -1px 3px rgba(255, 255, 255, 0.05);
+
+    --bottom-box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.3),
         0 1px 3px rgba(0, 0, 0, 0.2);
 
-    --scrollbar-thumb: #2a2c32;
-    --scrollbar-track: #0f1013;
+    --scrollbar-thumb: #30343e;
+    --scrollbar-track: #111318;
 }
 
 @layer base {
