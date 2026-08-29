@@ -86,49 +86,50 @@
     --sidebar-border: oklch(0.923 0.003 48.717);
     --sidebar-ring: oklch(0.709 0.01 56.259);
 
-    --grey-color-1: #ededed;
-    --grey-color-2: #9c9c9c;
-    --grey-color-3: #858585;
+    --grey-color-1: #e4ebe7;
+    --grey-color-2: #7d8984;
+    --grey-color-3: #64716c;
 
-    --main-color: #05e5a9;
-    --main-bg-color: #ffffff;
-    --hover-bg-color: #f7f7f7;
+    --main-color: #05c997;
+    --main-bg-color: #f5faf5;
+    --hover-bg-color: #edf7f1;
 
-    --text-color: #071a33;
+    --text-color: #26332e;
 
     --border-color: var(--grey-color-1);
     --border-radius: 6px;
 
-    --loading-bar-overlay-bg-color: rgba(128, 128, 128, 0.12);
-    --overlay-color: #58667e99;
+    --loading-bar-overlay-bg-color: rgba(38, 51, 46, 0.08);
+    --overlay-color: rgba(38, 51, 46, 0.55);
 
     --row-hover-color: var(--hover-bg-color);
     --th-color: var(--grey-color-2);
     --vrt-th-color: var(--grey-color-3);
 
-    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    --top-box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.08);
-    --bottom-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    --box-shadow: 0 0 10px rgba(38, 51, 46, 0.08);
+    --top-box-shadow: 0 -2px 6px rgba(38, 51, 46, 0.06);
+    --bottom-box-shadow: 0 2px 6px rgba(38, 51, 46, 0.06);
 
     --container-width: 1280px;
 
-    --danger-color: #d82f44;
+    --danger-color: #d7374f;
     --success-color: #16803d;
 
     --reddit-color: #ff4500;
     --github-color: #1f2328;
 
-    --required-color: #e7000b;
 
-    --shimmer-color: #f2f2f2;
+    --required-color: #d92d20;
 
-    --tab-text-color: #8fa1b9;
+    --shimmer-color: #eaf2ed;
+
+    --tab-text-color: #71857c;
     --tab-active-bg-color: var(--main-color);
     --tab-active-text-color: var(--text-color);
 
-    --st-muted-color: #8fa1b9;
+    --st-muted-color: #71857c;
 
-    --scrollbar-thumb: #c7c9cc;
+    --scrollbar-thumb: #c4cfca;
     --scrollbar-track: #ffffff;
 }
 
