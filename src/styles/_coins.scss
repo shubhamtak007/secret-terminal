@@ -142,6 +142,8 @@
     .coin-symbol-image {
         object-fit: cover;
         border-radius: var(--border-radius);
+        min-width: 26px;
+        height: auto;
     }
 
     .coin-letter-mark {
