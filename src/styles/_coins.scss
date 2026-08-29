@@ -136,14 +136,14 @@
 
 .coin-image-wrapper {
     margin-right: 8px;
-    height: max-content;
-    width: max-content;
+    display: flex;
+    flex-shrink: 0;
 
     .coin-symbol-image {
         object-fit: cover;
         border-radius: var(--border-radius);
         min-width: 26px;
-        height: auto;
+        height: 26px;
     }
 
     .coin-letter-mark {
