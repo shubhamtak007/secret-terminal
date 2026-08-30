@@ -19,11 +19,11 @@ export default function MarketSummaryCoins(bindings: Bindings) {
 
     return (
         <>
-            <table className={`cnv-borderless-table ${inDialog && '!w-max'}`}>
+            <table className={`cnv-borderless-table`}>
                 {inDialog && <thead>
                     <tr>
                         <th className="w-[35px]">#</th>
-                        <th className="text-left w-[30%]">Coin</th>
+                        <th className="text-left w-[40%]">Coin</th>
                         <th className="text-left">Price</th>
                         <th className="text-right">24hr Change</th>
                     </tr>
