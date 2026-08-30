@@ -27,7 +27,7 @@
 
 <p align="center">
     <img 
-        alt="trending coins, nfts and categories." 
+        alt="top gainers dialog" 
         src="public/preview/top-gainers-dialog.png" 
         width="900"
     >
@@ -35,7 +35,7 @@
 
 <p align="center">
     <img 
-        alt="price, volume, and market cap graphs for various time periods." 
+        alt="coin details dialog" 
         src="public/preview/coin-details-dialog.png" 
         width="900"
     >
@@ -43,7 +43,7 @@
 
 <p align="center">
     <img 
-        alt="price, volume, and market cap graphs for various time periods." 
+        alt="watchlist dialog" 
         src="public/preview/watchlist-dialog.png" 
         width="900"
     >
