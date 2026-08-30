@@ -20,7 +20,7 @@
 <p align="center">
     <img 
         alt="overview and coins table" 
-        src="public/preview/main.png" 
+        src="./apps/frontend/public/preview/main.png" 
         width="900"
     >
 </p>
@@ -28,7 +28,7 @@
 <p align="center">
     <img 
         alt="top gainers dialog" 
-        src="public/preview/top-gainers-dialog.png" 
+        src="./apps/frontend/public/preview/top-gainers-dialog.png" 
         width="900"
     >
 </p>
@@ -36,7 +36,7 @@
 <p align="center">
     <img 
         alt="coin details dialog" 
-        src="public/preview/coin-details-dialog.png" 
+        src="./apps/frontend/public/preview/coin-details-dialog.png" 
         width="900"
     >
 </p>
@@ -44,7 +44,7 @@
 <p align="center">
     <img 
         alt="watchlist dialog" 
-        src="public/preview/watchlist-dialog.png" 
+        src="./apps/frontend/public/preview/watchlist-dialog.png" 
         width="900"
     >
 </p>
