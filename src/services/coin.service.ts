@@ -111,7 +111,7 @@ function createCryptoCurrencyList(masterSymbolList: Record<string, string>[], cr
                 baseAsset: matchedCrypto.baseAsset,
                 quoteAsset: masterSymbol.quoteAsset,
                 symbol: matchedCrypto.baseAsset,
-                lastPrice: roundOffNumber(Number(matchedCrypto.lastPrice), 8),
+                lastPrice: Number(matchedCrypto.lastPrice),
                 priceChange: roundOffNumber(Number(matchedCrypto.priceChange), 9),
                 priceChangePercent: roundOffNumber(Number(matchedCrypto.priceChangePercent), 2),
                 volume: Number(matchedCrypto.volume),

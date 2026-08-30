@@ -6,6 +6,8 @@ import { CryptoCurrency, CoingeckoCrypto, TrendingCoin, MarketSummaryRefMap } fr
 import { roundOffNumber } from '@/src/services/utils.service';
 import type { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
 
+const roundToDecimalPlaces = 5;
+
 function useMarketSummary() {
     let marketSummaryRef = useRef<MarketSummaryRefMap>({ gainers: [], losers: [], volumes: [], trendingCoins: [] }).current;
     const numberOfItemsRef = useRef<number>(15).current;
@@ -71,7 +73,7 @@ function useMarketSummary() {
                 name: coin.name,
                 imageUrl: coin.large,
                 symbol: coin.symbol,
-                lastPrice: roundOffNumber(coin.data?.price, 5),
+                lastPrice: roundOffNumber(coin.data?.price, roundToDecimalPlaces),
                 priceChangePercent: roundOffNumber(coin.data?.price_change_percentage_24h?.usd, 2),
             })
         }
@@ -103,6 +105,8 @@ function useMarketSummary() {
 
             if (serverCoinList) {
                 for (const crypto of coins) {
+                    crypto.lastPrice = roundOffNumber(Number(crypto.lastPrice), roundToDecimalPlaces);
+
                     const matchedCrypto = serverCoinList.find((item: CoingeckoCrypto) => crypto.symbol.toLowerCase() === item.symbol);
 
                     if (matchedCrypto) {
@@ -113,7 +117,6 @@ function useMarketSummary() {
                             id: matchedCrypto.id,
                             name: matchedCrypto.name,
                             imageUrl: matchedCrypto.image ? matchedCrypto.image : '',
-                            // lastPrice: matchedCrypto.current_price,
                             // priceChangePercent: priceChangePercentRoundOffValue
                         }
 
