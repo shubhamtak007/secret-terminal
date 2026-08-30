@@ -19,7 +19,7 @@ export default function MarketSummaryCoins(bindings: Bindings) {
 
     return (
         <>
-            <table className="cnv-borderless-table">
+            <table className={`cnv-borderless-table ${inDialog && '!w-max'}`}>
                 {inDialog && <thead>
                     <tr>
                         <th className="w-[35px]">#</th>
@@ -42,7 +42,7 @@ export default function MarketSummaryCoins(bindings: Bindings) {
                                     }
 
                                     <td className={`${!inDialog && 'w-[40%]'}`}>
-                                        <div className="flex items-center">
+                                        <div className={`flex items-center ${inDialog ? 'max-w-[inherit]' : 'max-w-[115px] md:max-w-[100px]'}`}>
                                             <div className="coin-image-wrapper">
                                                 {
                                                     coin.imageUrl ?
