@@ -12,5 +12,10 @@
         "turbo": "latest",
         "wait-on": "^9.1.0"
     },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "sharp"
+        ]
+    },
     "packageManager": "pnpm@11.23.0"
 }
