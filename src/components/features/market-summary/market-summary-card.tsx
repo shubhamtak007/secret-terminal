@@ -68,7 +68,7 @@ function MarketSummaryCard(bindings: Bindings) {
                         </DialogTitle>
                     </DialogHeader>
 
-                    <DialogBody>
+                    <DialogBody className="whitespace-nowrap">
                         <MarketSummaryCoins
                             noOfCoins={15}
                             inDialog={true}
