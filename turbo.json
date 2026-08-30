@@ -10,8 +10,13 @@
                 "^build"
             ],
             "outputs": [
-                ".next/**"
+                ".next/**",
+                "dist/**"
             ]
+        },
+        "start": {
+            "cache": false,
+            "persistent": true
         }
     }
 }

@@ -4,6 +4,7 @@
     "scripts": {
         "dev": "concurrently \"turbo dev\" \"sleep 2 && open http://localhost:3000\"",
         "build": "turbo build",
+        "start": "turbo start",
         "lint": "turbo lint"
     },
     "devDependencies": {
