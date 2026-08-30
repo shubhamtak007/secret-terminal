@@ -12,5 +12,5 @@
         "turbo": "latest",
         "wait-on": "^9.1.0"
     },
-    "packageManager": "pnpm@12.0.0"
+    "packageManager": "pnpm@11.23.0"
 }
