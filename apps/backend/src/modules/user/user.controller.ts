@@ -1,0 +1,26 @@
+import { Request, Response } from "express";
+import UserService from "./user.service.js";
+import statusCode from "../../constants/http-status-code.js";
+
+const userDetails = async (request: Request, response: Response) => {
+    try {
+        const userId = request.userId;
+        const user = await UserService.retrieveUserDetails(userId);
+
+        if (user && user.id) {
+            return response.status(statusCode.ok).json({
+                data: user
+            });
+        } else {
+            return response.status(statusCode.notFound).json({
+                message: "User not found."
+            })
+        }
+    } catch (error) {
+        return response.status(statusCode.internalServerError).json({
+            message: 'Internal Server Error',
+        });
+    }
+}
+
+export { userDetails };
