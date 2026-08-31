@@ -22,6 +22,7 @@
         alt="overview and coins table" 
         src="./docs/preview/main.png" 
         width="900"
+        style="border-radius:6px;"
     >
 </p>
 
@@ -30,6 +31,7 @@
         alt="top gainers dialog" 
         src="./docs/preview/top-gainers-dialog.png" 
         width="900"
+        style="border-radius:6px;"
     >
 </p>
 
@@ -38,6 +40,7 @@
         alt="coin details dialog" 
         src="./docs/preview/coin-details-dialog.png" 
         width="900"
+        style="border-radius:6px;"
     >
 </p>
 
@@ -46,6 +49,7 @@
         alt="watchlist dialog" 
         src="./docs/preview/watchlist-dialog.png" 
         width="900"
+        style="border-radius:6px;"
     >
 </p>
 
