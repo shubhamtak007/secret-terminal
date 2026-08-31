@@ -12,5 +12,11 @@
         "turbo": "latest",
         "wait-on": "^9.1.0"
     },
-    "packageManager": "pnpm@11.23.0"
+    "packageManager": "pnpm@11.24.0",
+    "devEngines": {
+        "packageManager": {
+            "name": "pnpm",
+            "version": "11.24.0"
+        }
+    }
 }
