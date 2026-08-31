@@ -1,5 +1,5 @@
 {
-    "name": "@secret-terminal/frontend",
+    "name": "frontend",
     "private": true,
     "license": "MIT",
     "scripts": {
