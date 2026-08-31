@@ -9,7 +9,7 @@
     },
     "devDependencies": {
         "concurrently": "^10.0.5",
-        "turbo": "latest",
+        "turbo": "^2.10.12",
         "wait-on": "^9.1.0"
     },
     "packageManager": "pnpm@11.24.0",
