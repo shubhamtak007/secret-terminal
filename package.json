@@ -3,7 +3,8 @@
     "private": true,
     "scripts": {
         "dev": "concurrently \"turbo dev\" \"sleep 2 && open http://localhost:3000\"",
-        "build": "turbo build",
+        "build": "turbo run build --filter=apps/frontend...",
+        "build:backend": "turbo run build --filter=apps/backend...",
         "start": "turbo start",
         "lint": "turbo lint"
     },
