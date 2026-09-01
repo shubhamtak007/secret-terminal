@@ -1,7 +1,7 @@
 import { Dialog, DialogBody, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Dispatch, memo, SetStateAction } from "react";
 import { Spinner } from "@/components/ui/spinner";
-import { NewsArticle } from "@/src/interfaces/news.interface";
+import { NewsArticle } from "@/interfaces/news.interface";
 import useNews from "@/hooks/use-news";
 
 type Bindings = {

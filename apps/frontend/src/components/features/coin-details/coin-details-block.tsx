@@ -4,7 +4,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { FaReddit, FaGithub } from "react-icons/fa";
 import { ExternalLink } from 'lucide-react';
 import { formatValueIntoCommaSeparated } from '@/services/utils.service';
-import { ClientCoinProperties } from '@/src/interfaces/coin-details.interface';
+import { ClientCoinProperties } from '@/interfaces/coin-details.interface';
 
 type Bindings = {
     fetchingCoinDetails: boolean,

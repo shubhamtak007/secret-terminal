@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CoinDetailsServerResponse, ClientCoinProperties } from '@/src/interfaces/coin-details.interface';
+import { CoinDetailsServerResponse, ClientCoinProperties } from '@/interfaces/coin-details.interface';
 import { retrieveCoinDetailsByCoinId } from '@/services/coin.service';
 import { CoinDetailsDialogCoin } from '../interfaces/coin.interface';
 

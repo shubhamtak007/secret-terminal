@@ -10,7 +10,7 @@ import { coinsTableContextMenuList } from '@/constants/app.constants';
 import useCoinList from '@/hooks/use-coin-list';
 import DataTable from '@/components/features/coins/data-table';
 import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
-import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
+import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
 
 function CoinList() {
     const {

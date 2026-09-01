@@ -1,4 +1,4 @@
-import type { CryptoCurrency } from '@/src/interfaces/coin.interface';
+import type { CryptoCurrency } from '@/interfaces/coin.interface';
 
 interface MarketSummary {
     key: string,

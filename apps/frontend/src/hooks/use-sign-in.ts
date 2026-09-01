@@ -6,7 +6,7 @@ import { useLoading } from '@/contexts/loading.context';
 import { useForm } from '@tanstack/react-form';
 import { changePassword, forgotPassword, signIn, verifyResetCode, signUp } from '@/services/authentication.service';
 import { retrieveProfile } from '@/services/user.service';
-import type { UserFormData, FormType } from '@/src/interfaces/account-centre.interface';
+import type { UserFormData, FormType } from '@/interfaces/account-centre.interface';
 import authenticationFormSchemaMap from '@/schemas/authentication-form.schema';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 

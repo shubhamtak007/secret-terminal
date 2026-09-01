@@ -3,11 +3,11 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { getUiRoute, getRowsPerPageDefaultValue } from '@/services/utils.service';
-import { CoinListApiParams } from '@/src/interfaces/coin-list.interface';
+import { CoinListApiParams } from '@/interfaces/coin-list.interface';
 import { Row } from '@tanstack/react-table';
 import { search, retrieveCoinList } from '@/services/coin.service';
 import { Route } from 'next';
-import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
+import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
 
 function useCoinList() {
     const router = useRouter();

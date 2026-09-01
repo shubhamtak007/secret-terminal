@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { retrieveTrendingCoinsCategoriesAndNfts } from '@/services/coin.service';
-import { TrendingCoinsCategoriesAndNftsServerResponse, TrendingCoinsCategoriesAndNftsClient, CoinCategoryOrNft } from '@/src/interfaces/trending.interface';
+import { TrendingCoinsCategoriesAndNftsServerResponse, TrendingCoinsCategoriesAndNftsClient, CoinCategoryOrNft } from '@/interfaces/trending.interface';
 
 function useTrendingCoinsCategoriesAndNfts() {
     const [fetchingTrendingCoinsCategoriesAndNfts, setFetchingTrendingCoinsCategoriesAndNfts] = useState(false);

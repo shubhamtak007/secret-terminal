@@ -1,7 +1,7 @@
-import { CryptoCurrency } from '@/src/interfaces/coin.interface';
+import { CryptoCurrency } from '@/interfaces/coin.interface';
 import { roundOffNumber } from '@/services/utils.service';
 import { secretTerminalClient, binanceClient, coinGeckoClient } from '@/lib/api-client';
-import { CoinListApiParams } from '@/src/interfaces/coin-list.interface';
+import { CoinListApiParams } from '@/interfaces/coin-list.interface';
 import { coinGeckoEndpoints, binanceEndpoints, secretTerminalEndpoints } from '@/lib/endpoints';
 
 async function retrieveCoinList(params: CoinListApiParams, signal?: AbortSignal) {

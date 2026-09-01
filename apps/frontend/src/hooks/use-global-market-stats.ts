@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { retrieveGlobalMarketData } from '@/services/coin.service';
-import type { GlobalMarketStats } from '@/src/interfaces/global-market-stats.interface';
+import type { GlobalMarketStats } from '@/interfaces/global-market-stats.interface';
 
 function useGlobalMarketStats() {
     const [globalMarketStats, setGlobalMarketStats] = useState<GlobalMarketStats>({} as GlobalMarketStats);

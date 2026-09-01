@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, ReactNode, useState, SetStateAction, Dispatch, useEffect } from 'react';
-import { User } from '@/src/interfaces/account-centre.interface';
+import { User } from '@/interfaces/account-centre.interface';
 import { retrieveProfile } from '@/services/user.service';
 import { GlobeOff } from 'lucide-react';
 

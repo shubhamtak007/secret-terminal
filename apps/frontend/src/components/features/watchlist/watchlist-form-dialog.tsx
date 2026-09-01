@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
 import { Spinner } from "@/components/ui/spinner";
 import useWatchlistForm from "@/hooks/use-watchlist-form";
-import { DialogProps } from "@/src/interfaces/global.interface";
+import { DialogProps } from "@/interfaces/global.interface";
 import { Textarea } from "@/components/ui/textarea";
 
 type Bindings = {

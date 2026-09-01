@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { navigationBarTabList } from '@/constants/app.constants';
 import { useUser } from '@/contexts/user.context';
-import { NavigationBarTab } from '@/src/interfaces/global.interface';
+import { NavigationBarTab } from '@/interfaces/global.interface';
 import { Route } from 'next';
 
 export default function useNavigationTabBar() {

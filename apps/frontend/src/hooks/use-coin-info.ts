@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { formatValueIntoCommaSeparated } from '@/services/utils.service';
 import { retrieveCoinList } from '@/services/coin.service';
-import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
-import type { CoinAnalysis } from '@/src/interfaces/coin-analysis.interface';
+import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
+import type { CoinAnalysis } from '@/interfaces/coin-analysis.interface';
 
 type Bindings = CoinAnalysis;
 

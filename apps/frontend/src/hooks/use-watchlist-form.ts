@@ -4,7 +4,7 @@ import { useForm } from "@tanstack/react-form";
 import { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
 import { watchlistSchema } from "@/schemas/watchlist.schema";
 import { addWatchlist, updateWatchlist } from "@/services/watchlist.service";
-import { Watchlist } from "@/src/interfaces/watchlist.interface";
+import { Watchlist } from "@/interfaces/watchlist.interface";
 
 type Bindings = {
     showDialog: boolean,

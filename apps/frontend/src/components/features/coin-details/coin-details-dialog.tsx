@@ -4,10 +4,10 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import CoinDetailsBlock from '@/components/features/coin-details/coin-details-block';
 import useCoinDetailsDialog from '@/hooks/use-coin-details-dialog';
-import type { CoinDetailsDialogCoin } from '@/src/interfaces/coin.interface';
+import type { CoinDetailsDialogCoin } from '@/interfaces/coin.interface';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/components/ui/dialog';
 import { coinSymbolImageSize } from '@/constants/app.constants';
-import { DialogProps } from '@/src/interfaces/global.interface';
+import { DialogProps } from '@/interfaces/global.interface';
 
 type Bindings = {
     coin: CoinDetailsDialogCoin | null,

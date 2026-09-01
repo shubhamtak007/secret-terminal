@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { retrieveLatestNews } from "@/services/news.service";
-import type { NewsArticle } from "@/src/interfaces/news.interface";
+import type { NewsArticle } from "@/interfaces/news.interface";
 
 type Bindings = {
     showDialog: boolean

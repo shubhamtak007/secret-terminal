@@ -6,7 +6,7 @@ import WatchlistDialog from '@/components/features/watchlist/watchlist-dialog';
 import { Fragment } from 'react';
 import { Tabs, TabsTrigger, TabsList } from '@/components/ui/tabs';
 import { Home, Lock } from 'lucide-react';
-import { DialogProps } from "@/src/interfaces/global.interface";
+import { DialogProps } from "@/interfaces/global.interface";
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { iconSize } from '@/constants/app.constants';
 

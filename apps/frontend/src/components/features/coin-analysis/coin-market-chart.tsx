@@ -8,7 +8,7 @@ import { useCoinAnalysisContext } from '@/contexts/coin-analysis.context';
 import { timeFrameList, chartViewList, chartStrokeWidth } from '@/constants/chart.constants';
 import useCoinMarketChartData from '@/hooks/use-coin-market-chart-data';
 import useCoinChart from '@/hooks/use-coin-chart';
-import type { CoinAnalysis } from '@/src/interfaces/coin-analysis.interface';
+import type { CoinAnalysis } from '@/interfaces/coin-analysis.interface';
 
 type Bindings = CoinAnalysis;
 

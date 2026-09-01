@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react"
 import { retrieveWatchlists, deleteWatchlist } from "@/services/watchlist.service";
 import { retrieveWatchlistCoinsByWatchlistId, deleteWatchlistCoin } from "@/services/watchlist-coin.service";
 import { retrieveCoinList } from "@/services/coin.service";
-import { CoingeckoCrypto } from "@/src/interfaces/coin.interface";
-import { Watchlist } from "@/src/interfaces/watchlist.interface";
-import { DialogProps } from "@/src/interfaces/global.interface";
+import { CoingeckoCrypto } from "@/interfaces/coin.interface";
+import { Watchlist } from "@/interfaces/watchlist.interface";
+import { DialogProps } from "@/interfaces/global.interface";
 
 const watchlistContextMenuList = ['Edit', 'View Details', 'Delete'].map((name) => {
     return { id: crypto.randomUUID(), name }
