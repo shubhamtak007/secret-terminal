@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getRowsPerPageDefaultValue } from '@/services/utils.service';
-import { CoinListApiParams } from '@/src/interfaces/coin-list.interface';
+import { CoinListApiParams } from '@/interfaces/coin-list.interface';
 import { coinGeckoClient } from '@/lib/api-client';
 import { NextRequest, NextResponse } from 'next/server';
 import { coinGeckoEndpoints } from '@/lib/endpoints';

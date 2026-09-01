@@ -1,4 +1,4 @@
-import { GlobalMarketDataCoinGecko } from '@/src/interfaces/global-market-stats.interface';
+import { GlobalMarketDataCoinGecko } from '@/interfaces/global-market-stats.interface';
 import { formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
 import { coinGeckoClient } from '@/lib/api-client';
 import { NextRequest, NextResponse } from 'next/server';
