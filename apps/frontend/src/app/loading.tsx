@@ -1,9 +1,9 @@
-import { Spinner } from '@/components/ui/spinner';
+import TerminalCursor from '@/components/layout/terminal-cursor';
 
-export default function Loading() {
+export default function LoadingIndicator() {
     return (
         <div className="hz-and-vert-center">
-            <Spinner className="size-20" />
+            <TerminalCursor size={80} />
         </div>
     )
 }
