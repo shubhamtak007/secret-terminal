@@ -28,7 +28,10 @@
         "jsonwebtoken": "^9.0.3",
         "pg": "^8.21.0",
         "resend": "^6.12.4",
-        "zod": "^4.4.3"
+        "zod": "^4.4.3",
+        "axios": "^1.19.0",
+        "@secret-terminal/services": "workspace:*",
+        "@secret-terminal/types": "workspace:*"
     },
     "devDependencies": {
         "@types/bcrypt": "^6.0.0",

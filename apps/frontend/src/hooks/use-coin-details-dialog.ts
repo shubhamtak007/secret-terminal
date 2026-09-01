@@ -28,7 +28,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
 
         try {
             const response = await retrieveCoinDetailsByCoinId(coinId);
-            const coinProperties = await createCoinProperties(response.data);
+            const coinProperties = await createCoinProperties(response.data.data);
             if (coinProperties) setCoinDetails(coinProperties);
         } catch (error) {
 

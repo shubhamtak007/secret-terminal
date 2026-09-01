@@ -1,8 +1,8 @@
 import { CryptoCurrency } from '@/interfaces/coin.interface';
-import { roundOffNumber } from '@/services/utils.service';
-import { secretTerminalClient, binanceClient, coinGeckoClient } from '@/lib/api-client';
-import { CoinListApiParams } from '@/interfaces/coin-list.interface';
-import { coinGeckoEndpoints, binanceEndpoints, secretTerminalEndpoints } from '@/lib/endpoints';
+import { roundOffNumber } from '@secret-terminal/services/utils.service';
+import { secretTerminalClient, binanceClient } from '@/lib/api-client';
+import { CoinListApiParams } from '@secret-terminal/types/coin-list.types';
+import { binanceEndpoints, secretTerminalEndpoints } from '@/lib/endpoints';
 
 async function retrieveCoinList(params: CoinListApiParams, signal?: AbortSignal) {
     try {
@@ -34,7 +34,7 @@ async function retrieveTrendingCoinsCategoriesAndNfts() {
 async function retrieveGlobalMarketData() {
     try {
         const response = await secretTerminalClient.get(secretTerminalEndpoints.coins.globalMarket);
-        return response.data.data;
+        return response;
     } catch (error) {
         throw error;
     }
@@ -66,7 +66,7 @@ async function retrieveAllCoins() {
 
 async function retrieveCoinMarketChartData(coinUuid: string, params: unknown) {
     try {
-        const response = await coinGeckoClient.get(`${coinGeckoEndpoints.coins.coinDataById}/${coinUuid}/market_chart`, { params });
+        const response = await secretTerminalClient.get(`${secretTerminalEndpoints.coins.marketChart}/${coinUuid}`, { params });
         return response;
     } catch (error) {
         throw error;
@@ -75,7 +75,7 @@ async function retrieveCoinMarketChartData(coinUuid: string, params: unknown) {
 
 async function retrieveCoinDetailsByCoinId(coinId: string) {
     try {
-        const response = await coinGeckoClient.get(`${coinGeckoEndpoints.coins.coinDataById}/${coinId}`)
+        const response = await secretTerminalClient.get(`${secretTerminalEndpoints.coins.coinList}/${coinId}`);
         return response;
     } catch (error) {
         throw error;
@@ -84,7 +84,7 @@ async function retrieveCoinDetailsByCoinId(coinId: string) {
 
 async function search(params: { query: string }, signal?: AbortSignal) {
     try {
-        const response = await coinGeckoClient.get(coinGeckoEndpoints.coins.search, { params, signal })
+        const response = await secretTerminalClient.get(secretTerminalEndpoints.coins.search, { params, signal })
         return response;
     } catch (error) {
         throw error;

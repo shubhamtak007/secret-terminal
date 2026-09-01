@@ -1,27 +1,17 @@
-import { GlobalMarketDataCoinGecko } from '@/interfaces/global-market-stats.interface';
-import { formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
-import { coinGeckoClient } from '@/lib/api-client';
-import { NextRequest, NextResponse } from 'next/server';
-import { coinGeckoEndpoints } from '@/lib/endpoints';
+import { coinGeckoClient } from "../../lib/api-client.js";
+import { coinGeckoEndpoints } from "../../lib/endpoints.js";
+import { formatValueIntoCommaSeparated, roundOffNumber } from '@secret-terminal/services/utils.service';
+import { GlobalMarketDataCoinGecko } from '@secret-terminal/types/global-market.types';
 
-export async function GET() {
+async function retrieveGlobalMarketData() {
     try {
         const response = await coinGeckoClient.get(coinGeckoEndpoints.coins.globalMarket);
+        const globalMarketData = createGlobalMarketStatistics(response.data.data)
+        return globalMarketData;
 
-        if (response.data && response.data.data) {
-            return NextResponse.json({
-                data: createGlobalMarketStatistics(response.data.data)
-            }, {
-                status: 200
-            })
-        }
-    } catch (error) {
+    } catch (error: unknown) {
         if (error instanceof Error) {
-            return NextResponse.json({
-                message: error.message
-            }, {
-                status: 500
-            })
+            throw new Error(error.message);
         }
     }
 }
@@ -58,3 +48,9 @@ function createMarketCapShareList(marketCapSharePercentProperties: Record<string
 
     return symbolAndPercentList;
 }
+
+const GlobalMarketService = {
+    retrieveGlobalMarketData
+};
+
+export default GlobalMarketService;

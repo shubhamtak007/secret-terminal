@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { formatValueIntoCommaSeparated, formatValueInUsdCompact } from "@/services/utils.service";
+import { formatValueIntoCommaSeparated, formatValueInUsdCompact } from "@secret-terminal/services/utils.service";
 import { coinSymbolImageSize } from '@/constants/app.constants';
 import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
 import type { MarketSummaryItem } from '@/interfaces/market-summary.interface';

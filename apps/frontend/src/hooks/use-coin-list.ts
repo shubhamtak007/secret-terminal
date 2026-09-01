@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { getUiRoute, getRowsPerPageDefaultValue } from '@/services/utils.service';
-import { CoinListApiParams } from '@/interfaces/coin-list.interface';
+import { getUiRoute, getRowsPerPageDefaultValue } from '@secret-terminal/services/utils.service';
+import { CoinListApiParams } from '@secret-terminal/types/coin-list.types';
 import { Row } from '@tanstack/react-table';
 import { search, retrieveCoinList } from '@/services/coin.service';
 import { Route } from 'next';
@@ -62,7 +62,7 @@ function useCoinList() {
                 if (searchValue !== previousSearchValueRef.current) {
                     previousSearchValueRef.current = searchValue;
                     const response = await search({ query: searchValue }, signal);
-                    searchedCoinsSymbolsRef.current = createSymbolsFromSearchedCoins(response.data.coins);
+                    searchedCoinsSymbolsRef.current = createSymbolsFromSearchedCoins(response.data.data.coins);
                 }
 
                 if (searchedCoinsSymbolsRef.current?.length === 0) {

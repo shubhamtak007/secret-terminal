@@ -13,7 +13,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuTrigger } from "@/components/ui/context-menu";
 import { WatchlistCoin } from "@/interfaces/watchlist.interface";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
-import { formatValueIntoCommaSeparated, roundOffNumber } from "@/services/utils.service";
+import { formatValueIntoCommaSeparated, roundOffNumber } from "@secret-terminal/services/utils.service";
 import { coinSymbolImageSize } from "@/constants/app.constants";
 
 type Bindings = DialogProps;

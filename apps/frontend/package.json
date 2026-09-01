@@ -42,7 +42,9 @@
         "tailwind-merge": "^3.6.0",
         "tailwindcss-animate": "^1.0.7",
         "tsx": "^4.23.4",
-        "zod": "^4.4.3"
+        "zod": "^4.4.3",
+        "@secret-terminal/services": "workspace:*",
+        "@secret-terminal/types": "workspace:*"
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4.3.3",

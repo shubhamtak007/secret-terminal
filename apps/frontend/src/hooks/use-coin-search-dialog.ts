@@ -2,7 +2,7 @@
 
 import { useState, useEffect, SetStateAction, Dispatch, use } from 'react';
 import { search } from '@/services/coin.service';
-import { getUiRoute } from '@/services/utils.service';
+import { getUiRoute } from '@secret-terminal/services/utils.service';
 import { SearchApiCoin } from '@/interfaces/coin.interface';
 import { useRouter } from 'next/navigation';
 import { addWatchlistCoin } from '@/services/watchlist-coin.service';
@@ -48,12 +48,12 @@ export default function useCoinSearchDialog(bindings: Bindings) {
 
         try {
             const response = await search({ query: searchValue })
-
-            for (const coin of response.data.coins) {
+            const serverCoins = response.data.data.coins;
+            for (const coin of serverCoins) {
                 if (!coin.large.startsWith('https')) coin.large = null;
             }
 
-            setCoins(response.data.coins);
+            setCoins(serverCoins);
         } catch (error) {
 
         } finally {

@@ -47,23 +47,24 @@ export default function useCoinMarketChartData({ coinProperties, days, currentCh
 
         try {
             const response = await retrieveCoinMarketChartData(coinProperties.id, params);
+            const serverMarketData = response.data.data;
             marketDataRef.current = { priceList: [], marketCapitalList: [], volumeList: [] };
 
-            for (const priceDataPoint of response.data.prices) {
+            for (const priceDataPoint of serverMarketData.prices) {
                 marketDataRef.current.priceList.push({
                     date: priceDataPoint[0],
                     value: priceDataPoint[1]
                 })
             }
 
-            for (const marketCapPoint of response.data.market_caps) {
+            for (const marketCapPoint of serverMarketData.market_caps) {
                 marketDataRef.current.marketCapitalList.push({
                     date: marketCapPoint[0],
                     value: marketCapPoint[1]
                 })
             }
 
-            for (const volumePoint of response.data.total_volumes) {
+            for (const volumePoint of serverMarketData.total_volumes) {
                 marketDataRef.current.volumeList.push({
                     date: volumePoint[0],
                     value: volumePoint[1]

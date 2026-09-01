@@ -1,10 +1,10 @@
-import { secretTerminalClientV2 } from "@/lib/api-client";
+import { secretTerminalClient } from "@/lib/api-client";
 import { isAxiosError } from "axios";
 import { secretTerminalEndpoints } from "@/lib/endpoints";
 
 const retrieveLatestNews = async () => {
     try {
-        const response = await secretTerminalClientV2.get(secretTerminalEndpoints.news.latest);
+        const response = await secretTerminalClient.get(secretTerminalEndpoints.news.latest);
         return response;
     } catch (error) {
         if (error instanceof Error) throw new Error(error.message);

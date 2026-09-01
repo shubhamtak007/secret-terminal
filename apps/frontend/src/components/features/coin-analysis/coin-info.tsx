@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInUsdCompact } from '@/services/utils.service';
+import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInUsdCompact } from '@secret-terminal/services/utils.service';
 import { useCoinAnalysisContext } from '@/contexts/coin-analysis.context';
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 import { Info } from "lucide-react";

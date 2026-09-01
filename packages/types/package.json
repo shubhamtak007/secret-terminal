@@ -1,0 +1,7 @@
+{
+    "name": "@secret-terminal/types",
+    "private": true,
+    "exports": {
+        "./*": "./src/*.ts"
+    }
+}

@@ -1,10 +1,10 @@
-import { secretTerminalClientV2 } from "@/lib/api-client";
+import { secretTerminalClient } from "@/lib/api-client";
 import { secretTerminalEndpoints } from "@/lib/endpoints";
 import { handleError } from "@/services/error.service";
 
 async function retrieveWatchlists() {
     try {
-        const response = await secretTerminalClientV2.get(secretTerminalEndpoints.watchlists);
+        const response = await secretTerminalClient.get(secretTerminalEndpoints.watchlists);
         return response;
     } catch (error: unknown) {
         return handleError(error);
@@ -13,7 +13,7 @@ async function retrieveWatchlists() {
 
 async function addWatchlist(apiBody: Record<string, string>) {
     try {
-        const response = await secretTerminalClientV2.post(secretTerminalEndpoints.watchlists, apiBody);
+        const response = await secretTerminalClient.post(secretTerminalEndpoints.watchlists, apiBody);
         return response;
     } catch (error: unknown) {
         return handleError(error);
@@ -22,7 +22,7 @@ async function addWatchlist(apiBody: Record<string, string>) {
 
 async function updateWatchlist(watchlistId: string, apiBody: Record<string, string>) {
     try {
-        const response = await secretTerminalClientV2.patch(`${secretTerminalEndpoints.watchlists}/${watchlistId}`, apiBody);
+        const response = await secretTerminalClient.patch(`${secretTerminalEndpoints.watchlists}/${watchlistId}`, apiBody);
         return response;
     } catch (error: unknown) {
         return handleError(error);
@@ -31,7 +31,7 @@ async function updateWatchlist(watchlistId: string, apiBody: Record<string, stri
 
 async function deleteWatchlist(watchlistId: string) {
     try {
-        const response = await secretTerminalClientV2.delete(`${secretTerminalEndpoints.watchlists}/${watchlistId}`);
+        const response = await secretTerminalClient.delete(`${secretTerminalEndpoints.watchlists}/${watchlistId}`);
         return response;
     } catch (error: unknown) {
         return handleError(error);

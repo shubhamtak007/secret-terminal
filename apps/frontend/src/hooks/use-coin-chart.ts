@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { formatValueInUsdCompact } from '@/services/utils.service';
+import { formatValueInUsdCompact } from '@secret-terminal/services/utils.service';
 import { timeFrameList, chartViewList } from '@/constants/chart.constants';
 import { useCoinAnalysisContext } from '@/contexts/coin-analysis.context';
 import { type ChartConfig } from '@/components/ui/chart';

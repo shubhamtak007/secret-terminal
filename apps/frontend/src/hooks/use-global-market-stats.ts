@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { retrieveGlobalMarketData } from '@/services/coin.service';
-import type { GlobalMarketStats } from '@/interfaces/global-market-stats.interface';
+import type { GlobalMarketStats } from '@secret-terminal/types/global-market.types';
 
 function useGlobalMarketStats() {
     const [globalMarketStats, setGlobalMarketStats] = useState<GlobalMarketStats>({} as GlobalMarketStats);
@@ -33,7 +33,7 @@ function useGlobalMarketStats() {
     async function fetchGlobalMarketData() {
         try {
             const response = await retrieveGlobalMarketData();
-            if (response) setGlobalMarketStats(response);
+            if (response) setGlobalMarketStats(response.data.data);
         } catch (error) {
 
         } finally {

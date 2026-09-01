@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { formatValueIntoCommaSeparated } from '@/services/utils.service';
+import { formatValueIntoCommaSeparated } from '@secret-terminal/services/utils.service';
 import { retrieveCoinList } from '@/services/coin.service';
 import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
 import type { CoinAnalysis } from '@/interfaces/coin-analysis.interface';

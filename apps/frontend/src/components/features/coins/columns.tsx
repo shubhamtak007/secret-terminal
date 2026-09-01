@@ -6,7 +6,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info } from "lucide-react";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
-import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
+import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber } from '@secret-terminal/services/utils.service';
 import { ChevronsUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
