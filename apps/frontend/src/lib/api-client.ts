@@ -35,20 +35,10 @@ const binanceClient = axios.create({
     }
 })
 
-
-const coinRankingClient = axios.create({
-    baseURL: 'https://api.coinranking.com/',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'x-access-token': process.env.COIN_RANKING_API_KEY
-    }
-})
-
-const clientList = [secretTerminalClient, coinGeckoClient, binanceClient, coinRankingClient, secretTerminalClientV2];
+const clientList = [secretTerminalClient, coinGeckoClient, binanceClient, secretTerminalClientV2];
 
 for (const client of clientList) {
     setupInterceptors(client);
 }
 
-export { secretTerminalClient, binanceClient, coinGeckoClient, coinRankingClient, secretTerminalClientV2 }
+export { secretTerminalClient, binanceClient, coinGeckoClient, secretTerminalClientV2 }
