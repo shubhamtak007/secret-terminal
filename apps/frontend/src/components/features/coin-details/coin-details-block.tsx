@@ -1,9 +1,9 @@
 'use client';
 
-import { Spinner } from '@/src/components/ui/spinner';
+import { Spinner } from '@/components/ui/spinner';
 import { FaReddit, FaGithub } from "react-icons/fa";
 import { ExternalLink } from 'lucide-react';
-import { formatValueIntoCommaSeparated } from '@/src/services/utils.service';
+import { formatValueIntoCommaSeparated } from '@/services/utils.service';
 import { ClientCoinProperties } from '@/src/interfaces/coin-details.interface';
 
 type Bindings = {

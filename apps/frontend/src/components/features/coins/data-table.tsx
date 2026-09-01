@@ -1,10 +1,10 @@
 'use no memo';
 
 import { useRef } from 'react';
-import { Spinner } from '@/src/components/ui/spinner';
+import { Spinner } from '@/components/ui/spinner';
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
 import { useReactTable, getCoreRowModel, flexRender, Row } from '@tanstack/react-table';
-import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuGroup, ContextMenuItem } from '@/src/components/ui/context-menu';
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuGroup, ContextMenuItem } from '@/components/ui/context-menu';
 import { DataTableBindings, DataTableHeaderBindings, DataTableBodyBindings } from '@/src/interfaces/data-table.interface';
 
 function DataTable<TData,>(bindings: DataTableBindings<TData>) {

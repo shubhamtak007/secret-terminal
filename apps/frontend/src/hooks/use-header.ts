@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { userScreenWidth } from '@/src/constants/app.constants';
+import { userScreenWidth } from '@/constants/app.constants';
 
 export default function useHeader() {
     const [scrolled, setScrolled] = useState<boolean>(false);

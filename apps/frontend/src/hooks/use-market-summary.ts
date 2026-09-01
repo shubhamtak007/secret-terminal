@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { retrieveTrendingCoins, retrieveAllCoins, retrieveCoinList } from '@/src/services/coin.service';
+import { retrieveTrendingCoins, retrieveAllCoins, retrieveCoinList } from '@/services/coin.service';
 import { CryptoCurrency, CoingeckoCrypto, TrendingCoin, MarketSummaryRefMap } from '@/src/interfaces/coin.interface';
-import { roundOffNumber } from '@/src/services/utils.service';
+import { roundOffNumber } from '@/services/utils.service';
 import type { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
 
 const roundToDecimalPlaces = 5;

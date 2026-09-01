@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react"
-import { retrieveWatchlists, deleteWatchlist } from "@/src/services/watchlist.service";
-import { retrieveWatchlistCoinsByWatchlistId, deleteWatchlistCoin } from "@/src/services/watchlist-coin.service";
-import { retrieveCoinList } from "@/src/services/coin.service";
+import { retrieveWatchlists, deleteWatchlist } from "@/services/watchlist.service";
+import { retrieveWatchlistCoinsByWatchlistId, deleteWatchlistCoin } from "@/services/watchlist-coin.service";
+import { retrieveCoinList } from "@/services/coin.service";
 import { CoingeckoCrypto } from "@/src/interfaces/coin.interface";
 import { Watchlist } from "@/src/interfaces/watchlist.interface";
 import { DialogProps } from "@/src/interfaces/global.interface";

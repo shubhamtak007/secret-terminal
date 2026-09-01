@@ -1,14 +1,14 @@
 import { useState, Dispatch, SetStateAction } from 'react';
-import { useUser } from '@/src/contexts/user.context';
-import { useLoading } from '@/src/contexts/loading.context';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '@/src/components/ui/dropdown-menu';
-import { Button } from '@/src/components/ui/button';
-import { Spinner } from '@/src/components/ui/spinner';
+import { useUser } from '@/contexts/user.context';
+import { useLoading } from '@/contexts/loading.context';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuGroup, DropdownMenuLabel, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSubContent } from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
+import { Spinner } from '@/components/ui/spinner';
 import { CircleUserRound } from 'lucide-react';
-import { signOut } from '@/src/services/authentication.service';
-import { iconSize } from '@/src/constants/app.constants';
+import { signOut } from '@/services/authentication.service';
+import { iconSize } from '@/constants/app.constants';
 import ProfileDialog from './profile-dialog';
-import SignIn from '@/src/components/features/sign-in/sign-in';
+import SignIn from '@/components/features/sign-in/sign-in';
 
 type PdBindings = {
     setShowSignInDialog: Dispatch<SetStateAction<boolean>>

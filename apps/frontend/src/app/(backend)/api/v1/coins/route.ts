@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { getRowsPerPageDefaultValue } from '@/src/services/utils.service';
+import { getRowsPerPageDefaultValue } from '@/services/utils.service';
 import { CoinListApiParams } from '@/src/interfaces/coin-list.interface';
-import { coinGeckoClient } from '@/src/lib/api-client';
+import { coinGeckoClient } from '@/lib/api-client';
 import { NextRequest, NextResponse } from 'next/server';
-import { coinGeckoEndpoints } from '@/src/lib/endpoints';
+import { coinGeckoEndpoints } from '@/lib/endpoints';
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;

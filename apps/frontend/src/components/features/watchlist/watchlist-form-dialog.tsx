@@ -1,10 +1,10 @@
-import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent, DialogFooter } from "@/src/components/ui/dialog";
-import { Button } from "@/src/components/ui/button";
-import { InputGroup, InputGroupInput } from "@/src/components/ui/input-group";
-import { Spinner } from "@/src/components/ui/spinner";
-import useWatchlistForm from "@/src/hooks/use-watchlist-form";
+import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent, DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
+import { Spinner } from "@/components/ui/spinner";
+import useWatchlistForm from "@/hooks/use-watchlist-form";
 import { DialogProps } from "@/src/interfaces/global.interface";
-import { Textarea } from "@/src/components/ui/textarea";
+import { Textarea } from "@/components/ui/textarea";
 
 type Bindings = {
     onDialogClose(): void,

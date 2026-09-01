@@ -2,7 +2,7 @@
 
 import { createContext, useContext, ReactNode, useOptimistic, useMemo, startTransition, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useLoading } from '@/src/contexts/loading.context';
+import { useLoading } from '@/contexts/loading.context';
 
 type OptimisticNavigationContextType = {
     optimisticPathname: string;

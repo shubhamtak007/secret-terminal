@@ -1,11 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import NavigationTabBar from '@/src/components/layout/navigation-tab-bar';
-import useHeader from '@/src/hooks/use-header';
-import AccountCentre from '@/src/components/features/account/account-centre';
-import CoinSearchDialog from '@/src/components/features/coin-search/coin-search-dialog';
-import { iconSize } from '@/src/constants/app.constants';
+import NavigationTabBar from '@/components/layout/navigation-tab-bar';
+import useHeader from '@/hooks/use-header';
+import AccountCentre from '@/components/features/account/account-centre';
+import CoinSearchDialog from '@/components/features/coin-search/coin-search-dialog';
+import { iconSize } from '@/constants/app.constants';
 import { Search, Terminal } from 'lucide-react';
 import { FiGithub } from 'react-icons/fi';
 import { ThemeToggle } from '../ui/theme-toggle';

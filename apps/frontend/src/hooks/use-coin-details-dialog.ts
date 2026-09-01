@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { CoinDetailsServerResponse, ClientCoinProperties } from '@/src/interfaces/coin-details.interface';
-import { retrieveCoinDetailsByCoinId } from '@/src/services/coin.service';
+import { retrieveCoinDetailsByCoinId } from '@/services/coin.service';
 import { CoinDetailsDialogCoin } from '../interfaces/coin.interface';
 
 type Bindings = {

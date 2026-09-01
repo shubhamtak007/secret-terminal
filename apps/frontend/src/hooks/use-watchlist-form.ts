@@ -2,8 +2,8 @@
 
 import { useForm } from "@tanstack/react-form";
 import { Dispatch, RefObject, SetStateAction, useEffect, useRef, useState } from "react";
-import { watchlistSchema } from "@/src/schemas/watchlist.schema";
-import { addWatchlist, updateWatchlist } from "@/src/services/watchlist.service";
+import { watchlistSchema } from "@/schemas/watchlist.schema";
+import { addWatchlist, updateWatchlist } from "@/services/watchlist.service";
 import { Watchlist } from "@/src/interfaces/watchlist.interface";
 
 type Bindings = {

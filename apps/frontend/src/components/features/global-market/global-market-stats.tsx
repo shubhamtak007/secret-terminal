@@ -1,9 +1,9 @@
 'use client';
 
-import useGlobalMarketStats from '@/src/hooks/use-global-market-stats';
-import { formatValueInUsdCompact, roundOffNumber } from '@/src/services/utils.service';
+import useGlobalMarketStats from '@/hooks/use-global-market-stats';
+import { formatValueInUsdCompact, roundOffNumber } from '@/services/utils.service';
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
-import { Spinner } from "@/src/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 
 function GlobalMarketStats() {
     const { globalMarketStats, fetchingGlobalMarketStats, scrollReachedBottom } = useGlobalMarketStats();

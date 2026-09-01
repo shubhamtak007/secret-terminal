@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
-import { useUser } from '@/src/contexts/user.context';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/src/components/ui/dialog';
+import { useUser } from '@/contexts/user.context';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/components/ui/dialog';
 
 type ProfileDialogBindings = {
     openDialog: boolean;

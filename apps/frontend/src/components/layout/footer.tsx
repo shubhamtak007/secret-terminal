@@ -1,9 +1,9 @@
 'use client';
 
-import GlobalMarketStats from "@/src/components/features/global-market/global-market-stats";
+import GlobalMarketStats from "@/components/features/global-market/global-market-stats";
 import BottomTabBar from "./navigation-tab-bar";
 import { useState, useEffect } from 'react';
-import { userScreenWidth } from "@/src/constants/app.constants";
+import { userScreenWidth } from "@/constants/app.constants";
 
 function Footer() {
     const [showTabBar, setShowTabBar] = useState<boolean>(false);

@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { navigationBarTabList } from '@/src/constants/app.constants';
-import { useUser } from '@/src/contexts/user.context';
+import { navigationBarTabList } from '@/constants/app.constants';
+import { useUser } from '@/contexts/user.context';
 import { NavigationBarTab } from '@/src/interfaces/global.interface';
 import { Route } from 'next';
 

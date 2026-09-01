@@ -1,14 +1,14 @@
 'use client';
 
-import useNavigationTabBar from '@/src/hooks/use-navigation-tab-bar';
-import NewsDialog from '@/src/components/features/news/news-dialog';
-import WatchlistDialog from '@/src/components/features/watchlist/watchlist-dialog';
+import useNavigationTabBar from '@/hooks/use-navigation-tab-bar';
+import NewsDialog from '@/components/features/news/news-dialog';
+import WatchlistDialog from '@/components/features/watchlist/watchlist-dialog';
 import { Fragment } from 'react';
-import { Tabs, TabsTrigger, TabsList } from '@/src/components/ui/tabs';
+import { Tabs, TabsTrigger, TabsList } from '@/components/ui/tabs';
 import { Home, Lock } from 'lucide-react';
 import { DialogProps } from "@/src/interfaces/global.interface";
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/src/components/ui/tooltip';
-import { iconSize } from '@/src/constants/app.constants';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { iconSize } from '@/constants/app.constants';
 
 export default function NavigationTabBar() {
     const {

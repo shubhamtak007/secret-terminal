@@ -2,7 +2,7 @@
 
 import { createContext, useContext, ReactNode, useState, SetStateAction, Dispatch, useEffect } from 'react';
 import { User } from '@/src/interfaces/account-centre.interface';
-import { retrieveProfile } from '@/src/services/user.service';
+import { retrieveProfile } from '@/services/user.service';
 import { GlobeOff } from 'lucide-react';
 
 type UserContextProviderProps = {

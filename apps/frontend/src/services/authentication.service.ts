@@ -1,5 +1,5 @@
-import { secretTerminalClientV2 } from '@/src/lib/api-client';
-import { secretTerminalEndpoints } from '@/src/lib/endpoints';
+import { secretTerminalClientV2 } from '@/lib/api-client';
+import { secretTerminalEndpoints } from '@/lib/endpoints';
 
 type SignUpApiBody = {
     name: string,

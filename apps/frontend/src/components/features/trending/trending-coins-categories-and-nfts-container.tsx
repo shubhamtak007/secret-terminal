@@ -1,9 +1,9 @@
 'use client';
 
-import useTrendingCoinsCategoriesAndNfts from "@/src/hooks/use-trending-coins-categories-and-nfts";
-import TrendingCoinsCategoriesAndNftsTable from "@/src/components/features/trending/trending-coins-categories-and-nfts-table";
+import useTrendingCoinsCategoriesAndNfts from "@/hooks/use-trending-coins-categories-and-nfts";
+import TrendingCoinsCategoriesAndNftsTable from "@/components/features/trending/trending-coins-categories-and-nfts-table";
 import { TrendingCoinsCategoriesAndNftsClient } from '@/src/interfaces/trending.interface';
-import { Skeleton } from '@/src/components/ui/skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 
 function TrendingCoinsCategoriesAndNftsContainer() {
     const { fetchingTrendingCoinsCategoriesAndNfts, trendingCoinsCategoriesAndNfts } = useTrendingCoinsCategoriesAndNfts();

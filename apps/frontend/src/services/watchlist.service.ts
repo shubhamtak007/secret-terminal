@@ -1,6 +1,6 @@
-import { secretTerminalClientV2 } from "@/src/lib/api-client";
-import { secretTerminalEndpoints } from "@/src/lib/endpoints";
-import { handleError } from "@/src/services/error.service";
+import { secretTerminalClientV2 } from "@/lib/api-client";
+import { secretTerminalEndpoints } from "@/lib/endpoints";
+import { handleError } from "@/services/error.service";
 
 async function retrieveWatchlists() {
     try {

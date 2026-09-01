@@ -1,9 +1,9 @@
 'use client';
 
 import { lazy } from 'react';
-import { CoinAnalysisContextProvider } from '@/src/contexts/coin-analysis.context';
-const CoinMarketChart = lazy(() => import('@/src/components/features/coin-analysis/coin-market-chart'));
-const CoinInfo = lazy(() => import('@/src/components/features/coin-analysis/coin-info'));
+import { CoinAnalysisContextProvider } from '@/contexts/coin-analysis.context';
+const CoinMarketChart = lazy(() => import('@/components/features/coin-analysis/coin-market-chart'));
+const CoinInfo = lazy(() => import('@/components/features/coin-analysis/coin-info'));
 
 type Bindings = {
     coinId: string

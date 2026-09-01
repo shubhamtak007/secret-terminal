@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { retrieveLatestNews } from "@/src/services/news.service";
+import { retrieveLatestNews } from "@/services/news.service";
 import type { NewsArticle } from "@/src/interfaces/news.interface";
 
 type Bindings = {

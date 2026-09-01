@@ -1,20 +1,20 @@
 import Image from "next/image";
-import useWatchlistDialog from "@/src/hooks/use-watchlist-dialog";
+import useWatchlistDialog from "@/hooks/use-watchlist-dialog";
 import WatchlistFormDialog from "./watchlist-form-dialog";
-import CoinSearchDialog from "@/src/components/features/coin-search/coin-search-dialog";
+import CoinSearchDialog from "@/components/features/coin-search/coin-search-dialog";
 import CoinDetailsDialog from "../coin-details/coin-details-dialog";
-import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent, DialogFooter } from "@/src/components/ui/dialog";
+import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent, DialogFooter } from "@/components/ui/dialog";
 import { DialogProps } from "@/src/interfaces/global.interface";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { CirclePlus } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
-import { Skeleton } from "@/src/components/ui/skeleton";
-import { Spinner } from "@/src/components/ui/spinner";
-import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuTrigger } from "@/src/components/ui/context-menu";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/ui/spinner";
+import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuTrigger } from "@/components/ui/context-menu";
 import { WatchlistCoin } from "@/src/interfaces/watchlist.interface";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
-import { formatValueIntoCommaSeparated, roundOffNumber } from "@/src/services/utils.service";
-import { coinSymbolImageSize } from "@/src/constants/app.constants";
+import { formatValueIntoCommaSeparated, roundOffNumber } from "@/services/utils.service";
+import { coinSymbolImageSize } from "@/constants/app.constants";
 
 type Bindings = DialogProps;
 

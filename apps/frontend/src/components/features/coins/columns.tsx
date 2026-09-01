@@ -1,16 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
+import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
 import { ColumnDef } from '@tanstack/react-table';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/src/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info } from "lucide-react";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
-import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber } from '@/src/services/utils.service';
+import { formatValueInUsdCompact, formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
 import { ChevronsUpDown, ArrowUp, ArrowDown } from 'lucide-react';
-import { Button } from '@/src/components/ui/button';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/src/components/ui/dropdown-menu';
-import { coinSymbolImageSize } from '@/src/constants/app.constants';
+import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { coinSymbolImageSize } from '@/constants/app.constants';
 
 const decimalPlaces = 2;
 

@@ -1,13 +1,13 @@
 'use client';
 
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/src/components/ui/chart';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { AreaChart, XAxis, YAxis, Area, CartesianGrid } from 'recharts';
-import { Spinner } from '@/src/components/ui/spinner';
-import { Tabs, TabsList, TabsTrigger } from '@/src/components/ui/tabs';
-import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis.context';
-import { timeFrameList, chartViewList, chartStrokeWidth } from '@/src/constants/chart.constants';
-import useCoinMarketChartData from '@/src/hooks/use-coin-market-chart-data';
-import useCoinChart from '@/src/hooks/use-coin-chart';
+import { Spinner } from '@/components/ui/spinner';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useCoinAnalysisContext } from '@/contexts/coin-analysis.context';
+import { timeFrameList, chartViewList, chartStrokeWidth } from '@/constants/chart.constants';
+import useCoinMarketChartData from '@/hooks/use-coin-market-chart-data';
+import useCoinChart from '@/hooks/use-coin-chart';
 import type { CoinAnalysis } from '@/src/interfaces/coin-analysis.interface';
 
 type Bindings = CoinAnalysis;

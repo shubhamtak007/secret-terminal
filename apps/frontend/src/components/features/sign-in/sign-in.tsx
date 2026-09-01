@@ -1,12 +1,12 @@
-import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent } from '@/src/components/ui/dialog';
+import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent } from '@/components/ui/dialog';
 import { useState, Dispatch, SetStateAction, memo } from 'react';
-import { InputGroup, InputGroupInput, InputGroupAddon } from '@/src/components/ui/input-group';
-import { Button } from '@/src/components/ui/button';
+import { InputGroup, InputGroupInput, InputGroupAddon } from '@/components/ui/input-group';
+import { Button } from '@/components/ui/button';
 import { EyeOff, Eye, Circle } from 'lucide-react';
 import { FaCheckCircle } from "react-icons/fa";
-import { Spinner } from '@/src/components/ui/spinner';
+import { Spinner } from '@/components/ui/spinner';
 import { FormType } from '@/src/interfaces/account-centre.interface';
-import useSignIn from '@/src/hooks/use-sign-in';
+import useSignIn from '@/hooks/use-sign-in';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 type Bindings = {

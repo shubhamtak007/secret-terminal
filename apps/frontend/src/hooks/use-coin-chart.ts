@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { formatValueInUsdCompact } from '@/src/services/utils.service';
-import { timeFrameList, chartViewList } from '@/src/constants/chart.constants';
-import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis.context';
-import { type ChartConfig } from '@/src/components/ui/chart';
+import { formatValueInUsdCompact } from '@/services/utils.service';
+import { timeFrameList, chartViewList } from '@/constants/chart.constants';
+import { useCoinAnalysisContext } from '@/contexts/coin-analysis.context';
+import { type ChartConfig } from '@/components/ui/chart';
 
 type ChartView = { name: string, value: string };
 

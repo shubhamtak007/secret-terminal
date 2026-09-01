@@ -1,5 +1,5 @@
-import TrendingCoinsCategoriesAndNftsContainer from '@/src/components/features/trending/trending-coins-categories-and-nfts-container';
-import Loading from '@/src/app/loading';
+import TrendingCoinsCategoriesAndNftsContainer from '@/components/features/trending/trending-coins-categories-and-nfts-container';
+import Loading from '@/app/loading';
 import { Suspense } from 'react';
 
 export async function generateMetadata() {

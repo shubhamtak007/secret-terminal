@@ -1,8 +1,8 @@
-import { Dialog, DialogBody, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/src/components/ui/dialog";
+import { Dialog, DialogBody, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Dispatch, memo, SetStateAction } from "react";
-import { Spinner } from "@/src/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { NewsArticle } from "@/src/interfaces/news.interface";
-import useNews from "@/src/hooks/use-news";
+import useNews from "@/hooks/use-news";
 
 type Bindings = {
     showDialog: boolean,

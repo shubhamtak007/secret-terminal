@@ -1,8 +1,8 @@
-import Header from "@/src/components/layout/header";
-import Footer from "@/src/components/layout/footer";
-import LoadingBar from '@/src/components/layout/loading-bar';
-import { UserContextProvider } from "@/src/contexts/user.context";
-import { LoadingContextProvider } from '@/src/contexts/loading.context';
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import LoadingBar from '@/components/layout/loading-bar';
+import { UserContextProvider } from "@/contexts/user.context";
+import { LoadingContextProvider } from '@/contexts/loading.context';
 
 export default function Layout({ children, }: Readonly<{ children: React.ReactNode; }>) {
     return (

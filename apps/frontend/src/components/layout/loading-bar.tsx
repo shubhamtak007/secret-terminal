@@ -1,6 +1,6 @@
 "use client";
 
-import { useLoading } from "@/src/contexts/loading.context";
+import { useLoading } from "@/contexts/loading.context";
 
 export default function LoadingBar({ className, ...props }: React.ComponentProps<"div">) {
     const { isLoading } = useLoading();

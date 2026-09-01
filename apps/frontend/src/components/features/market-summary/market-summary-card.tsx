@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from "react";
-import MarketSummaryCoins from '@/src/components/features/market-summary/market-summary-coins';
-import { Item, ItemContent, ItemTitle } from '@/src/components/ui/item';
+import MarketSummaryCoins from '@/components/features/market-summary/market-summary-coins';
+import { Item, ItemContent, ItemTitle } from '@/components/ui/item';
 import { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
 import { ChevronRight } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/src/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/components/ui/dialog';
 
 type Bindings = {
     marketSummaryItem: MarketSummaryItem

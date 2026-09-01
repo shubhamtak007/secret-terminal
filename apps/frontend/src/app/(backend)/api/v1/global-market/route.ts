@@ -1,8 +1,8 @@
 import { GlobalMarketDataCoinGecko } from '@/src/interfaces/global-market-stats.interface';
-import { formatValueIntoCommaSeparated, roundOffNumber } from '@/src/services/utils.service';
-import { coinGeckoClient } from '@/src/lib/api-client';
+import { formatValueIntoCommaSeparated, roundOffNumber } from '@/services/utils.service';
+import { coinGeckoClient } from '@/lib/api-client';
 import { NextRequest, NextResponse } from 'next/server';
-import { coinGeckoEndpoints } from '@/src/lib/endpoints';
+import { coinGeckoEndpoints } from '@/lib/endpoints';
 
 export async function GET() {
     try {

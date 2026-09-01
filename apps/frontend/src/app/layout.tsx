@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import { Inter } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
-import { Toaster } from '@/src/components/ui/sonner';
-import { ThemeProvider } from "@/src/contexts/theme.context";
+import { Toaster } from '@/components/ui/sonner';
+import { ThemeProvider } from "@/contexts/theme.context";
 
 const inter = Inter({
     weight: ['400', '500', '600', '700', '800', '900'],

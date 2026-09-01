@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { formatValueIntoCommaSeparated, formatValueInUsdCompact } from "@/src/services/utils.service";
-import { coinSymbolImageSize } from '@/src/constants/app.constants';
-import CoinDetailsDialog from '@/src/components/features/coin-details/coin-details-dialog';
+import { formatValueIntoCommaSeparated, formatValueInUsdCompact } from "@/services/utils.service";
+import { coinSymbolImageSize } from '@/constants/app.constants';
+import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
 import type { MarketSummaryItem } from '@/src/interfaces/market-summary.interface';
 import type { CoinDetailsDialogCoin } from '@/src/interfaces/coin.interface';
 import { useRef, useState } from 'react';

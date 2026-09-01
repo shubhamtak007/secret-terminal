@@ -1,15 +1,15 @@
 'use client';
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/src/components/ui/input-group';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Search, X } from 'lucide-react';
-import { Button } from '@/src/components/ui/button';
-import { columns } from '@/src/components/features/coins/columns';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/src/components/ui/select';
-import { getRowsPerPageDefaultValue } from '@/src/services/utils.service';
-import { coinsTableContextMenuList } from '@/src/constants/app.constants';
-import useCoinList from '@/src/hooks/use-coin-list';
-import DataTable from '@/src/components/features/coins/data-table';
-import CoinDetailsDialog from '@/src/components/features/coin-details/coin-details-dialog';
+import { Button } from '@/components/ui/button';
+import { columns } from '@/components/features/coins/columns';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { getRowsPerPageDefaultValue } from '@/services/utils.service';
+import { coinsTableContextMenuList } from '@/constants/app.constants';
+import useCoinList from '@/hooks/use-coin-list';
+import DataTable from '@/components/features/coins/data-table';
+import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
 import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
 
 function CoinList() {

@@ -2,17 +2,17 @@
 
 import Image from 'next/image';
 import { useEffect, useState, useRef } from 'react';
-import { Skeleton } from '@/src/components/ui/skeleton';
-import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInUsdCompact } from '@/src/services/utils.service';
-import { useCoinAnalysisContext } from '@/src/contexts/coin-analysis.context';
+import { Skeleton } from '@/components/ui/skeleton';
+import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInUsdCompact } from '@/services/utils.service';
+import { useCoinAnalysisContext } from '@/contexts/coin-analysis.context';
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 import { Info } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/src/components/ui/tooltip';
-import { coinKeyList, coinSymbolImageSize } from '@/src/constants/app.constants';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { coinKeyList, coinSymbolImageSize } from '@/constants/app.constants';
 import type { CoinAnalysis } from '@/src/interfaces/coin-analysis.interface';
 import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
-import useCoinInfo from '@/src/hooks/use-coin-info';
-import CoinDetailsDialog from '@/src/components/features/coin-details/coin-details-dialog';
+import useCoinInfo from '@/hooks/use-coin-info';
+import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
 
 type Bindings = CoinAnalysis;
 

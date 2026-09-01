@@ -2,11 +2,11 @@
 
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import CoinDetailsBlock from '@/src/components/features/coin-details/coin-details-block';
-import useCoinDetailsDialog from '@/src/hooks/use-coin-details-dialog';
+import CoinDetailsBlock from '@/components/features/coin-details/coin-details-block';
+import useCoinDetailsDialog from '@/hooks/use-coin-details-dialog';
 import type { CoinDetailsDialogCoin } from '@/src/interfaces/coin.interface';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/src/components/ui/dialog';
-import { coinSymbolImageSize } from '@/src/constants/app.constants';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogBody, DialogDescription } from '@/components/ui/dialog';
+import { coinSymbolImageSize } from '@/constants/app.constants';
 import { DialogProps } from '@/src/interfaces/global.interface';
 
 type Bindings = {

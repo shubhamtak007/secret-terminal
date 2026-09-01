@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import CoinAnalysisContainer from '@/src/components/features/coin-analysis/coin-analysis-container';
+import CoinAnalysisContainer from '@/components/features/coin-analysis/coin-analysis-container';
 import Loading from './loading';
 
 type Props = {

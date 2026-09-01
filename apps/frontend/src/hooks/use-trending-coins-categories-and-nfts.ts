@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { retrieveTrendingCoinsCategoriesAndNfts } from '@/src/services/coin.service';
+import { retrieveTrendingCoinsCategoriesAndNfts } from '@/services/coin.service';
 import { TrendingCoinsCategoriesAndNftsServerResponse, TrendingCoinsCategoriesAndNftsClient, CoinCategoryOrNft } from '@/src/interfaces/trending.interface';
 
 function useTrendingCoinsCategoriesAndNfts() {

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { coinGeckoClient } from '@/src/lib/api-client';
+import { coinGeckoClient } from '@/lib/api-client';
 import { NextRequest, NextResponse } from 'next/server';
-import { coinGeckoEndpoints } from '@/src/lib/endpoints';
+import { coinGeckoEndpoints } from '@/lib/endpoints';
 
 export async function GET() {
     try {

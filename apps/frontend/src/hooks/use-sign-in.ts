@@ -1,13 +1,13 @@
 'use client';
 
 import { SetStateAction, Dispatch, useEffect, useState, useRef } from 'react';
-import { useUser } from '@/src/contexts/user.context';
-import { useLoading } from '@/src/contexts/loading.context';
+import { useUser } from '@/contexts/user.context';
+import { useLoading } from '@/contexts/loading.context';
 import { useForm } from '@tanstack/react-form';
-import { changePassword, forgotPassword, signIn, verifyResetCode, signUp } from '@/src/services/authentication.service';
-import { retrieveProfile } from '@/src/services/user.service';
+import { changePassword, forgotPassword, signIn, verifyResetCode, signUp } from '@/services/authentication.service';
+import { retrieveProfile } from '@/services/user.service';
 import type { UserFormData, FormType } from '@/src/interfaces/account-centre.interface';
-import authenticationFormSchemaMap from '@/src/schemas/authentication-form.schema';
+import authenticationFormSchemaMap from '@/schemas/authentication-form.schema';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 type Bindings = {

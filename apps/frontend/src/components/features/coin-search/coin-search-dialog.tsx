@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import useCoinSearchDialog from '@/src/hooks/use-coin-search-dialog';
-import { coinSymbolImageSize } from '@/src/constants/app.constants';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/src/components/ui/input-group';
-import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent, DialogFooter, DialogOverlay } from '@/src/components/ui/dialog';
+import useCoinSearchDialog from '@/hooks/use-coin-search-dialog';
+import { coinSymbolImageSize } from '@/constants/app.constants';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
+import { Dialog, DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogContent, DialogFooter, DialogOverlay } from '@/components/ui/dialog';
 import { CirclePlus, Search, X } from 'lucide-react';
-import { Spinner } from '@/src/components/ui/spinner';
+import { Spinner } from '@/components/ui/spinner';
 import { Dispatch, SetStateAction } from 'react';
 
 type Bindings = {

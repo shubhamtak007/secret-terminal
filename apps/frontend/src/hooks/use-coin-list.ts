@@ -2,10 +2,10 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { getUiRoute, getRowsPerPageDefaultValue } from '@/src/services/utils.service';
+import { getUiRoute, getRowsPerPageDefaultValue } from '@/services/utils.service';
 import { CoinListApiParams } from '@/src/interfaces/coin-list.interface';
 import { Row } from '@tanstack/react-table';
-import { search, retrieveCoinList } from '@/src/services/coin.service';
+import { search, retrieveCoinList } from '@/services/coin.service';
 import { Route } from 'next';
 import type { CoingeckoCrypto } from '@/src/interfaces/coin.interface';
 

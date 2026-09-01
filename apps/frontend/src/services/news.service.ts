@@ -1,6 +1,6 @@
-import { secretTerminalClientV2 } from "@/src/lib/api-client";
+import { secretTerminalClientV2 } from "@/lib/api-client";
 import { isAxiosError } from "axios";
-import { secretTerminalEndpoints } from "@/src/lib/endpoints";
+import { secretTerminalEndpoints } from "@/lib/endpoints";
 
 const retrieveLatestNews = async () => {
     try {

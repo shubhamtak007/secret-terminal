@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect, SetStateAction, Dispatch, use } from 'react';
-import { search } from '@/src/services/coin.service';
-import { getUiRoute } from '@/src/services/utils.service';
+import { search } from '@/services/coin.service';
+import { getUiRoute } from '@/services/utils.service';
 import { SearchApiCoin } from '@/src/interfaces/coin.interface';
 import { useRouter } from 'next/navigation';
-import { addWatchlistCoin } from '@/src/services/watchlist-coin.service';
+import { addWatchlistCoin } from '@/services/watchlist-coin.service';
 
 type Bindings = {
     showDialog: boolean,
