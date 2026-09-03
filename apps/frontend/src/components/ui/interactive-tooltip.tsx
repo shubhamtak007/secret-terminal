@@ -1,12 +1,9 @@
 "use client";
 
 import * as React from "react";
-
 import { useTouchDetector } from "@/contexts/touch-detector.context";
-
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
-
 import { cn } from "@/lib/utils";
 
 type InteractiveTooltipProps = | React.ComponentProps<typeof Tooltip> | React.ComponentProps<typeof Popover>;

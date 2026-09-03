@@ -14,7 +14,7 @@ type TouchDetectorContextType = {
 const TouchDetectorContext = createContext<TouchDetectorContextType | undefined>(undefined);
 
 const TouchDetectorContextProvider = ({ children }: TouchDetectorContextProviderProps) => {
-    const [isTouch, setIsTouch] = useState<boolean>(false);
+    const [isTouch, setIsTouch] = useState<boolean>(true);
 
     useEffect(() => {
         const handlePointerMove = (event: PointerEvent) => {
