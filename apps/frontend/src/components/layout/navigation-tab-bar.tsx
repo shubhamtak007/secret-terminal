@@ -9,6 +9,7 @@ import { Home, Lock } from 'lucide-react';
 import { DialogProps } from "@/interfaces/global.interface";
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { iconSize } from '@/constants/app.constants';
+import { InteractiveTooltip, InteractiveTooltipContent, InteractiveTooltipTrigger } from '../ui/interactive-tooltip';
 
 export default function NavigationTabBar() {
     const {
@@ -29,44 +30,46 @@ export default function NavigationTabBar() {
                         tabList.map((tab) => {
                             return (
                                 <Fragment key={tab.id}>
-                                    {
+                                    {tab.disabled ? (
+                                        <InteractiveTooltip>
+                                            <InteractiveTooltipTrigger asChild>
+                                                <button
+                                                    type="button"
+                                                    className="flex items-center text-sm px-[7px]"
+                                                    aria-label={tab.name}
+                                                >
+                                                    <Lock
+                                                        size={iconSize}
+                                                        className="size-3 mr-[4px]"
+                                                    />
+                                                    {tab.name}
+                                                </button>
+                                            </InteractiveTooltipTrigger>
+
+                                            <InteractiveTooltipContent
+                                                side="top"
+                                                sideOffset={3}
+                                                className="!z-[100]"
+                                            >
+                                                Please sign in to add coins to your watchlist.
+                                            </InteractiveTooltipContent>
+                                        </InteractiveTooltip>
+                                    ) : (
                                         <TabsTrigger
                                             value={tab.value}
-                                            disabled={tab.disabled}
-                                            onClick={(event) => { onTabClick(event, tab.value) }}
-                                            className="px-[7px]"
+                                            onClick={(event) => onTabClick(event, tab.value)}
                                             aria-label={tab.name}
                                         >
-                                            {
-                                                (tab.name === 'Home') &&
+                                            {tab.name === "Home" && (
                                                 <Home
                                                     className="size-4"
                                                     size={iconSize}
                                                 />
-                                            }
-                                            {
-                                                ((tab.name === 'Watchlist') && tab.disabled) &&
-                                                <Tooltip>
-                                                    <TooltipTrigger asChild>
-                                                        <span aria-hidden="true">
-                                                            <Lock
-                                                                size={iconSize}
-                                                                className="size-3"
-                                                            />
-                                                        </span>
-                                                    </TooltipTrigger>
+                                            )}
 
-                                                    <TooltipContent
-                                                        sideOffset={3}
-                                                        className="!z-100"
-                                                    >
-                                                        Please sign in to add coins to your watchlist.
-                                                    </TooltipContent>
-                                                </Tooltip>
-                                            }
-                                            {(tab.value !== 'home') && tab.name}
+                                            {tab.name !== "Home" && tab.name}
                                         </TabsTrigger>
-                                    }
+                                    )}
                                 </Fragment>
                             )
                         })

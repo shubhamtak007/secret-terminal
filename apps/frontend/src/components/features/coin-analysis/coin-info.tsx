@@ -13,6 +13,7 @@ import type { CoinAnalysis } from '@/interfaces/coin-analysis.interface';
 import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
 import useCoinInfo from '@/hooks/use-coin-info';
 import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
+import { InteractiveTooltip, InteractiveTooltipTrigger, InteractiveTooltipContent } from '@/components/ui/interactive-tooltip';
 
 type Bindings = CoinAnalysis;
 
@@ -100,18 +101,18 @@ function CoinInfo({ coinProperties }: Bindings) {
                                                     {coinKeyItem.name}
                                                 </div>
 
-                                                {coinKeyItem.toolTipValue ? <Tooltip>
-                                                    <TooltipTrigger>
+                                                {coinKeyItem.toolTipValue ? <InteractiveTooltip>
+                                                    <InteractiveTooltipTrigger asChild>
                                                         <Info size={'15'} />
-                                                    </TooltipTrigger>
+                                                    </InteractiveTooltipTrigger>
 
-                                                    <TooltipContent
+                                                    <InteractiveTooltipContent
                                                         side="bottom"
                                                         className="max-w-[260px]"
                                                     >
                                                         {coinKeyItem.toolTipValue}
-                                                    </TooltipContent>
-                                                </Tooltip> : undefined}
+                                                    </InteractiveTooltipContent>
+                                                </InteractiveTooltip> : undefined}
                                             </div>
 
                                             <div className="font-medium">

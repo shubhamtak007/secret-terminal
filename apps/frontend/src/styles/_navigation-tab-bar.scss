@@ -16,17 +16,22 @@
             height: 40px;
             border-radius: unset;
 
+            [data-slot="tabs-trigger"] {
+                padding-inline: 7px;
+            }
+
             [data-state="active"] {
                 background-color: var(--tab-active-bg-color);
                 color: var(--tab-active-text-color);
                 box-shadow: unset;
             }
 
-            [data-slot="tooltip-trigger"] {
+            [data-slot="tooltip-trigger"],
+            [data-slot="popover-trigger"] {
                 min-width: unset;
 
                 &:hover {
-                    padding: 0;
+                    color: var(--tab-text-color);
                     background-color: unset;
                 }
             }

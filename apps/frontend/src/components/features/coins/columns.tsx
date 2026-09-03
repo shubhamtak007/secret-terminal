@@ -11,6 +11,7 @@ import { ChevronsUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { coinSymbolImageSize } from '@/constants/app.constants';
+import { InteractiveTooltip, InteractiveTooltipContent, InteractiveTooltipTrigger } from '@/components/ui/interactive-tooltip';
 
 const decimalPlaces = 2;
 
@@ -303,20 +304,20 @@ export const columns: ColumnDef<CoingeckoCrypto>[] = [
                         Circulating Supply
                     </div>
 
-                    <Tooltip>
-                        <TooltipTrigger aria-label="info">
+                    <InteractiveTooltip>
+                        <InteractiveTooltipTrigger aria-label="info">
                             <Info size={15} />
-                        </TooltipTrigger>
+                        </InteractiveTooltipTrigger>
 
-                        <TooltipContent
+                        <InteractiveTooltipContent
                             data-side={'top'}
                             side={'top'}
                             className="w-[300px]"
                         >
                             The amount of coins that are circulating in the market and are in public
                             hands. It is analogous to the flowing shares in the stock market.
-                        </TooltipContent>
-                    </Tooltip>
+                        </InteractiveTooltipContent>
+                    </InteractiveTooltip>
                 </div>
             )
         }, cell: ({ row }) => {

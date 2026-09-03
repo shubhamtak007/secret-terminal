@@ -3,6 +3,7 @@ import Footer from "@/components/layout/footer";
 import LoadingBar from '@/components/layout/loading-bar';
 import { UserContextProvider } from "@/contexts/user.context";
 import { LoadingContextProvider } from '@/contexts/loading.context';
+import { TouchDetectorContextProvider } from "@/contexts/touch-detector.context";
 
 export default function Layout({ children, }: Readonly<{ children: React.ReactNode; }>) {
     return (
@@ -10,15 +11,17 @@ export default function Layout({ children, }: Readonly<{ children: React.ReactNo
             <LoadingContextProvider>
                 <LoadingBar>
                     <UserContextProvider>
-                        <Header />
+                        <TouchDetectorContextProvider>
+                            <Header />
 
-                        <main className="main-content">
-                            <div className="container">
-                                {children}
-                            </div>
-                        </main>
+                            <main className="main-content">
+                                <div className="container">
+                                    {children}
+                                </div>
+                            </main>
 
-                        <Footer />
+                            <Footer />
+                        </TouchDetectorContextProvider>
                     </UserContextProvider>
                 </LoadingBar>
             </LoadingContextProvider>
