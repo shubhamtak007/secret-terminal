@@ -24,13 +24,13 @@ interface CoinDetailsServerResponse {
 
 interface ClientCoinProperties {
     id: string,
-    name: string,
-    symbol: string,
-    description: Promise<string | undefined> | null,
-    imageUrl: string,
-    websiteUrl: string,
-    socialLinks: { [key: string]: string }[],
-    currentPrice: number
+    name?: string,
+    symbol?: string,
+    description?: Promise<string | undefined> | null,
+    imageUrl?: string,
+    websiteUrl?: string,
+    socialLinks?: { [key: string]: string }[],
+    currentPrice?: number
 }
 
 export type { CoinDetailsServerResponse, ClientCoinProperties }

@@ -13,13 +13,22 @@ type Bindings = {
 export default function useCoinDetailsDialog(bindings: Bindings) {
     const { showDialog, coin } = bindings;
     const coinId = coin?.id;
+    const coinSymbol = coin?.symbol;
     const [coinDetails, setCoinDetails] = useState<ClientCoinProperties | null>(null);
     const [fetchingCoinDetails, setFetchingCoinDetails] = useState<boolean>(false);
 
     useEffect(() => {
         if (!showDialog) return;
-        if (coinId && coin?.name) fetchCoinDetailsByCoinId(coinId);
-    }, [coinId, showDialog]);
+        if (!coin) return;
+
+        const parts = coinId?.split('-');
+
+        if (coinId && parts && parts.length > 0 && (parts.length < 2 || !parts[2].startsWith('4'))) {
+            fetchCoinDetailsByCoinId(coinId);
+        } else {
+            if (coinSymbol) fetchCoinDetailsByName(coinSymbol);
+        }
+    }, [coinId, coinSymbol, showDialog]);
 
     async function fetchCoinDetailsByCoinId(coinId: string) {
         if (!coinId) return;
@@ -31,7 +40,27 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
             const coinProperties = await createCoinProperties(response.data.data);
             if (coinProperties) setCoinDetails(coinProperties);
         } catch (error) {
+            console.log(error);
+        } finally {
+            setFetchingCoinDetails(false);
+        }
+    }
 
+    async function fetchCoinDetailsByName(coinSymbol: string) {
+        if (!coin) return;
+
+        setCoinDetails(null);
+        setFetchingCoinDetails(true);
+
+        try {
+            const description = await getCoinDescription(null, coinSymbol);
+            setCoinDetails({
+                id: coin.id,
+                symbol: coin.symbol,
+                description: description
+            })
+        } catch (error) {
+            console.log(error);
         } finally {
             setFetchingCoinDetails(false);
         }
@@ -44,7 +73,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
             id: serverCoinProperties.id,
             name: serverCoinProperties.name,
             symbol: serverCoinProperties.symbol,
-            description: await summarizeDescription(serverCoinProperties.description.en, serverCoinProperties.name),
+            description: await getCoinDescription(serverCoinProperties.description.en, serverCoinProperties.name),
             imageUrl: serverCoinProperties.image.large,
             websiteUrl: serverCoinProperties.links.homepage[0],
             socialLinks: [
@@ -54,11 +83,11 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
             currentPrice: serverCoinProperties.market_data.current_price.usd
         }
 
-        return properties
+        return properties;
     }
 
-    async function summarizeDescription(description: string, name: string) {
-        if (description.length > 0 && description.length < 250) return description;
+    async function getCoinDescription(description: string | null, name: string) {
+        if (description && description.length < 250) return description;
 
         const descriptionPrompt = `Explain ${name} in 50 to 100 words. Briefly cover what it is,
         its main purpose, how it works, its key features, and what makes it different from other cryptocurrencies.
@@ -77,8 +106,6 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
             const response = await session.prompt(descriptionPrompt);
             return response;
         }
-
-        return `${description.split('.').slice(0, 3)}.`
     }
 
     return { fetchingCoinDetails, coinDetails };

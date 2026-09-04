@@ -58,10 +58,10 @@ function CoinDetailsDialog(bindings: Bindings) {
                 </DialogHeader>
 
                 <DialogBody>
-                    {coin?.name ? <CoinDetailsBlock
+                    {<CoinDetailsBlock
                         fetchingCoinDetails={fetchingCoinDetails}
                         coinDetails={coinDetails}
-                    /> : <div className="no-value-text !text-center">No details available.</div>}
+                    />}
                 </DialogBody>
             </DialogContent>
         </Dialog>
