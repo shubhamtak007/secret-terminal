@@ -1,7 +1,8 @@
+import { isAxiosError } from "axios";
 import { coinGeckoClient } from "../../lib/api-client.js";
 import { coinGeckoEndpoints } from "../../lib/endpoints.js";
 import { formatValueIntoCommaSeparated, roundOffNumber } from '@secret-terminal/services/utils.service';
-import { GlobalMarketDataCoinGecko } from '@secret-terminal/types/global-market.types';
+import { GlobalMarketApiData } from '@secret-terminal/types/global-market.types';
 
 async function retrieveGlobalMarketData() {
     try {
@@ -10,14 +11,20 @@ async function retrieveGlobalMarketData() {
         return globalMarketData;
 
     } catch (error: unknown) {
+        if (isAxiosError(error)) {
+            throw new Error(error?.response?.data.message ?? error.message);
+        }
+
         if (error instanceof Error) {
             throw new Error(error.message);
         }
+
+        throw new Error("An unknown error occurred");
     }
 }
 
-function createGlobalMarketStatistics(globalMarketData: GlobalMarketDataCoinGecko) {
-    const marketStats = {
+function createGlobalMarketStatistics(globalMarketData: GlobalMarketApiData) {
+    return {
         totalCoins: formatValueIntoCommaSeparated(globalMarketData.active_cryptocurrencies),
         exchanges: formatValueIntoCommaSeparated(globalMarketData.markets),
         totalMarketCapital: {
@@ -29,8 +36,6 @@ function createGlobalMarketStatistics(globalMarketData: GlobalMarketDataCoinGeck
         totalVolume: globalMarketData.total_volume.usd,
         lastUpdatedAt: new Date(globalMarketData.updated_at * 1000)
     }
-
-    return marketStats;
 }
 
 function createMarketCapShareList(marketCapSharePercentProperties: Record<string, number>) {

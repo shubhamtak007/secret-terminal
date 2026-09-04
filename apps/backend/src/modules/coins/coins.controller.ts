@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import CoinService from '../coins/coins.service.js';
+import { isAxiosError } from 'axios';
+import statusCode from '../../constants/http-status-code.js';
 
 const getCoinList = async (request: Request, response: Response) => {
     try {
@@ -10,11 +12,7 @@ const getCoinList = async (request: Request, response: Response) => {
             data: coins
         })
     } catch (error) {
-        if (error instanceof Error) {
-            return response.status(401).json({
-                message: error.message
-            })
-        }
+        handleError(error, response);
     }
 }
 
@@ -26,12 +24,20 @@ const getCoinById = async (request: Request, response: Response) => {
             data: coin?.data
         })
     } catch (error) {
-        if (error instanceof Error) {
-            return response.status(401).json({
-                message: error.message
-            })
-        }
+        handleError(error, response);
     }
+}
+
+function handleError(error: unknown, response: Response) {
+    if (error instanceof Error) {
+        return response.status(statusCode.internalServerError).json({
+            message: error.message
+        })
+    }
+
+    return response.status(statusCode.internalServerError).json({
+        message: "An unknown error occurred"
+    });
 }
 
 export { getCoinList, getCoinById }

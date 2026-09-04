@@ -1,4 +1,4 @@
-interface GlobalMarketDataCoinGecko {
+interface GlobalMarketApiData {
     active_cryptocurrencies: number,
     markets: number,
     total_market_cap: {
@@ -28,4 +28,4 @@ interface GlobalMarketStats {
     lastUpdatedAt: number
 }
 
-export type { GlobalMarketDataCoinGecko, GlobalMarketStats };
+export type { GlobalMarketApiData, GlobalMarketStats };

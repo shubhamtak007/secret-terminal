@@ -2,6 +2,7 @@ import { CoinListApiParams } from '@secret-terminal/types/coin-list.types';
 import { coinGeckoClient } from '../../lib/api-client.js';
 import { coinGeckoEndpoints } from '../../lib/endpoints.js';
 import { getRowsPerPageDefaultValue } from '@secret-terminal/services/utils.service';
+import { isAxiosError } from 'axios';
 
 async function retrieveCoinList(params: CoinListApiParams) {
     const queryParams: CoinListApiParams = {
@@ -20,9 +21,7 @@ async function retrieveCoinList(params: CoinListApiParams) {
         const response = await coinGeckoClient.get(coinGeckoEndpoints.coins.coinListWithMarketData, { params: queryParams });
         return response.data;
     } catch (error) {
-        if (error instanceof Error) {
-            throw new Error(error.message);
-        }
+        handleError(error);
     }
 }
 
@@ -31,10 +30,20 @@ async function retrieveCoinById(id: string) {
         const response = await coinGeckoClient.get(`${coinGeckoEndpoints.coins.coinDataById}/${id}`)
         return response;
     } catch (error) {
-        if (error instanceof Error) {
-            throw new Error(error.message);
-        }
+        handleError(error);
     }
+}
+
+function handleError(error: unknown) {
+    if (isAxiosError(error)) {
+        throw new Error(error?.response?.data.message ?? error.message);
+    }
+
+    if (error instanceof Error) {
+        throw new Error(error.message);
+    }
+
+    throw new Error("An unknown error occurred");
 }
 
 const CoinService = {
