@@ -30,8 +30,9 @@ function PopoverContent({
                 align={align}
                 sideOffset={sideOffset}
                 className={cn(
-                    `tooltip-content z-50 w-fit text-xs p-[6px_8px] m-[12px_12px_6px_12px] origin-(--radix-popover-content-transform-origin) rounded-[var(--border-radius)] border bg-popover
-                    text-popover-foreground shadow-md outline-hidden data-[side=bottom]:slide-in-from-top-2
+                    `tooltip-content z-50 w-fit text-xs p-[6px_8px] m-[12px_12px_6px_12px]
+                    origin-(--radix-popover-content-transform-origin) rounded-[var(--border-radius)]
+                    border bg-foreground text-background shadow-md outline-hidden data-[side=bottom]:slide-in-from-top-2
                     data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2
                     data-[side=top]:slide-in-from-bottom-2 data-[state=closed]:animate-out
                     data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95
