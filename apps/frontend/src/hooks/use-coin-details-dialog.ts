@@ -21,9 +21,7 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
         if (!showDialog) return;
         if (!coin) return;
 
-        const parts = coinId?.split('-');
-
-        if (coinId && parts && parts.length > 0 && (parts.length < 2 || !parts[2].startsWith('4'))) {
+        if (coinId && !isUUID(coinId)) {
             fetchCoinDetailsByCoinId(coinId);
         } else {
             if (coinSymbol) fetchCoinDetailsByName(coinSymbol);
@@ -106,6 +104,13 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
             const response = await session.prompt(descriptionPrompt);
             return response;
         }
+    }
+
+    function isUUID(value: string) {
+        const uuidRegex =
+            /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+        return uuidRegex.test(value);
     }
 
     return { fetchingCoinDetails, coinDetails };

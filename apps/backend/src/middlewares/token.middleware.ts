@@ -5,15 +5,12 @@ import statusCode from "../constants/http-status-code.js";
 
 export default async function tokenVerification(request: Request, response: Response, next: NextFunction) {
     try {
-        let userId;
         const refreshToken = request.cookies.refreshToken;
 
         if (!refreshToken) throw new Error('Your session has expired. Please sign in again.');
 
         const decodedRt = (TokenService.verifyRefreshToken(refreshToken) as Jwt);
         if (decodedRt.error) throw new Error(decodedRt.error);
-
-        userId = decodedRt.payload.userId;
 
         setNoCacheHeaders(response);
         next();
