@@ -26,7 +26,8 @@ function Tabs({
 }
 
 const tabsListVariants = cva(
-    "group/tabs-list inline-flex w-fit items-center justify-center rounded-[var(--border-radius)] p-[3px] text-muted-foreground group-data-[orientation=horizontal]/tabs:h-9 group-data-[orientation=vertical]/tabs:h-fit group-data-[orientation=vertical]/tabs:flex-col data-[variant=line]:rounded-none",
+    `group/tabs-list inline-flex w-fit items-center justify-center rounded-[var(--border-radius)] p-[3px]
+    text-muted-foreground group-data-[orientation=vertical]/tabs:flex-col data-[variant=line]:rounded-none`,
     {
         variants: {
             variant: {
@@ -66,7 +67,7 @@ function TabsTrigger({
             data-slot="tabs-trigger"
             className={cn(
                 `relative inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5
-                hover:cursor-pointer rounded-[var(--border-radius)] border border-transparent px-2 py-1
+                hover:cursor-pointer rounded-[var(--border-radius)] border border-transparent p-[4px_8px]
                 text-sm font-medium whitespace-nowrap text-foreground/60 transition-all
                 group-data-[orientation=vertical]/tabs:w-full group-data-[orientation=vertical]/tabs:justify-start
                 hover:text-[var(--text-color)] focus-visible:border-ring focus-visible:ring-[3px]

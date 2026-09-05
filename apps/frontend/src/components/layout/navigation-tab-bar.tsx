@@ -46,7 +46,7 @@ export default function NavigationTabBar(bindings: Bindings) {
                                                     aria-label={tab.name}
                                                 >
                                                     {onMobile && <Icon
-                                                        className="size-5"
+                                                        className="size-[18px]"
                                                         size={iconSize}
                                                     />}
 
@@ -69,16 +69,16 @@ export default function NavigationTabBar(bindings: Bindings) {
                                             value={tab.value}
                                             onClick={(event) => onTabClick(event, tab.value)}
                                             aria-label={tab.name}
-                                            className={`${onMobile && 'block'} 'flex align-center'`}
+                                            className={`${onMobile && '!block'}`}
                                         >
                                             {onMobile && <Icon
-                                                className="size-5"
+                                                className="size-[18px]"
                                                 size={iconSize}
                                             />}
 
-                                            {!onMobile && <span>
+                                            <div className={`${onMobile && 'text-[10px] mt-[1px]'}`}>
                                                 {tab.name}
-                                            </span>}
+                                            </div>
                                         </TabsTrigger>
                                     )}
                                 </Fragment>
