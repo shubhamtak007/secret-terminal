@@ -12,7 +12,7 @@ import { InteractiveTooltip, InteractiveTooltipContent, InteractiveTooltipTrigge
 import CoinSearchDialog from '../features/coin-search/coin-search-dialog';
 
 type Bindings = {
-    onMobile: boolean
+    onMobile?: boolean
 }
 
 export default function NavigationTabBar(bindings: Bindings) {
