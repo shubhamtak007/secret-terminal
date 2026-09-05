@@ -9,8 +9,14 @@ import { Home, Lock } from 'lucide-react';
 import { DialogProps } from "@/interfaces/global.interface";
 import { iconSize } from '@/constants/app.constants';
 import { InteractiveTooltip, InteractiveTooltipContent, InteractiveTooltipTrigger } from '../ui/interactive-tooltip';
+import CoinSearchDialog from '../features/coin-search/coin-search-dialog';
 
-export default function NavigationTabBar() {
+type Bindings = {
+    onMobile: boolean
+}
+
+export default function NavigationTabBar(bindings: Bindings) {
+    const { onMobile } = bindings;
     const {
         scrollEnded, activeTab, onTabClick, dialogType, showDialog, setShowDialog, tabList
     } = useNavigationTabBar();
@@ -27,6 +33,8 @@ export default function NavigationTabBar() {
                 <TabsList>
                     {
                         tabList.map((tab) => {
+                            const Icon = tab.icon;
+
                             return (
                                 <Fragment key={tab.id}>
                                     {tab.disabled ? (
@@ -34,14 +42,17 @@ export default function NavigationTabBar() {
                                             <InteractiveTooltipTrigger asChild>
                                                 <button
                                                     type="button"
-                                                    className="flex items-center text-sm px-[7px]"
+                                                    className="tab-disabled"
                                                     aria-label={tab.name}
                                                 >
-                                                    <Lock
+                                                    {onMobile && <Icon
+                                                        className="size-4"
                                                         size={iconSize}
-                                                        className="size-3 mr-[4px]"
-                                                    />
-                                                    {tab.name}
+                                                    />}
+
+                                                    {!onMobile && <span>
+                                                        {tab.name}
+                                                    </span>}
                                                 </button>
                                             </InteractiveTooltipTrigger>
 
@@ -58,15 +69,16 @@ export default function NavigationTabBar() {
                                             value={tab.value}
                                             onClick={(event) => onTabClick(event, tab.value)}
                                             aria-label={tab.name}
+                                            className={`${onMobile && 'block'} 'flex align-center'`}
                                         >
-                                            {tab.name === "Home" && (
-                                                <Home
-                                                    className="size-4"
-                                                    size={iconSize}
-                                                />
-                                            )}
+                                            {onMobile && <Icon
+                                                className="size-4"
+                                                size={iconSize}
+                                            />}
 
-                                            {tab.name !== "Home" && tab.name}
+                                            {!onMobile && <span>
+                                                {tab.name}
+                                            </span>}
                                         </TabsTrigger>
                                     )}
                                 </Fragment>
@@ -78,6 +90,7 @@ export default function NavigationTabBar() {
 
             {(dialogType === 'news') && showNewsDialog({ showDialog, setShowDialog })}
             {(dialogType === 'watchlist') && showWatchlistDialog({ showDialog, setShowDialog })}
+            {(dialogType === 'coin-analysis') && showCoinAnalysisDialog({ showDialog, setShowDialog })}
         </div>
     )
 }
@@ -94,6 +107,15 @@ function showWatchlistDialog({ showDialog, setShowDialog }: DialogProps) {
 function showNewsDialog({ showDialog, setShowDialog }: DialogProps) {
     return (
         <NewsDialog
+            showDialog={showDialog}
+            setShowDialog={setShowDialog}
+        />
+    )
+}
+
+function showCoinAnalysisDialog({ showDialog, setShowDialog }: DialogProps) {
+    return (
+        <CoinSearchDialog
             showDialog={showDialog}
             setShowDialog={setShowDialog}
         />

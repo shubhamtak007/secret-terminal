@@ -13,7 +13,7 @@ export default function TerminalCursor({ size = 24, className, }: TerminalCursor
     useEffect(() => {
         const interval = setInterval(() => {
             setVisible((prev) => !prev);
-        }, 500);
+        }, 400);
 
         return () => clearInterval(interval);
     }, []);

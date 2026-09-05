@@ -15,6 +15,7 @@
             box-shadow: var(--box-shadow);
             height: 40px;
             border-radius: unset;
+            align-items: center;
 
             [data-slot="tabs-trigger"] {
                 padding-inline: 7px;
@@ -34,6 +35,15 @@
                     color: var(--tab-text-color);
                     background-color: unset;
                 }
+            }
+
+            .tab-disabled {
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+                padding-inline: 7px;
+                gap: 0.25rem;
+                font-weight: 500;
             }
 
             button,
@@ -71,7 +81,7 @@
     }
 }
 
-@media (width > 820) {
+@media (width > 920) {
     .navigation-tab-bar {
         [data-slot="tabs"] {
             box-shadow: unset;

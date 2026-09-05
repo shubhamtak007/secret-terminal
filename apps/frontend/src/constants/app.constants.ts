@@ -1,3 +1,6 @@
+import { NavigationBarTab } from "@/interfaces/global.interface"
+import { Home, TrendingUp, Newspaper, BookmarkPlus, ChartNoAxesColumn, LucideIcon } from "lucide-react"
+
 const coinKeyList = [
     {
         name: 'Market Cap.',
@@ -44,26 +47,40 @@ const coinsTableContextMenuList: Record<string, string>[] = ['View Details', 'An
     return { id: crypto.randomUUID(), name }
 })
 
-const navigationBarTabList = [
+const navigationBarTabList: NavigationBarTab[] = [
     { name: 'Home', value: 'home' },
     { name: 'Trending', value: 'trending' },
     { name: 'News', value: 'news' },
-    { name: 'Watchlist', value: 'watchlist' }
+    { name: 'Watchlist', value: 'watchlist' },
+    { name: 'Analysis', value: 'coin-analysis' }
 ].map((tab) => {
     return {
         id: crypto.randomUUID(),
         name: tab.name,
         value: tab.value,
-        disabled: false
+        disabled: false,
+        icon: getIcon(tab.value)
     }
 })
+
+function getIcon(value: string): LucideIcon {
+    switch (value) {
+        case 'home': return Home;
+        case 'trending': return TrendingUp;
+        case 'news': return Newspaper;
+        case 'watchlist': return BookmarkPlus;
+        case 'coin-analysis': return ChartNoAxesColumn;
+        case 'home': return Home;
+        default: return Home;
+    }
+}
 
 const coinSymbolImageSize = {
     width: 26,
     height: 26
 }
 
-const userScreenWidth = 820;
+const userScreenWidth = 920;
 const iconSize = 18;
 
 export {

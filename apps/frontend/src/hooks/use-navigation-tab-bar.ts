@@ -29,10 +29,16 @@ export default function useNavigationTabBar() {
         }
 
         setTabList((previousTabList: NavigationBarTab[]) => {
-            return (previousTabList.length > 0) ? previousTabList.map((previousTab: NavigationBarTab) => {
-                const foundTab = navigationBarTabList.find((currentTab) => previousTab.id === currentTab.id)
-                return { ...previousTab, disabled: foundTab?.disabled };
-            }) : navigationBarTabList
+            return previousTabList.length > 0 ? previousTabList.map((previousTab) => {
+                const foundTab = navigationBarTabList.find(
+                    (currentTab) => previousTab.id === currentTab.id
+                );
+
+                return {
+                    ...previousTab,
+                    disabled: foundTab?.disabled,
+                };
+            }) : navigationBarTabList;
         });
     }, [navigationBarTabList, user]);
 
@@ -74,6 +80,7 @@ export default function useNavigationTabBar() {
             case 'home': route = '/'; break;
             case 'news': setDialogType('news'); setShowDialog(true); break;
             case 'watchlist': setDialogType('watchlist'); setShowDialog(true); break;
+            case 'coin-analysis': setDialogType('coin-analysis'); setShowDialog(true); break;
             case 'trending': route = '/trending'; break;
             default: route = '/'; break;
         }
