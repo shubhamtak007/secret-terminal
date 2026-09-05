@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { getUiRoute, getRowsPerPageDefaultValue } from '@secret-terminal/services/utils.service';
+import { getRowsPerPageDefaultValue } from '@secret-terminal/services/utils.service';
+import { getUiRoute } from '@/services/utils.service';
 import { CoinListApiParams } from '@secret-terminal/types/coin-list.types';
 import { Row } from '@tanstack/react-table';
 import { search, retrieveCoinList } from '@/services/coin.service';

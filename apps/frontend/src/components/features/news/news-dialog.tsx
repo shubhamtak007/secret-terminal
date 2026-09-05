@@ -31,7 +31,7 @@ export default memo(function NewsDialog(bindings: Bindings) {
 
                 <DialogBody>
                     {(fetchingLatestNews === true) ?
-                        <Spinner className="size-10 m-[10px_auto]" /> :
+                        <Spinner className="size-8 m-[10px_auto]" /> :
                         (articles && articles.length > 0) ? <div className="article-list">
                             {articles.map((article: NewsArticle, index) => {
                                 return (
@@ -43,10 +43,10 @@ export default memo(function NewsDialog(bindings: Bindings) {
                                     >
                                         <div className="details">
                                             <div className="source-info text-[13px]">
-                                                <img
+                                                {article.source.icon && <img
                                                     className="icon"
                                                     src={article.source.icon}
-                                                />
+                                                />}
 
                                                 <span className="name">{article.source.name}</span>
                                             </div>

@@ -1,3 +1,5 @@
+import { checkImageUrl } from '@secret-terminal/services/image.service';
+
 async function retrieveLatestNews() {
     try {
         if (!process.env.NEWS_API_KEY) {
@@ -5,10 +7,9 @@ async function retrieveLatestNews() {
         }
 
         const params: Record<string, string> = {
-            apiKey: process.env.NEWS_API_KEY,
+            apikey: process.env.NEWS_API_KEY!,
             language: "en",
-            domainurl: "coindesk.com,theblock.co",
-            coin: "btc,eth,xrp,usdt,sol"
+            domainurl: "coindesk.com,theblock.co"
         }
 
         const paramsString = new URLSearchParams(params).toString();
@@ -20,7 +21,7 @@ async function retrieveLatestNews() {
             throw new Error(jsonData.results.message ? jsonData.results.message : jsonData.results[0].message);
         }
 
-        const articles = createResponseData(jsonData.results);
+        const articles = await createResponseData(jsonData.results);
 
         return { articles, nextPage: jsonData.nextPage };
     } catch (error: unknown) {
@@ -30,7 +31,7 @@ async function retrieveLatestNews() {
     }
 }
 
-function createResponseData(serverArticles: Record<string, string>[]) {
+async function createResponseData(serverArticles: Record<string, string>[]) {
     if (!serverArticles || serverArticles.length === 0) return [];
 
     let articles = [];
@@ -38,7 +39,8 @@ function createResponseData(serverArticles: Record<string, string>[]) {
     const uniqueArticlesMap = new Map();
 
     for (const article of serverArticles) {
-        if (!uniqueArticlesMap.get(article.description)) {
+        if (!article.description) article.description = article.title;
+        if (article.description && !uniqueArticlesMap.get(article.description)) {
             uniqueArticlesMap.set(article.description, article);
         }
     }
@@ -55,12 +57,21 @@ function createResponseData(serverArticles: Record<string, string>[]) {
             source: {
                 id: article.source_id,
                 name: article.source_name,
-                icon: article.source_icon
+                icon: await checkSourceImageIcon(article.source_icon)
             }
         })
     }
 
     return articles;
+}
+
+async function checkSourceImageIcon(url: string) {
+    try {
+        const isValid = await checkImageUrl(url);
+        if (isValid) return url;
+    } catch (error) {
+        return null;
+    }
 }
 
 const NewsService = {

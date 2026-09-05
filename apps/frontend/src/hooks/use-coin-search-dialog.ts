@@ -2,7 +2,7 @@
 
 import { useState, useEffect, SetStateAction, Dispatch, use } from 'react';
 import { search } from '@/services/coin.service';
-import { getUiRoute } from '@secret-terminal/services/utils.service';
+import { getUiRoute } from '@/services/utils.service';
 import { SearchApiCoin } from '@/interfaces/coin.interface';
 import { useRouter } from 'next/navigation';
 import { addWatchlistCoin } from '@/services/watchlist-coin.service';
