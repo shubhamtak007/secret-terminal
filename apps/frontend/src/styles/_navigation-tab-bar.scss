@@ -1,11 +1,11 @@
 .navigation-tab-bar {
     [data-slot="tabs"] {
-        box-shadow: var(--box-shadow);
+        box-shadow: unset;
+        border: unset;
+        border-radius: var(--border-radius);
         max-width: max-content;
         margin: auto;
         overflow: auto hidden;
-        border: 1px solid var(--border-color);
-        border-radius: var(--border-radius);
         display: flex;
         align-items: center;
 
@@ -81,11 +81,22 @@
     }
 }
 
-@media (width > 920) {
+@media (width < 920) {
     .navigation-tab-bar {
         [data-slot="tabs"] {
-            box-shadow: unset;
-            border: unset;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        [data-slot="tabs-list"] {
+            height: 50px !important;
+
+            button,
+            a {
+                min-width: 50px !important;
+                display: flex;
+                justify-content: center;
+            }
         }
     }
 }
