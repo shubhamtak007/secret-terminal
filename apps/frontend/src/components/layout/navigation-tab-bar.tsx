@@ -50,9 +50,9 @@ export default function NavigationTabBar(bindings: Bindings) {
                                                         size={iconSize}
                                                     />}
 
-                                                    {!onMobile && <span>
+                                                    <div className={`${onMobile && 'text-[10px]'}`}>
                                                         {tab.name}
-                                                    </span>}
+                                                    </div>
                                                 </button>
                                             </InteractiveTooltipTrigger>
 

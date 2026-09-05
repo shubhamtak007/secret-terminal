@@ -13,7 +13,6 @@
             border-color: var(--border-color);
             background-color: var(--main-bg-color);
             box-shadow: var(--box-shadow);
-            // height: 35px;
             border-radius: unset;
             align-items: center;
 
@@ -34,8 +33,7 @@
             }
 
             .tab-disabled {
-                display: flex;
-                align-items: center;
+                display: block;
                 font-size: 14px;
                 padding-inline: 7px;
                 gap: 0.25rem;
@@ -46,8 +44,11 @@
             a {
                 min-width: 36px;
                 max-width: max-content;
-                place-items: center;
                 color: var(--tab-text-color);
+
+                svg {
+                    width: 100%;
+                }
 
                 &:hover {
                     background-color: var(--tab-active-bg-color);
@@ -87,8 +88,6 @@
             button,
             a {
                 min-width: 50px !important;
-                display: flex;
-                justify-content: center;
             }
 
             [data-slot="tabs-trigger"] {
