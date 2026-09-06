@@ -254,7 +254,7 @@ function WatchlistCoinList(props: any) {
                                                                             }
                                                                         </div>
 
-                                                                        <div>
+                                                                        <div className="break-all">
                                                                             {watchlistCoin.name}
                                                                         </div>
                                                                     </div>
