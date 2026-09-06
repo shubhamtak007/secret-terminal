@@ -46,7 +46,7 @@ export default function NavigationTabBar(bindings: Bindings) {
                                                     aria-label={tab.name}
                                                 >
                                                     {onMobile && <Icon
-                                                        className="size-[18px]"
+                                                        className="size-[20px]"
                                                         size={iconSize}
                                                     />}
 
@@ -72,7 +72,7 @@ export default function NavigationTabBar(bindings: Bindings) {
                                             className={`${onMobile && '!block'}`}
                                         >
                                             {onMobile && <Icon
-                                                className="size-[18px]"
+                                                className="size-[20px]"
                                                 size={iconSize}
                                             />}
 
