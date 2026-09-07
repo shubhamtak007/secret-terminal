@@ -1,15 +1,15 @@
-import Image from 'next/image';
+import Image from "next/image";
 import { formatValueIntoCommaSeparated, formatValueInUsdCompact } from "@secret-terminal/services/utils.service";
-import { coinSymbolImageSize } from '@/constants/app.constants';
-import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
-import type { MarketSummaryItem } from '@/interfaces/market-summary.interface';
-import type { CoinDetailsDialogCoin } from '@/interfaces/coin.interface';
-import { useRef, useState } from 'react';
+import { coinSymbolImageSize } from "@/constants/app.constants";
+import CoinDetailsDialog from "@/components/features/coin-details/coin-details-dialog";
+import type { MarketSummaryItem } from "@/interfaces/market-summary.interface";
+import type { CoinDetailsDialogCoin } from "@/interfaces/coin.interface";
+import { useRef, useState } from "react";
 
 interface Bindings {
-    inDialog: boolean,
-    noOfCoins: number,
-    marketSummaryItem: MarketSummaryItem
+    inDialog: boolean;
+    noOfCoins: number;
+    marketSummaryItem: MarketSummaryItem;
 }
 
 export default function MarketSummaryCoins(bindings: Bindings) {
@@ -20,53 +20,50 @@ export default function MarketSummaryCoins(bindings: Bindings) {
     return (
         <>
             <table className={`cnv-borderless-table`}>
-                {inDialog && <thead>
-                    <tr>
-                        <th className="w-[35px]">#</th>
-                        <th className="text-left w-[40%]">Coin</th>
-                        <th className="text-left">Price</th>
-                        <th className="text-right">24hr Change</th>
-                    </tr>
-                </thead>}
+                {inDialog && (
+                    <thead>
+                        <tr>
+                            <th className="w-[35px]">#</th>
+                            <th className="text-left w-[40%]">Coin</th>
+                            <th className="text-left">Price</th>
+                            <th className="text-right">24hr Change</th>
+                        </tr>
+                    </thead>
+                )}
 
                 <tbody>
-                    {
-                        (marketSummaryItem.coins.length > 0) &&
+                    {marketSummaryItem.coins.length > 0 &&
                         marketSummaryItem.coins.slice(0, noOfCoins).map((coin, index) => {
                             return (
                                 <tr key={coin.id}>
-                                    {
-                                        inDialog && <td className="text-center">
-                                            {index + 1}
-                                        </td>
-                                    }
+                                    {inDialog && <td className="text-center">{index + 1}</td>}
 
-                                    <td className={`${!inDialog && 'w-[40%]'}`}>
-                                        <div className={`flex items-center ${inDialog ? 'max-w-[inherit]' : 'max-w-[115px] md:max-w-[100px]'}`}>
+                                    <td className={`${!inDialog && "w-[40%]"}`}>
+                                        <div
+                                            className={`flex items-center ${inDialog ? "max-w-[inherit]" : "max-w-[115px] md:max-w-[100px]"}`}
+                                        >
                                             <div className="coin-image-wrapper">
-                                                {
-                                                    coin.imageUrl ?
-                                                        <Image
-                                                            className="coin-symbol-image"
-                                                            width={coinSymbolImageSize.width}
-                                                            height={coinSymbolImageSize.height}
-                                                            alt={`Image of ${coin.name}`}
-                                                            src={coin.imageUrl}
-                                                        /> :
-                                                        <div className="coin-letter-mark">
-                                                            {coin.symbol[0]}
-                                                        </div>
-                                                }
+                                                {coin.imageUrl ? (
+                                                    <Image
+                                                        className="coin-symbol-image"
+                                                        width={coinSymbolImageSize.width}
+                                                        height={coinSymbolImageSize.height}
+                                                        alt={`Image of ${coin.name}`}
+                                                        src={coin.imageUrl}
+                                                    />
+                                                ) : (
+                                                    <div className="coin-letter-mark">{coin.symbol[0]}</div>
+                                                )}
                                             </div>
 
                                             <div
-                                                className="crypto-symbol cursor-pointer"
+                                                className="coin-name cursor-pointer"
                                                 onClick={() => {
                                                     clickedCoinRef.current = {
                                                         id: coin.id,
                                                         name: coin.name,
                                                         image: coin.imageUrl,
-                                                        symbol: coin.symbol
+                                                        symbol: coin.symbol,
                                                     };
                                                     setShowCoinDetailsDialog(true);
                                                 }}
@@ -77,33 +74,41 @@ export default function MarketSummaryCoins(bindings: Bindings) {
                                     </td>
 
                                     <td className={`text-left`}>
-                                        {
-                                            coin.lastPrice &&
+                                        {coin.lastPrice && (
                                             <span className="break-all">
-                                                {inDialog ? formatValueIntoCommaSeparated(coin.lastPrice, 5, true) :
-                                                    (coin.lastPrice > 999 ? formatValueInUsdCompact(coin.lastPrice, 2) : `$${coin.lastPrice}`)}
+                                                {inDialog
+                                                    ? formatValueIntoCommaSeparated(coin.lastPrice, 5, true)
+                                                    : coin.lastPrice > 999
+                                                      ? formatValueInUsdCompact(coin.lastPrice, 2)
+                                                      : `$${coin.lastPrice}`}
                                             </span>
-                                        }
+                                        )}
                                     </td>
 
                                     <td className="text-right">
-                                        {
-                                            coin.priceChangePercent &&
+                                        {coin.priceChangePercent && (
                                             <>
-                                                {(marketSummaryItem.id === 'topGainer' || marketSummaryItem.id === 'topVolume' || marketSummaryItem.id === 'trending') &&
-                                                    <span className={`${coin.priceChangePercent > 0 ? 'success-text' : 'danger-text'}`}>
+                                                {(marketSummaryItem.id === "topGainer" ||
+                                                    marketSummaryItem.id === "topVolume" ||
+                                                    marketSummaryItem.id === "trending") && (
+                                                    <span
+                                                        className={`${coin.priceChangePercent > 0 ? "success-text" : "danger-text"}`}
+                                                    >
                                                         {formatValueInUsdCompact(coin.priceChangePercent, 2, false)}%
-                                                    </span>}
+                                                    </span>
+                                                )}
 
-                                                {(marketSummaryItem.id === 'topLoser') &&
-                                                    <span className="danger-text">{formatValueInUsdCompact(coin.priceChangePercent, 2, false)}%</span>}
+                                                {marketSummaryItem.id === "topLoser" && (
+                                                    <span className="danger-text">
+                                                        {formatValueInUsdCompact(coin.priceChangePercent, 2, false)}%
+                                                    </span>
+                                                )}
                                             </>
-                                        }
+                                        )}
                                     </td>
                                 </tr>
-                            )
-                        })
-                    }
+                            );
+                        })}
                 </tbody>
             </table>
 
@@ -114,5 +119,5 @@ export default function MarketSummaryCoins(bindings: Bindings) {
                 dialogLevel={noOfCoins > 3 ? 2 : 1}
             />
         </>
-    )
+    );
 }
