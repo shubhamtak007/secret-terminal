@@ -133,6 +133,7 @@ export default function useCoinSearchDialog(bindings: Bindings) {
 
                 coin.marketData = {
                     currentPrice: foundMarketData.current_price,
+                    priceChangePercentIn1hr: foundMarketData.price_change_percentage_1h_in_currency,
                 };
 
                 return coin;

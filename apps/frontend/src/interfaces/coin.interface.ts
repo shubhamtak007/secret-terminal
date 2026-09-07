@@ -77,6 +77,7 @@ interface SearchApiCoin {
     loading: boolean;
     marketData: {
         currentPrice: number;
+        priceChangePercentIn1hr: number;
     };
 }
 

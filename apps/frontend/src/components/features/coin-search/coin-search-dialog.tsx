@@ -15,8 +15,9 @@ import {
 import { CirclePlus, Search, X } from "lucide-react";
 import { Spinner } from "@/components/ui/spinner";
 import { Dispatch, SetStateAction } from "react";
-import { formatValueIntoCommaSeparated } from "@secret-terminal/services/utils.service";
+import { formatValueIntoCommaSeparated, roundOffNumber } from "@secret-terminal/services/utils.service";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 type Bindings = {
     showDialog: boolean;
@@ -146,7 +147,7 @@ function CoinSearchDialog(bindings: Bindings) {
                                                         </div>
                                                     </td>
 
-                                                    <td>
+                                                    <td className="text-right">
                                                         {fetchingCoinsMarketData === true ? (
                                                             <Skeleton className="h-[21px] w-[60px] float-right" />
                                                         ) : (
@@ -158,6 +159,28 @@ function CoinSearchDialog(bindings: Bindings) {
                                                                         true,
                                                                     )}
                                                                 </div>
+                                                            )
+                                                        )}
+                                                    </td>
+
+                                                    <td className="text-right">
+                                                        {fetchingCoinsMarketData === true ? (
+                                                            <Skeleton className="h-[21px] w-[60px] float-right" />
+                                                        ) : (
+                                                            coin.marketData?.priceChangePercentIn1hr && (
+                                                                <span
+                                                                    className={`flex items-center justify-end ${coin.marketData.priceChangePercentIn1hr > 0 ? "success-text" : "danger-text"}`}
+                                                                >
+                                                                    {coin.marketData.priceChangePercentIn1hr > 0 ? (
+                                                                        <FaCaretUp />
+                                                                    ) : (
+                                                                        <FaCaretDown />
+                                                                    )}
+                                                                    {roundOffNumber(
+                                                                        coin.marketData.priceChangePercentIn1hr,
+                                                                        2,
+                                                                    ).toFixed(2) + "%"}
+                                                                </span>
                                                             )
                                                         )}
                                                     </td>
