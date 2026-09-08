@@ -25,43 +25,15 @@ import {
 type Bindings = CoinAnalysis;
 
 function CoinInfo({ coinProperties }: Bindings) {
-    const { coinInfo, fetchingCoinInfo } = useCoinInfo({ coinProperties });
-    const { timeFrame, setPriceStatus } = useCoinAnalysisContext();
-    const [priceChangePercentage, setPriceChangePercentage] = useState<number | null>(null);
-    const [showCoinDetailsDialog, setShowCoinDetailsDialog] = useState<boolean>(false);
-    const coinInfoRef = useRef<StCoin>(null);
-
-    useEffect(() => {
-        if (coinInfo && timeFrame?.name) {
-            const percent = Number(
-                coinInfo.priceChangePercent[getTimeFrameKey(timeFrame?.name) as keyof typeof coinInfo.priceChangePercent],
-            );
-
-            const priceChangePercentRoundOffValue = roundOffNumber(percent, 2);
-            const priceStatus = percent > 0 ? "up" : "down";
-
-            setPriceStatus(priceStatus);
-            setPriceChangePercentage(priceChangePercentRoundOffValue);
-        }
-    }, [coinInfo, timeFrame?.name]);
-
-    const getTimeFrameKey = (name: string) => {
-        const timeFrames: Record<string, string> = {
-            "24H": "24hr",
-            "7D": "7d",
-            "14D": "14d",
-            "1M": "30d",
-            "200D": "200d",
-            "1Y": "1y",
-        };
-
-        return timeFrames[name];
-    };
-
-    const onCoinInfoNameAndImgClick = () => {
-        coinInfoRef.current = coinInfo;
-        setShowCoinDetailsDialog(true);
-    };
+    const {
+        coinInfo,
+        fetchingCoinInfo,
+        onCoinInfoNameAndImgClick,
+        priceChangePercentage,
+        showCoinDetailsDialog,
+        coinInfoRef,
+        setShowCoinDetailsDialog,
+    } = useCoinInfo({ coinProperties });
 
     return fetchingCoinInfo ? (
         <Skeleton className="w-full min-h-[308px]" />
