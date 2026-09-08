@@ -167,17 +167,17 @@ function CoinSearchDialog(bindings: Bindings) {
                                                         {fetchingCoinsMarketData === true ? (
                                                             <Skeleton className="h-[21px] w-[60px] float-right" />
                                                         ) : (
-                                                            coin.marketData?.priceChangePercentIn1hr && (
+                                                            coin.marketData?.priceChangePercent["1hr"] && (
                                                                 <span
-                                                                    className={`flex items-center justify-end ${coin.marketData.priceChangePercentIn1hr > 0 ? "success-text" : "danger-text"}`}
+                                                                    className={`flex items-center justify-end ${coin.marketData.priceChangePercent["1hr"] > 0 ? "success-text" : "danger-text"}`}
                                                                 >
-                                                                    {coin.marketData.priceChangePercentIn1hr > 0 ? (
+                                                                    {coin.marketData.priceChangePercent["1hr"] > 0 ? (
                                                                         <FaCaretUp />
                                                                     ) : (
                                                                         <FaCaretDown />
                                                                     )}
                                                                     {roundOffNumber(
-                                                                        coin.marketData.priceChangePercentIn1hr,
+                                                                        coin.marketData.priceChangePercent["1hr"],
                                                                         2,
                                                                     ).toFixed(2) + "%"}
                                                                 </span>

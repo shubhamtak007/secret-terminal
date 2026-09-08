@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { formatValueIntoCommaSeparated } from '@secret-terminal/services/utils.service';
-import { retrieveCoinList } from '@/services/coin.service';
-import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
-import type { CoinAnalysis } from '@/interfaces/coin-analysis.interface';
+import { useState, useEffect } from "react";
+import { formatValueIntoCommaSeparated } from "@secret-terminal/services/utils.service";
+import { retrieveCoinList } from "@/services/coin.service";
+import { StCoin } from "@secret-terminal/types/coin-list.types";
+import type { CoinAnalysis } from "@/interfaces/coin-analysis.interface";
 
 type Bindings = CoinAnalysis;
 
 function useCoinInfo({ coinProperties }: Bindings) {
-    const [coinInfo, setCoinInfo] = useState<CoingeckoCrypto | null>(null);
+    const [coinInfo, setCoinInfo] = useState<StCoin | null>(null);
     const [fetchingCoinInfo, setFetchingCoinInfo] = useState<boolean>(true);
 
     useEffect(() => {
         document.title = coinProperties.id;
         if (coinProperties.id) fetchCoinInfoByName();
-    }, [])
+    }, []);
 
     async function fetchCoinInfoByName() {
         if (fetchingCoinInfo === false) setFetchingCoinInfo(true);
 
         try {
             const params = {
-                ids: coinProperties.id
-            }
+                ids: coinProperties.id,
+            };
             const coins = await retrieveCoinList(params);
 
             if (coins.length > 0) {
@@ -32,23 +32,22 @@ function useCoinInfo({ coinProperties }: Bindings) {
                 setCoinInfo(coins[0]);
             }
         } catch (error) {
-
         } finally {
             setFetchingCoinInfo(false);
         }
     }
 
-    function formatValues(data: CoingeckoCrypto[]) {
+    function formatValues(data: StCoin[]) {
         for (const coin of data) {
-            if (coin.current_price) {
-                coin.currentPriceWithCurrencySymbol = formatValueIntoCommaSeparated(coin.current_price, 6, true);
+            if (coin.currentPrice) {
+                coin.currentPriceWithCurrencySymbol = formatValueIntoCommaSeparated(coin.currentPrice, 6, true);
             } else {
                 coin.currentPriceWithCurrencySymbol = `$0`;
             }
         }
     }
 
-    return { coinInfo, fetchingCoinInfo }
+    return { coinInfo, fetchingCoinInfo };
 }
 
 export default useCoinInfo;

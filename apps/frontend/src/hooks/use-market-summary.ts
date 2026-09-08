@@ -1,26 +1,32 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useRef } from 'react';
-import { retrieveTrendingCoins, retrieveAllCoins, retrieveCoinList } from '@/services/coin.service';
-import { CryptoCurrency, CoingeckoCrypto, TrendingCoin, MarketSummaryRefMap } from '@/interfaces/coin.interface';
-import { roundOffNumber } from '@secret-terminal/services/utils.service';
-import type { MarketSummaryItem } from '@/interfaces/market-summary.interface';
+import { useEffect, useState, useRef } from "react";
+import { retrieveTrendingCoins, retrieveAllCoins, retrieveCoinList } from "@/services/coin.service";
+import { CryptoCurrency, TrendingCoin, MarketSummaryRefMap } from "@/interfaces/coin.interface";
+import { roundOffNumber } from "@secret-terminal/services/utils.service";
+import { StCoin } from "@secret-terminal/types/coin-list.types";
+import type { MarketSummaryItem } from "@/interfaces/market-summary.interface";
 
 const roundToDecimalPlaces = 5;
 
 function useMarketSummary() {
-    let marketSummaryRef = useRef<MarketSummaryRefMap>({ gainers: [], losers: [], volumes: [], trendingCoins: [] }).current;
+    let marketSummaryRef = useRef<MarketSummaryRefMap>({
+        gainers: [],
+        losers: [],
+        volumes: [],
+        trendingCoins: [],
+    }).current;
     const numberOfItemsRef = useRef<number>(15).current;
     const [marketSummary, setMarketSummary] = useState<MarketSummaryItem[]>([]);
     const [fetchingMarketSummary, setFetchingMarketSummary] = useState<boolean>(true);
 
     useEffect(() => {
         fetchAllCoinsAndTrendingCoins();
-    }, [])
+    }, []);
 
     async function fetchAllCoinsAndTrendingCoins() {
         try {
-            const locationResponse = await fetch('https://ipapi.co/json');
+            const locationResponse = await fetch("https://ipapi.co/json");
             const locationData = await locationResponse.json();
             const countryCode = locationData.country_code;
 
@@ -32,8 +38,8 @@ function useMarketSummary() {
             if (responses[0].length > 0) {
                 createTrendingCoinList(responses[0]);
 
-                if (countryCode === 'US') {
-                    setMarketSummary([{ id: 'trending', title: 'Trending', coins: marketSummaryRef.trendingCoins }]);
+                if (countryCode === "US") {
+                    setMarketSummary([{ id: "trending", title: "Trending", coins: marketSummaryRef.trendingCoins }]);
                     return;
                 }
             }
@@ -45,7 +51,6 @@ function useMarketSummary() {
 
             createMarketSummary();
         } catch (error) {
-
         } finally {
             setFetchingMarketSummary(false);
         }
@@ -53,13 +58,10 @@ function useMarketSummary() {
 
     function getPromisesByCountryCode(countryCode: string) {
         switch (countryCode) {
-            case 'US': return [
-                retrieveTrendingCoins()
-            ];
-            default: return [
-                retrieveTrendingCoins(),
-                retrieveAllCoins()
-            ];
+            case "US":
+                return [retrieveTrendingCoins()];
+            default:
+                return [retrieveTrendingCoins(), retrieveAllCoins()];
         }
     }
 
@@ -75,22 +77,28 @@ function useMarketSummary() {
                 symbol: coin.symbol,
                 lastPrice: roundOffNumber(coin.data?.price, roundToDecimalPlaces),
                 priceChangePercent: roundOffNumber(coin.data?.price_change_percentage_24h?.usd, 2),
-            })
+            });
         }
     }
 
     function createGainerLoserAndVolumeList(cryptoCurrencyList: CryptoCurrency[]) {
-        marketSummaryRef.gainers = cryptoCurrencyList.sort((a: CryptoCurrency, b: CryptoCurrency) => {
-            return Number(b.priceChangePercent) - Number(a.priceChangePercent)
-        }).slice(0, numberOfItemsRef);
+        marketSummaryRef.gainers = cryptoCurrencyList
+            .sort((a: CryptoCurrency, b: CryptoCurrency) => {
+                return Number(b.priceChangePercent) - Number(a.priceChangePercent);
+            })
+            .slice(0, numberOfItemsRef);
 
-        marketSummaryRef.losers = cryptoCurrencyList.sort((a: CryptoCurrency, b: CryptoCurrency) => {
-            return Number(a.priceChangePercent) - Number(b.priceChangePercent)
-        }).slice(0, numberOfItemsRef);
+        marketSummaryRef.losers = cryptoCurrencyList
+            .sort((a: CryptoCurrency, b: CryptoCurrency) => {
+                return Number(a.priceChangePercent) - Number(b.priceChangePercent);
+            })
+            .slice(0, numberOfItemsRef);
 
-        marketSummaryRef.volumes = cryptoCurrencyList.sort((a: CryptoCurrency, b: CryptoCurrency) => {
-            return Number(b.quoteVolume) - Number(a.quoteVolume)
-        }).slice(0, numberOfItemsRef);
+        marketSummaryRef.volumes = cryptoCurrencyList
+            .sort((a: CryptoCurrency, b: CryptoCurrency) => {
+                return Number(b.quoteVolume) - Number(a.quoteVolume);
+            })
+            .slice(0, numberOfItemsRef);
     }
 
     async function fetchNameAndImageOfCryptoCurrencies() {
@@ -98,27 +106,31 @@ function useMarketSummary() {
 
         const symbolsInLowerCase = [...new Set(coins)].map((item: CryptoCurrency) => {
             return item.symbol.toLowerCase();
-        })
+        });
 
         try {
-            const serverCoinList = await retrieveCoinList({ symbols: symbolsInLowerCase.join(',') });
+            const serverCoinList = await retrieveCoinList({ symbols: symbolsInLowerCase.join(",") });
 
             if (serverCoinList) {
                 for (const crypto of coins) {
                     crypto.lastPrice = roundOffNumber(Number(crypto.lastPrice), roundToDecimalPlaces);
 
-                    const matchedCrypto = serverCoinList.find((item: CoingeckoCrypto) => crypto.symbol.toLowerCase() === item.symbol);
+                    const matchedCrypto = serverCoinList.find(
+                        (item: StCoin) => crypto.symbol.toLowerCase() === item.symbol,
+                    );
 
                     if (matchedCrypto) {
-                        const priceChangePercentRoundOffValue = roundOffNumber(matchedCrypto.price_change_percentage_24h,
-                            getDecimalPlaces(matchedCrypto.price_change_percentage_24h))
+                        const priceChangePercentRoundOffValue = roundOffNumber(
+                            matchedCrypto.priceChangePercent["24hr"],
+                            getDecimalPlaces(matchedCrypto.priceChangePercent["24hr"]),
+                        );
 
                         const info = {
                             id: matchedCrypto.id,
                             name: matchedCrypto.name,
-                            imageUrl: matchedCrypto.image ? matchedCrypto.image : '',
+                            imageUrl: matchedCrypto.imageUrl ? matchedCrypto.imageUrl : "",
                             // priceChangePercent: priceChangePercentRoundOffValue
-                        }
+                        };
 
                         Object.assign(crypto, info);
                     }
@@ -127,30 +139,28 @@ function useMarketSummary() {
 
             createMarketSummary();
         } catch (error) {
-
         } finally {
-
         }
     }
 
     function getDecimalPlaces(percent: number) {
         const percentPositiveValue = Math.abs(percent);
         const decimalPlaces = -Math.floor(Math.log(percentPositiveValue) / Math.log(10) + 1);
-        return (decimalPlaces > 0) ? decimalPlaces : 2;
+        return decimalPlaces > 0 ? decimalPlaces : 2;
     }
 
     function createMarketSummary() {
         const localMarketSummary = [
-            { id: 'topGainer', title: 'Top Gainers', coins: marketSummaryRef.gainers },
-            { id: 'topLoser', title: 'Top Losers', coins: marketSummaryRef.losers },
-            { id: 'trending', title: 'Trending', coins: marketSummaryRef.trendingCoins },
-            { id: 'topVolume', title: 'Top Volume', coins: marketSummaryRef.volumes }
-        ]
+            { id: "topGainer", title: "Top Gainers", coins: marketSummaryRef.gainers },
+            { id: "topLoser", title: "Top Losers", coins: marketSummaryRef.losers },
+            { id: "trending", title: "Trending", coins: marketSummaryRef.trendingCoins },
+            { id: "topVolume", title: "Top Volume", coins: marketSummaryRef.volumes },
+        ];
 
         setMarketSummary(localMarketSummary);
     }
 
-    return { marketSummary, fetchingMarketSummary }
+    return { marketSummary, fetchingMarketSummary };
 }
 
 export default useMarketSummary;

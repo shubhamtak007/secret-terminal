@@ -62,7 +62,7 @@ export default function MarketSummaryCoins(bindings: Bindings) {
                                                     clickedCoinRef.current = {
                                                         id: coin.id,
                                                         name: coin.name,
-                                                        image: coin.imageUrl,
+                                                        imageUrl: coin.imageUrl,
                                                         symbol: coin.symbol,
                                                     };
                                                     setShowCoinDetailsDialog(true);

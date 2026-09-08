@@ -1,19 +1,26 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
-import { Skeleton } from '@/components/ui/skeleton';
-import { formatValueIntoCommaSeparated, roundOffNumber, formatValueInUsdCompact } from '@secret-terminal/services/utils.service';
-import { useCoinAnalysisContext } from '@/contexts/coin-analysis.context';
-import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
+import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+    formatValueIntoCommaSeparated,
+    roundOffNumber,
+    formatValueInUsdCompact,
+} from "@secret-terminal/services/utils.service";
+import { useCoinAnalysisContext } from "@/contexts/coin-analysis.context";
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 import { Info } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { coinKeyList, coinSymbolImageSize } from '@/constants/app.constants';
-import type { CoinAnalysis } from '@/interfaces/coin-analysis.interface';
-import type { CoingeckoCrypto } from '@/interfaces/coin.interface';
-import useCoinInfo from '@/hooks/use-coin-info';
-import CoinDetailsDialog from '@/components/features/coin-details/coin-details-dialog';
-import { InteractiveTooltip, InteractiveTooltipTrigger, InteractiveTooltipContent } from '@/components/ui/interactive-tooltip';
+import { coinKeyList, coinSymbolImageSize } from "@/constants/app.constants";
+import type { CoinAnalysis } from "@/interfaces/coin-analysis.interface";
+import useCoinInfo from "@/hooks/use-coin-info";
+import CoinDetailsDialog from "@/components/features/coin-details/coin-details-dialog";
+import { StCoin } from "@secret-terminal/types/coin-list.types";
+import {
+    InteractiveTooltip,
+    InteractiveTooltipTrigger,
+    InteractiveTooltipContent,
+} from "@/components/ui/interactive-tooltip";
 
 type Bindings = CoinAnalysis;
 
@@ -22,16 +29,16 @@ function CoinInfo({ coinProperties }: Bindings) {
     const { timeFrame, setPriceStatus } = useCoinAnalysisContext();
     const [priceChangePercentage, setPriceChangePercentage] = useState<number | null>(null);
     const [showCoinDetailsDialog, setShowCoinDetailsDialog] = useState<boolean>(false);
-    const coinInfoRef = useRef<CoingeckoCrypto>(null);
+    const coinInfoRef = useRef<StCoin>(null);
 
     useEffect(() => {
         if (coinInfo && timeFrame?.name) {
-            const timeFrameName = timeFrame.name === '1M' ? '30d' : timeFrame.name;
-            const key = `price_change_percentage_${timeFrameName.toLowerCase()}_in_currency`;
-            const percent = Number(coinInfo[key as keyof typeof coinInfo]);
+            const timeFrameName = timeFrame.name === "1M" ? "30d" : timeFrame.name;
+            const key = timeFrameName.toLowerCase();
+            const percent = Number(coinInfo.priceChangePercent[key as keyof typeof coinInfo.priceChangePercent]);
 
             const priceChangePercentRoundOffValue = roundOffNumber(percent, 2);
-            const priceStatus = (percent > 0) ? 'up' : 'down';
+            const priceStatus = percent > 0 ? "up" : "down";
 
             setPriceStatus(priceStatus);
             setPriceChangePercentage(priceChangePercentRoundOffValue);
@@ -41,101 +48,100 @@ function CoinInfo({ coinProperties }: Bindings) {
     const onCoinInfoNameAndImgClick = () => {
         coinInfoRef.current = coinInfo;
         setShowCoinDetailsDialog(true);
-    }
+    };
 
-    return (
-        fetchingCoinInfo ? <Skeleton className="w-full min-h-[308px]" /> :
-            <div className="coin-info-container">
-                {
-                    coinInfo &&
-                    <>
-                        <div className="header">
-                            <div className="rank">
-                                #{coinInfo.market_cap_rank}
+    return fetchingCoinInfo ? (
+        <Skeleton className="w-full min-h-[308px]" />
+    ) : (
+        <div className="coin-info-container">
+            {coinInfo && (
+                <>
+                    <div className="header">
+                        <div className="rank">#{coinInfo.marketCapRank}</div>
+
+                        <div
+                            className="flex items-center cursor-pointer"
+                            onClick={() => {
+                                onCoinInfoNameAndImgClick();
+                            }}
+                        >
+                            <div className="coin-image-wrapper">
+                                <Image
+                                    className="coin-symbol-image"
+                                    width={coinSymbolImageSize.width}
+                                    height={coinSymbolImageSize.height}
+                                    alt={`Image of ${coinInfo.name}`}
+                                    src={coinInfo.imageUrl}
+                                />
                             </div>
 
+                            <div className="name">{coinInfo.name}</div>
+                        </div>
+                    </div>
+
+                    <div className={`coin-price`}>
+                        <div className="current-price">{coinInfo.currentPriceWithCurrencySymbol}</div>
+
+                        {priceChangePercentage && priceChangePercentage !== 0 && (
                             <div
-                                className="flex items-center cursor-pointer"
-                                onClick={() => { onCoinInfoNameAndImgClick() }}
+                                className={`price-change-percent ${priceChangePercentage > 0 ? "success-text" : "danger-text"}`}
                             >
-                                <div className="coin-image-wrapper">
-                                    <Image
-                                        className="coin-symbol-image"
-                                        width={coinSymbolImageSize.width}
-                                        height={coinSymbolImageSize.height}
-                                        alt={`Image of ${coinInfo.name}`}
-                                        src={coinInfo.image}
-                                    />
-                                </div>
-
-                                <div className="name">
-                                    {coinInfo.name}
-                                </div>
+                                {priceChangePercentage > 0 ? <FaCaretUp /> : <FaCaretDown />}
+                                {formatValueInUsdCompact(Math.abs(priceChangePercentage), 2, false)}%
                             </div>
-                        </div>
+                        )}
+                    </div>
 
-                        <div className={`coin-price`}>
-                            <div className="current-price">
-                                {coinInfo.currentPriceWithCurrencySymbol}
-                            </div>
+                    <div className="other-info-wrapper">
+                        {coinKeyList.map((coinKeyItem, index) => {
+                            return (
+                                <div
+                                    key={`${index}-${coinKeyItem.key}`}
+                                    className="pair"
+                                >
+                                    <div className="key flex items-center">
+                                        <div className="mr-[4px]">{coinKeyItem.name}</div>
 
-                            {(priceChangePercentage && priceChangePercentage !== 0) &&
-                                <div className={`price-change-percent ${(priceChangePercentage > 0 ? 'success-text' : 'danger-text')}`}>
-                                    {
-                                        (priceChangePercentage > 0) ? <FaCaretUp /> : <FaCaretDown />
-                                    }
-                                    {formatValueInUsdCompact(Math.abs(priceChangePercentage), 2, false)}%
-                                </div>}
-                        </div>
+                                        {coinKeyItem.toolTipValue ? (
+                                            <InteractiveTooltip>
+                                                <InteractiveTooltipTrigger asChild>
+                                                    <Info size={"15"} />
+                                                </InteractiveTooltipTrigger>
 
-                        <div className="other-info-wrapper">
-                            {
-                                coinKeyList.map((coinKeyItem, index) => {
-                                    return (
-                                        <div
-                                            key={`${index}-${coinKeyItem.key}`}
-                                            className="pair"
-                                        >
-                                            <div className="key flex items-center">
-                                                <div className="mr-[4px]">
-                                                    {coinKeyItem.name}
-                                                </div>
+                                                <InteractiveTooltipContent
+                                                    side="bottom"
+                                                    className="max-w-[260px]"
+                                                >
+                                                    {coinKeyItem.toolTipValue}
+                                                </InteractiveTooltipContent>
+                                            </InteractiveTooltip>
+                                        ) : undefined}
+                                    </div>
 
-                                                {coinKeyItem.toolTipValue ? <InteractiveTooltip>
-                                                    <InteractiveTooltipTrigger asChild>
-                                                        <Info size={'15'} />
-                                                    </InteractiveTooltipTrigger>
+                                    <div className="font-medium">
+                                        {formatValueIntoCommaSeparated(
+                                            Number(coinInfo[coinKeyItem.key as keyof typeof coinInfo]),
+                                            0,
+                                            true,
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </>
+            )}
 
-                                                    <InteractiveTooltipContent
-                                                        side="bottom"
-                                                        className="max-w-[260px]"
-                                                    >
-                                                        {coinKeyItem.toolTipValue}
-                                                    </InteractiveTooltipContent>
-                                                </InteractiveTooltip> : undefined}
-                                            </div>
-
-                                            <div className="font-medium">
-                                                {formatValueIntoCommaSeparated(Number(coinInfo[coinKeyItem.key]), 0, true)}
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    </>
-                }
-
-                {
-                    (showCoinDetailsDialog === true) && <CoinDetailsDialog
-                        key={crypto.randomUUID()}
-                        coin={coinInfoRef.current}
-                        showDialog={showCoinDetailsDialog}
-                        setShowDialog={setShowCoinDetailsDialog}
-                    />
-                }
-            </div>
-    )
+            {showCoinDetailsDialog === true && (
+                <CoinDetailsDialog
+                    key={crypto.randomUUID()}
+                    coin={coinInfoRef.current}
+                    showDialog={showCoinDetailsDialog}
+                    setShowDialog={setShowCoinDetailsDialog}
+                />
+            )}
+        </div>
+    );
 }
 
 export default CoinInfo;

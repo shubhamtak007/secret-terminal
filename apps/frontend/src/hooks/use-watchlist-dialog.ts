@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react";
 import { retrieveWatchlists, deleteWatchlist } from "@/services/watchlist.service";
 import { retrieveWatchlistCoinsByWatchlistId, deleteWatchlistCoin } from "@/services/watchlist-coin.service";
 import { retrieveCoinList } from "@/services/coin.service";
-import { CoingeckoCrypto } from "@/interfaces/coin.interface";
 import { Watchlist } from "@/interfaces/watchlist.interface";
 import { DialogProps } from "@/interfaces/global.interface";
+import { StCoin } from "@secret-terminal/types/coin-list.types";
 
-const watchlistContextMenuList = ['Edit', 'View Details', 'Delete'].map((name) => {
-    return { id: crypto.randomUUID(), name }
-})
+const watchlistContextMenuList = ["Edit", "View Details", "Delete"].map((name) => {
+    return { id: crypto.randomUUID(), name };
+});
 
-const watchlistCoinContextMenuList = ['View Details', 'Delete'].map((name) => {
-    return { id: crypto.randomUUID(), name }
-})
+const watchlistCoinContextMenuList = ["View Details", "Delete"].map((name) => {
+    return { id: crypto.randomUUID(), name };
+});
 
 type Bindings = DialogProps;
 
@@ -23,7 +23,7 @@ export default function useWatchlistDialog(bindings: Bindings) {
     const [fetchingWatchlists, setFetchingWatchlists] = useState<boolean>(true);
     const [fetchingWatchlistCoins, setFetchingWatchlistCoins] = useState<boolean>(false);
     const [watchlists, setWatchlists] = useState<Watchlist[]>([]);
-    const [watchlistCoins, setWatchlistCoins] = useState<Record<string, string | boolean | CoingeckoCrypto>[]>([]);
+    const [watchlistCoins, setWatchlistCoins] = useState<Record<string, string | boolean | StCoin>[]>([]);
     const [activeWatchlist, setActiveWatchlist] = useState<Record<string, string> | null>(null);
     const [showWatchlistFormDialog, setShowWatchlistFormDialog] = useState<boolean>(false);
     const [showCoinSearchDialog, setShowCoinSearchDialog] = useState<boolean>(false);
@@ -44,11 +44,11 @@ export default function useWatchlistDialog(bindings: Bindings) {
 
     useEffect(() => {
         if (activeWatchlist?.id) fetchWatchlistCoins();
-    }, [activeWatchlist?.id])
+    }, [activeWatchlist?.id]);
 
     useEffect(() => {
         if (watchlistCoins.length > 0) fetchCoinsMarketData();
-    }, [watchlistCoins])
+    }, [watchlistCoins]);
 
     function onWatchlistFormDialogClose() {
         selectedWatchlist.current = null;
@@ -78,12 +78,10 @@ export default function useWatchlistDialog(bindings: Bindings) {
 
             if (localActiveWatchlist) {
                 setActiveWatchlist(localActiveWatchlist);
-
             } else if (response.data.data.length > 0) {
                 setActiveWatchlist(response.data.data[0]);
             }
         } catch (error) {
-
         } finally {
             setFetchingWatchlists(false);
         }
@@ -97,7 +95,6 @@ export default function useWatchlistDialog(bindings: Bindings) {
             const response = await retrieveWatchlistCoinsByWatchlistId({ watchlistId: activeWatchlist?.id });
             setWatchlistCoins(response.data.data);
         } catch (error) {
-
         } finally {
             setFetchingWatchlistCoins(false);
         }
@@ -108,52 +105,68 @@ export default function useWatchlistDialog(bindings: Bindings) {
             setFetchingMarketData(true);
 
             const params = {
-                symbols: (watchlistCoins.map((watchlistCoin) => {
-                    return String(watchlistCoin.symbol).toLowerCase()
-                })).toString()
-            }
+                symbols: watchlistCoins
+                    .map((watchlistCoin) => {
+                        return String(watchlistCoin.symbol).toLowerCase();
+                    })
+                    .toString(),
+            };
 
             const marketDataList = await retrieveCoinList(params);
 
             watchlistCoins.map((watchlistCoin) => {
-                const foundMarketData = marketDataList.find((marketData: CoingeckoCrypto) => {
-                    return watchlistCoin.coinId === marketData.id
-                })
+                const foundMarketData = marketDataList.find((marketData: StCoin) => {
+                    return watchlistCoin.coinId === marketData.id;
+                });
 
                 watchlistCoin.marketData = foundMarketData;
                 return watchlistCoin;
-            })
+            });
         } catch (error) {
-
         } finally {
             setFetchingMarketData(false);
         }
     }
 
-    function onContextMenuItemClicked(item: Record<string, string>, contextMenuItem: Record<string, string>, event: Event, context: string) {
+    function onContextMenuItemClicked(
+        item: Record<string, string>,
+        contextMenuItem: Record<string, string>,
+        event: Event,
+        context: string,
+    ) {
         setRightClickedItem(item);
 
         switch (contextMenuItem.name) {
-            case 'Edit': {
-                selectedWatchlist.current = item;
-                setShowWatchlistFormDialog(true);
-            }; break;
-            case 'View Details': {
-                switch (context) {
-                    case 'watchlist': {
-                        setShowWatchlistDetailsDialog(true);
-                    }; break;
-                    case 'watchlistCoin': {
-                        setShowCoinDetailsDialog(true);
-                    }; break;
+            case "Edit":
+                {
+                    selectedWatchlist.current = item;
+                    setShowWatchlistFormDialog(true);
                 }
-            }; break;
-            case 'Delete': {
-                deleteDialogType.current = context;
-                setShowDeleteDialog(true);
-            }
                 break;
-            default: return;
+            case "View Details":
+                {
+                    switch (context) {
+                        case "watchlist":
+                            {
+                                setShowWatchlistDetailsDialog(true);
+                            }
+                            break;
+                        case "watchlistCoin":
+                            {
+                                setShowCoinDetailsDialog(true);
+                            }
+                            break;
+                    }
+                }
+                break;
+            case "Delete":
+                {
+                    deleteDialogType.current = context;
+                    setShowDeleteDialog(true);
+                }
+                break;
+            default:
+                return;
         }
     }
 
@@ -170,29 +183,55 @@ export default function useWatchlistDialog(bindings: Bindings) {
             let response;
 
             switch (deleteDialogType.current) {
-                case 'watchlist': {
-                    response = await deleteWatchlist(rightClickedItem.id);
-                }; break;
+                case "watchlist":
+                    {
+                        response = await deleteWatchlist(rightClickedItem.id);
+                    }
+                    break;
 
-                case 'watchlistCoin': {
-                    response = await deleteWatchlistCoin(rightClickedItem.id);
-                }; break;
+                case "watchlistCoin":
+                    {
+                        response = await deleteWatchlistCoin(rightClickedItem.id);
+                    }
+                    break;
             }
 
             if (response.status === 200) setShowDeleteDialog(false);
         } catch (error) {
-
         } finally {
             setDeletingItem(false);
         }
     }
 
     return {
-        fetchingWatchlists, watchlists, fetchingWatchlistCoins, watchlistCoins, onWatchlistClick, activeWatchlist,
-        showWatchlistFormDialog, setShowWatchlistFormDialog, onWatchlistFormDialogClose, watchlistContextMenuList,
-        onContextMenuItemClicked, showCoinSearchDialog, setShowCoinSearchDialog, onCoinSearchDialogClose,
-        showDeleteDialog, setShowDeleteDialog, onDeleteBtnClicked, deletingItem, setDeletingItem, onDeleteDialogClose,
-        fetchingMarketData, watchlistCoinContextMenuList, rightClickedItem, deleteDialogType, selectedWatchlist,
-        showWatchlistDetailsDialog, setShowWatchlistDetailsDialog, showCoinDetailsDialog, setShowCoinDetailsDialog
+        fetchingWatchlists,
+        watchlists,
+        fetchingWatchlistCoins,
+        watchlistCoins,
+        onWatchlistClick,
+        activeWatchlist,
+        showWatchlistFormDialog,
+        setShowWatchlistFormDialog,
+        onWatchlistFormDialogClose,
+        watchlistContextMenuList,
+        onContextMenuItemClicked,
+        showCoinSearchDialog,
+        setShowCoinSearchDialog,
+        onCoinSearchDialogClose,
+        showDeleteDialog,
+        setShowDeleteDialog,
+        onDeleteBtnClicked,
+        deletingItem,
+        setDeletingItem,
+        onDeleteDialogClose,
+        fetchingMarketData,
+        watchlistCoinContextMenuList,
+        rightClickedItem,
+        deleteDialogType,
+        selectedWatchlist,
+        showWatchlistDetailsDialog,
+        setShowWatchlistDetailsDialog,
+        showCoinDetailsDialog,
+        setShowCoinDetailsDialog,
     };
 }

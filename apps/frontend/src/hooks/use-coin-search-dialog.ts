@@ -3,7 +3,8 @@
 import { useState, useEffect, SetStateAction, Dispatch, use } from "react";
 import { retrieveCoinList, search } from "@/services/coin.service";
 import { getUiRoute } from "@/services/utils.service";
-import { CoingeckoCrypto, SearchApiCoin } from "@/interfaces/coin.interface";
+import { SearchApiCoin } from "@/interfaces/coin.interface";
+import { StCoin } from "@secret-terminal/types/coin-list.types";
 import { addWatchlistCoin } from "@/services/watchlist-coin.service";
 
 type Bindings = {
@@ -127,15 +128,11 @@ export default function useCoinSearchDialog(bindings: Bindings) {
             const marketDataList = await retrieveCoinList(params);
 
             coins.map((coin) => {
-                const foundMarketData = marketDataList.find((marketData: CoingeckoCrypto) => {
+                const foundMarketData = marketDataList.find((marketData: StCoin) => {
                     return coin.symbol.toLocaleLowerCase() === marketData.symbol;
                 });
 
-                coin.marketData = {
-                    currentPrice: foundMarketData.current_price,
-                    priceChangePercentIn1hr: foundMarketData.price_change_percentage_1h_in_currency,
-                };
-
+                coin.marketData = foundMarketData;
                 return coin;
             });
         } catch (error) {
