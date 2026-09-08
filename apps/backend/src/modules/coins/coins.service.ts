@@ -2,6 +2,7 @@ import { CoingeckoCoin, CoinListApiParams } from "@secret-terminal/types/coin-li
 import { coinGeckoClient } from "../../lib/api-client.js";
 import { coinGeckoEndpoints } from "../../lib/endpoints.js";
 import { getRowsPerPageDefaultValue } from "@secret-terminal/services/utils.service";
+import { CoinDetailsServerResponse } from "@secret-terminal/types/coin-details.types";
 import { isAxiosError } from "axios";
 
 async function retrieveCoinList(params: CoinListApiParams) {
@@ -30,10 +31,26 @@ async function retrieveCoinList(params: CoinListApiParams) {
 async function retrieveCoinById(id: string) {
     try {
         const response = await coinGeckoClient.get(`${coinGeckoEndpoints.coins.coinDataById}/${id}`);
-        return response;
+        return createCoinProperties(response.data);
     } catch (error) {
         handleError(error);
     }
+}
+
+function createCoinProperties(serverCoinProperties: CoinDetailsServerResponse) {
+    return {
+        id: serverCoinProperties.id,
+        name: serverCoinProperties.name,
+        symbol: serverCoinProperties.symbol,
+        description: serverCoinProperties.description.en,
+        imageUrl: serverCoinProperties.image.large,
+        websiteUrl: serverCoinProperties.links.homepage[0],
+        socialLinks: [
+            { name: "Reddit", url: serverCoinProperties.links.subreddit_url },
+            { name: "Github", url: serverCoinProperties.links.repos_url.github[0] },
+        ],
+        currentPrice: serverCoinProperties.market_data.current_price.usd,
+    };
 }
 
 function createCoinList(serverCoins: CoingeckoCoin[]) {

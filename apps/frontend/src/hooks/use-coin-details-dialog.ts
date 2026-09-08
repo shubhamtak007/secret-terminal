@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CoinDetailsServerResponse, ClientCoinProperties } from "@/interfaces/coin-details.interface";
+import { ClientCoinProperties } from "@secret-terminal/types/coin-details.types";
 import { retrieveCoinDetailsByCoinId } from "@/services/coin.service";
 import { CoinDetailsDialogCoin } from "../interfaces/coin.interface";
 
@@ -35,7 +35,8 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
 
         try {
             const response = await retrieveCoinDetailsByCoinId(coinId);
-            const coinProperties = await createCoinProperties(response.data.data);
+            const coinProperties = response.data.data;
+            coinProperties.description = await getCoinDescription(coinProperties.description, coinProperties.name);
             if (coinProperties) setCoinDetails(coinProperties);
         } catch (error) {
             console.error(error);
@@ -62,26 +63,6 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
         } finally {
             setFetchingCoinDetails(false);
         }
-    }
-
-    async function createCoinProperties(serverCoinProperties: CoinDetailsServerResponse) {
-        if (!serverCoinProperties) return null;
-
-        const properties = {
-            id: serverCoinProperties.id,
-            name: serverCoinProperties.name,
-            symbol: serverCoinProperties.symbol,
-            description: await getCoinDescription(serverCoinProperties.description.en, serverCoinProperties.name),
-            imageUrl: serverCoinProperties.image.large,
-            websiteUrl: serverCoinProperties.links.homepage[0],
-            socialLinks: [
-                { name: "Reddit", url: serverCoinProperties.links.subreddit_url },
-                { name: "Github", url: serverCoinProperties.links.repos_url.github[0] },
-            ],
-            currentPrice: serverCoinProperties.market_data.current_price.usd,
-        };
-
-        return properties;
     }
 
     async function getCoinDescription(description: string | null, name: string) {
