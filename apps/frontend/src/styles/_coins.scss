@@ -140,7 +140,7 @@
     flex-shrink: 0;
 
     .coin-symbol-image {
-        object-fit: cover;
+        object-fit: contain;
         border-radius: var(--border-radius);
         min-width: 26px;
         height: 26px;
@@ -161,7 +161,7 @@
     }
 }
 
-@media (max-width:640px) {
+@media (max-width: 640px) {
     .coins-sst-container {
         .bottom-bar {
             justify-content: center;
