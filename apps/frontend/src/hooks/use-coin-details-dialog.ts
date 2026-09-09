@@ -66,21 +66,31 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
     }
 
     async function getCoinDescription(description: string | null, name: string) {
-        if (description && description.length < 250) return description;
+        if (description && description?.length < 300) {
+            return description;
+        }
 
         const descriptionPrompt = `Explain ${name} in 50 to 100 words. Briefly cover what it is,
-        its main purpose, how it works, its key features, and what makes it different from other cryptocurrencies.
-        Use simple, clear language suitable for someone who understands basic cryptocurrency concepts. Avoid
-        unnecessary technical details, speculation, and overly promotional language.`;
+                    its main purpose, how it works, its key features, and what makes it different from other cryptocurrencies.
+                    Use simple, clear language suitable for someone who understands basic cryptocurrency concepts.
+                    Avoid unnecessary technical details, speculation, and overly promotional language.`;
 
         if ("LanguageModel" in globalThis) {
             const session = await (self as any).LanguageModel.create({
                 expectedInputs: [{ type: "text", languages: ["en"] }],
                 expectedOutputs: [{ type: "text", languages: ["en"] }],
             });
-            const response = await session.prompt(descriptionPrompt);
-            return response;
+
+            return await session.prompt(descriptionPrompt);
         }
+
+        if (!description) return null;
+
+        return description
+            .split(/(?<=[.!?])\s+/)
+            .filter(Boolean)
+            .slice(0, 4)
+            .join(" ");
     }
 
     function isUUID(value: string) {

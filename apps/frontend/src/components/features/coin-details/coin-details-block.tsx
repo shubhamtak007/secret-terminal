@@ -24,10 +24,12 @@ export default function CoinDetailsBlock(bindings: Bindings) {
                 <>
                     {coinDetails && (
                         <div>
-                            {coinDetails.description && <div className="text-[13px]">{coinDetails.description}</div>}
+                            {coinDetails.description && (
+                                <div className="text-[13px] mb-[12px]">{coinDetails.description}</div>
+                            )}
 
                             {(coinDetails.websiteUrl || coinDetails.socialLinks || coinDetails.currentPrice) && (
-                                <table className="cnv-table mt-[12px]">
+                                <table className="cnv-table">
                                     <tbody>
                                         {coinDetails.websiteUrl && (
                                             <tr>
