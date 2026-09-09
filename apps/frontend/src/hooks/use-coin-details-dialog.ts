@@ -53,6 +53,9 @@ export default function useCoinDetailsDialog(bindings: Bindings) {
 
         try {
             const description = await getCoinDescription(null, coinSymbol);
+
+            if (!description) return;
+
             setCoinDetails({
                 id: coin.id,
                 symbol: coin.symbol,

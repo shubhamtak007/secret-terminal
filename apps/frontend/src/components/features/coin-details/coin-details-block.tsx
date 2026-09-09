@@ -22,7 +22,7 @@ export default function CoinDetailsBlock(bindings: Bindings) {
                 </div>
             ) : (
                 <>
-                    {coinDetails && (
+                    {coinDetails ? (
                         <div>
                             {coinDetails.description && (
                                 <div className="text-[13px] mb-[12px]">{coinDetails.description}</div>
@@ -98,6 +98,8 @@ export default function CoinDetailsBlock(bindings: Bindings) {
                                 </table>
                             )}
                         </div>
+                    ) : (
+                        <div className="no-value-text !text-center">No details available</div>
                     )}
                 </>
             )}

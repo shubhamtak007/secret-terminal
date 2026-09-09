@@ -55,12 +55,10 @@ function CoinDetailsDialog(bindings: Bindings) {
                 </DialogHeader>
 
                 <DialogBody>
-                    {
-                        <CoinDetailsBlock
-                            fetchingCoinDetails={fetchingCoinDetails}
-                            coinDetails={coinDetails}
-                        />
-                    }
+                    <CoinDetailsBlock
+                        fetchingCoinDetails={fetchingCoinDetails}
+                        coinDetails={coinDetails}
+                    />
                 </DialogBody>
             </DialogContent>
         </Dialog>
