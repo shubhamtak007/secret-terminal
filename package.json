@@ -10,13 +10,14 @@
     "devDependencies": {
         "concurrently": "^10.0.5",
         "turbo": "^2.10.12",
-        "wait-on": "^9.1.0"
+        "wait-on": "^9.1.0",
+        "typescript": "7.0.2"
     },
-    "packageManager": "pnpm@11.24.0",
+    "packageManager": "pnpm@11.25.0",
     "devEngines": {
         "packageManager": {
             "name": "pnpm",
-            "version": "11.24.0"
+            "version": "11.25.0"
         }
     }
 }
