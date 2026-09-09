@@ -1,28 +1,34 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import { Inter } from "next/font/google";
-import { Analytics } from '@vercel/analytics/next';
-import { Toaster } from '@/components/ui/sonner';
+import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/contexts/theme.context";
+import type { Viewport } from "next";
 
 const inter = Inter({
-    weight: ['400', '500', '600', '700', '800', '900'],
+    weight: ["400", "500", "600", "700", "800", "900"],
     subsets: ["latin"],
-    display: 'swap'
+    display: "swap",
 });
 
 export const metadata: Metadata = {
     title: "Secret Terminal",
-    description: "A simple coin app."
+    description: "A simple coin app.",
+    appleWebApp: {
+        title: "Secret Terminal",
+    },
 };
 
-export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-            <head>
-                <meta name="apple-mobile-web-app-title" content="Secret Terminal" />
-            </head>
-
             <body className={`${inter.className}`}>
                 <ThemeProvider
                     attribute="class"

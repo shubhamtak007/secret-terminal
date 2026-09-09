@@ -1,7 +1,7 @@
 .global-market-stats-bottom-bar {
     width: 100%;
     background-color: var(--main-bg-color);
-    padding: 5px;
+    padding: 5px 5px calc(5px + env(safe-area-inset-bottom)) 5px;
     overflow-x: auto;
     overflow-y: hidden;
     font-size: 12px;
