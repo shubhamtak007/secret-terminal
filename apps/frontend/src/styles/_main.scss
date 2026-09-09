@@ -195,7 +195,7 @@ body {
     .body-wrapper {
         .main-content {
             .container {
-                padding-bottom: 100px;
+                padding-bottom: calc(100px + env(safe-area-inset-bottom));
             }
         }
     }
