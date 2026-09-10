@@ -26,8 +26,13 @@
         justify-content: space-between;
         align-items: center;
         position: relative;
+        margin-inline: auto;
+        max-width: calc(var(--container-width) - 20px);
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
             color: var(--text-color);
             font-size: 20px;
             font-weight: 600;

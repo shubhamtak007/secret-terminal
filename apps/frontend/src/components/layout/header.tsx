@@ -1,41 +1,39 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import NavigationTabBar from '@/components/layout/navigation-tab-bar';
-import useHeader from '@/hooks/use-header';
-import AccountCentre from '@/components/features/account/account-centre';
-import CoinSearchDialog from '@/components/features/coin-search/coin-search-dialog';
-import { iconSize } from '@/constants/app.constants';
-import { Search, Terminal } from 'lucide-react';
-import { FiGithub } from 'react-icons/fi';
-import { ThemeToggle } from '../ui/theme-toggle';
+import Link from "next/link";
+import NavigationTabBar from "@/components/layout/navigation-tab-bar";
+import useHeader from "@/hooks/use-header";
+import AccountCentre from "@/components/features/account/account-centre";
+import CoinSearchDialog from "@/components/features/coin-search/coin-search-dialog";
+import { iconSize } from "@/constants/app.constants";
+import { Search, Terminal } from "lucide-react";
+import { FiGithub } from "react-icons/fi";
+import { ThemeToggle } from "../ui/theme-toggle";
 
-function Header() {
+export default function Header() {
     const { scrolled, showTabBar, showSearchDialog, setShowSearchDialog } = useHeader();
 
     return (
         <>
-            <div className={`header-container ${scrolled ? 'with-shadow' : ''}`}>
-                <div className="navbar max-w-[calc(var(--container-width)_-_20px)] mx-auto">
-                    <Link href="/" className="logo flex items-center">
-                        <div className="flex items-center gap-1">
-                            secret <Terminal strokeWidth={3} />
-                        </div>
+            <div className={`header-container ${scrolled ? "with-shadow" : ""}`}>
+                <div className="navbar">
+                    <Link
+                        href="/"
+                        className="logo"
+                    >
+                        secret <Terminal strokeWidth={3} />
                     </Link>
 
-                    {showTabBar === true && <div className="m-auto">
-                        <NavigationTabBar />
-                    </div>}
+                    {showTabBar === true && <NavigationTabBar />}
 
                     <div className="header-right-side-container">
-                        <div
-                            className="hover:cursor-pointer"
+                        <Search
+                            className="cursor-pointer"
+                            size={iconSize}
                             onClick={() => {
                                 setShowSearchDialog(true);
                             }}
-                        >
-                            <Search className="size-5" size={iconSize} />
-                        </div>
+                        />
 
                         <AccountCentre />
 
@@ -46,12 +44,8 @@ function Header() {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="View Secret Terminal on GitHub"
-                            className={`max-h-[38px] max-w-[33px]`}
                         >
-                            <FiGithub
-                                className="size-4 m-auto"
-                                size={iconSize}
-                            />
+                            <FiGithub size={iconSize} />
                         </a>
 
                         <ThemeToggle />
@@ -64,7 +58,5 @@ function Header() {
                 setShowDialog={setShowSearchDialog}
             />
         </>
-    )
+    );
 }
-
-export default Header;
