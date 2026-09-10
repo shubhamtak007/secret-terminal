@@ -15,9 +15,6 @@ const inter = Inter({
 export const metadata: Metadata = {
     title: "Secret Terminal",
     description: "A simple coin app.",
-    appleWebApp: {
-        title: "Secret Terminal",
-    },
 };
 
 export const viewport: Viewport = {
