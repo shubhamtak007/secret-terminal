@@ -95,6 +95,7 @@
     --hover-bg-color: #edf7f1;
 
     --text-color: #26332e;
+    --st-muted-color: #71857c;
 
     --border-color: var(--grey-color-1);
     --border-radius: 6px;
@@ -118,16 +119,13 @@
     --reddit-color: #ff4500;
     --github-color: #1f2328;
 
-
     --required-color: #d92d20;
 
     --shimmer-color: #eaf2ed;
 
-    --tab-text-color: #71857c;
+    --tab-text-color: var(--st-muted-color);
     --tab-active-bg-color: var(--main-color);
     --tab-active-text-color: var(--text-color);
-
-    --st-muted-color: #71857c;
 
     --scrollbar-thumb: #c4cfca;
     --scrollbar-track: #ffffff;
@@ -198,18 +196,11 @@
 
     --shimmer-color: #22252d;
 
-    --box-shadow:
-        0 14px 32px rgba(0, 0, 0, 0.50),
-        0 6px 12px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.07);
+    --box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.07);
 
-    --top-box-shadow:
-        0 -6px 16px rgba(0, 0, 0, 0.35),
-        0 -1px 3px rgba(255, 255, 255, 0.05);
+    --top-box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.35), 0 -1px 3px rgba(255, 255, 255, 0.05);
 
-    --bottom-box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.3),
-        0 1px 3px rgba(0, 0, 0, 0.2);
+    --bottom-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
 
     --scrollbar-thumb: #30343e;
     --scrollbar-track: #111318;

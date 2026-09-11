@@ -140,10 +140,11 @@
     flex-shrink: 0;
 
     .coin-symbol-image {
-        object-fit: contain;
+        object-fit: cover;
         border-radius: var(--border-radius);
-        min-width: 26px;
         height: 26px;
+        min-width: 26px;
+        max-width: 26px;
     }
 
     .coin-letter-mark {
