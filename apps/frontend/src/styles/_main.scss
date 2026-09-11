@@ -85,7 +85,8 @@ body {
         max-width: 100%;
 
         .container {
-            padding: 12px 12px 48px 12px;
+            padding: 12px calc(12px + env(safe-area-inset-right)) calc(48px + env(safe-area-inset-bottom))
+                calc(12px + env(safe-area-inset-left));
             margin: auto;
             max-width: var(--container-width);
         }
