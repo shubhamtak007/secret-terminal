@@ -193,6 +193,8 @@ body {
 
 @media (width < 920) {
     .body-wrapper {
+        padding-top: env(safe-area-inset-top);
+
         .main-content {
             .container {
                 padding-bottom: calc(100px + env(safe-area-inset-bottom));
