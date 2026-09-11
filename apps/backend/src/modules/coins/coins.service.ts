@@ -4,6 +4,7 @@ import { coinGeckoEndpoints } from "../../lib/endpoints.js";
 import { getRowsPerPageDefaultValue } from "@secret-terminal/services/utils.service";
 import { CoinDetailsServerResponse } from "@secret-terminal/types/coin-details.types";
 import { isAxiosError } from "axios";
+import { cleanResponse } from "../../services/clean-response.service.js";
 
 async function retrieveCoinList(params: CoinListApiParams) {
     const queryParams: CoinListApiParams = {
@@ -22,7 +23,9 @@ async function retrieveCoinList(params: CoinListApiParams) {
         const response = await coinGeckoClient.get(coinGeckoEndpoints.coins.coinListWithMarketData, {
             params: queryParams,
         });
-        return createCoinList(response.data);
+
+        const coinList = cleanResponse(createCoinList(response.data));
+        return coinList;
     } catch (error) {
         handleError(error);
     }

@@ -159,7 +159,7 @@ export const columns: ColumnDef<StCoin>[] = [
                     {roundOffNumber(priceChangeIn1hInPercent, decimalPlaces).toFixed(decimalPlaces) + "%"}
                 </div>
             ) : (
-                <div className="no-value-text">No 1hr</div>
+                <div className="no-value-text">No data</div>
             );
         },
         meta: {
@@ -184,7 +184,7 @@ export const columns: ColumnDef<StCoin>[] = [
                     {roundOffNumber(priceChangeIn24hInPercent, decimalPlaces).toFixed(decimalPlaces) + "%"}
                 </div>
             ) : (
-                <div className="no-value-text">No 24hr</div>
+                <div className="no-value-text">No data</div>
             );
         },
         meta: {
@@ -210,7 +210,7 @@ export const columns: ColumnDef<StCoin>[] = [
                     {roundOffNumber(priceChangeIn7DaysInPercent, decimalPlaces).toFixed(decimalPlaces) + "%"}
                 </div>
             ) : (
-                <div className="no-value-text">No 7d</div>
+                <div className="no-value-text">No data</div>
             );
         },
         meta: {

@@ -166,22 +166,22 @@ function CoinSearchDialog(bindings: Bindings) {
                                                     <td className="text-right">
                                                         {fetchingCoinsMarketData === true ? (
                                                             <Skeleton className="h-[21px] w-[60px] float-right" />
+                                                        ) : coin.marketData?.priceChangePercent["1hr"] ? (
+                                                            <span
+                                                                className={`flex items-center justify-end ${coin.marketData.priceChangePercent["1hr"] > 0 ? "success-text" : "danger-text"}`}
+                                                            >
+                                                                {coin.marketData.priceChangePercent["1hr"] > 0 ? (
+                                                                    <FaCaretUp />
+                                                                ) : (
+                                                                    <FaCaretDown />
+                                                                )}
+                                                                {roundOffNumber(
+                                                                    coin.marketData.priceChangePercent["1hr"],
+                                                                    2,
+                                                                ).toFixed(2) + "%"}
+                                                            </span>
                                                         ) : (
-                                                            coin.marketData?.priceChangePercent["1hr"] && (
-                                                                <span
-                                                                    className={`flex items-center justify-end ${coin.marketData.priceChangePercent["1hr"] > 0 ? "success-text" : "danger-text"}`}
-                                                                >
-                                                                    {coin.marketData.priceChangePercent["1hr"] > 0 ? (
-                                                                        <FaCaretUp />
-                                                                    ) : (
-                                                                        <FaCaretDown />
-                                                                    )}
-                                                                    {roundOffNumber(
-                                                                        coin.marketData.priceChangePercent["1hr"],
-                                                                        2,
-                                                                    ).toFixed(2) + "%"}
-                                                                </span>
-                                                            )
+                                                            <div className="no-value-text">No data</div>
                                                         )}
                                                     </td>
 
